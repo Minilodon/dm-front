@@ -1,0 +1,6 @@
+fragment Player on Player {
+  id
+  name
+  currentCurrency
+  playerImageUrl
+}

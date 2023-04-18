@@ -1,0 +1,8 @@
+mutation UpdatePlayer($id: Int!, $payload: UpdatePlayerInput!) {
+  updatePlayer(id: $id, payload: $payload) {
+    currentCurrency
+    id
+    name
+    playerImageUrl
+  }
+}

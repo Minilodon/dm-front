@@ -1,0 +1,37 @@
+input CreatePlayerInput {
+  currentCurrency: Int
+  name: String!
+  playerImageUrl: String
+}
+
+type Mutation {
+  createPlayer(payload: CreatePlayerInput!): Player!
+  deletePlayer(id: Int!): String!
+  updatePlayer(id: Int!, payload: UpdatePlayerInput!): Player!
+}
+
+type Player {
+  """Quantidade de dinheiro do jogador"""
+  currentCurrency: Int
+  id: Int!
+
+  """Nome do jogador"""
+  name: String
+
+  """Link da imagem de perfil do jogador"""
+  playerImageUrl: String
+}
+
+type Query {
+  """retorna todos os jogadores salvos"""
+  getAllPlayers: [Player!]
+
+  """retorna o jogador que possui o id passado"""
+  getPlayerById(id: Int!): Player
+}
+
+input UpdatePlayerInput {
+  currentCurrency: Int
+  name: String
+  playerImageUrl: String
+}

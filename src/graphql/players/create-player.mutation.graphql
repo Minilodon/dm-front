@@ -1,0 +1,8 @@
+mutation CreatePlayer($payload: CreatePlayerInput!) {
+  createPlayer(payload: $payload) {
+    currentCurrency
+    id
+    name
+    playerImageUrl
+  }
+}
