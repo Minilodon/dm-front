@@ -1,8 +1,12 @@
 mutation CreatePlayer($payload: CreatePlayerInput!) {
   createPlayer(payload: $payload) {
-    currentCurrency
     id
     name
     playerImageUrl
+    copper
+    silver
+    elektrum
+    gold
+    platinum
   }
 }

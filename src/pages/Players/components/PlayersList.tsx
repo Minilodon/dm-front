@@ -1,5 +1,5 @@
 import React from "react";
-import PlayerCard from "./PlayerCard";
+import PlayerCard from "./PlayerCard/PlayerCard";
 import { usePlayerContext } from "../../../contexts/PlayerContext";
 
 const PlayersList = () => {
@@ -10,9 +10,7 @@ const PlayersList = () => {
       {loading ? (
         <span>Carregando...</span>
       ) : !!players ? (
-        players.map((player) => (
-          <PlayerCard player={player} key={player.id} onlyPlayer={onlyPlayer} />
-        ))
+        players.map((player) => <PlayerCard player={player} key={player.id} />)
       ) : (
         <span>Sem jogadores registrados</span>
       )}

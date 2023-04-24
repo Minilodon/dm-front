@@ -1,6 +1,10 @@
 mutation UpdatePlayer($id: Int!, $payload: UpdatePlayerInput!) {
   updatePlayer(id: $id, payload: $payload) {
-    currentCurrency
+    copper
+    silver
+    elektrum
+    gold
+    platinum
     id
     name
     playerImageUrl

@@ -10,17 +10,25 @@ export const PlayerFragmentDoc = gql`
     fragment Player on Player {
   id
   name
-  currentCurrency
+  copper
+  silver
+  gold
+  elektrum
+  platinum
   playerImageUrl
 }
     `;
 export const CreatePlayerDocument = gql`
     mutation CreatePlayer($payload: CreatePlayerInput!) {
   createPlayer(payload: $payload) {
-    currentCurrency
     id
     name
     playerImageUrl
+    copper
+    silver
+    elektrum
+    gold
+    platinum
   }
 }
     `;
@@ -153,7 +161,11 @@ export type GetPlayerByIdQueryResult = Apollo.QueryResult<GetPlayerByIdQuery, Ge
 export const UpdatePlayerDocument = gql`
     mutation UpdatePlayer($id: Int!, $payload: UpdatePlayerInput!) {
   updatePlayer(id: $id, payload: $payload) {
-    currentCurrency
+    copper
+    silver
+    elektrum
+    gold
+    platinum
     id
     name
     playerImageUrl
@@ -197,9 +209,13 @@ export type Scalars = {
 };
 
 export type CreatePlayerInput = {
-  currentCurrency?: InputMaybe<Scalars['Int']>;
+  copper?: InputMaybe<Scalars['Int']>;
+  elektrum?: InputMaybe<Scalars['Int']>;
+  gold?: InputMaybe<Scalars['Int']>;
   name: Scalars['String'];
+  platinum?: InputMaybe<Scalars['Int']>;
   playerImageUrl?: InputMaybe<Scalars['String']>;
+  silver?: InputMaybe<Scalars['Int']>;
 };
 
 export type Mutation = {
@@ -227,13 +243,21 @@ export type MutationUpdatePlayerArgs = {
 
 export type Player = {
   __typename?: 'Player';
-  /** Quantidade de dinheiro do jogador */
-  currentCurrency?: Maybe<Scalars['Int']>;
+  /** Quantidade de cobre do jogador */
+  copper?: Maybe<Scalars['Int']>;
+  /** Quantidade de elektro do jogador */
+  elektrum?: Maybe<Scalars['Int']>;
+  /** Quantidade de ouro do jogador */
+  gold?: Maybe<Scalars['Int']>;
   id: Scalars['Int'];
   /** Nome do jogador */
   name?: Maybe<Scalars['String']>;
+  /** Quantidade de platina do jogador */
+  platinum?: Maybe<Scalars['Int']>;
   /** Link da imagem de perfil do jogador */
   playerImageUrl?: Maybe<Scalars['String']>;
+  /** Quantidade de prata do jogador */
+  silver?: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
@@ -250,9 +274,13 @@ export type QueryGetPlayerByIdArgs = {
 };
 
 export type UpdatePlayerInput = {
-  currentCurrency?: InputMaybe<Scalars['Int']>;
+  copper?: InputMaybe<Scalars['Int']>;
+  elektrum?: InputMaybe<Scalars['Int']>;
+  gold?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
+  platinum?: InputMaybe<Scalars['Int']>;
   playerImageUrl?: InputMaybe<Scalars['String']>;
+  silver?: InputMaybe<Scalars['Int']>;
 };
 
 export type CreatePlayerMutationVariables = Exact<{
@@ -260,7 +288,7 @@ export type CreatePlayerMutationVariables = Exact<{
 }>;
 
 
-export type CreatePlayerMutation = { __typename?: 'Mutation', createPlayer: { __typename?: 'Player', currentCurrency?: number | null, id: number, name?: string | null, playerImageUrl?: string | null } };
+export type CreatePlayerMutation = { __typename?: 'Mutation', createPlayer: { __typename?: 'Player', id: number, name?: string | null, playerImageUrl?: string | null, copper?: number | null, silver?: number | null, elektrum?: number | null, gold?: number | null, platinum?: number | null } };
 
 export type DeletePlayerMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -272,16 +300,16 @@ export type DeletePlayerMutation = { __typename?: 'Mutation', deletePlayer: stri
 export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers?: Array<{ __typename?: 'Player', id: number, name?: string | null, currentCurrency?: number | null, playerImageUrl?: string | null }> | null };
+export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers?: Array<{ __typename?: 'Player', id: number, name?: string | null, copper?: number | null, silver?: number | null, gold?: number | null, elektrum?: number | null, platinum?: number | null, playerImageUrl?: string | null }> | null };
 
 export type GetPlayerByIdQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetPlayerByIdQuery = { __typename?: 'Query', getPlayerById?: { __typename?: 'Player', id: number, name?: string | null, currentCurrency?: number | null, playerImageUrl?: string | null } | null };
+export type GetPlayerByIdQuery = { __typename?: 'Query', getPlayerById?: { __typename?: 'Player', id: number, name?: string | null, copper?: number | null, silver?: number | null, gold?: number | null, elektrum?: number | null, platinum?: number | null, playerImageUrl?: string | null } | null };
 
-export type PlayerFragment = { __typename?: 'Player', id: number, name?: string | null, currentCurrency?: number | null, playerImageUrl?: string | null };
+export type PlayerFragment = { __typename?: 'Player', id: number, name?: string | null, copper?: number | null, silver?: number | null, gold?: number | null, elektrum?: number | null, platinum?: number | null, playerImageUrl?: string | null };
 
 export type UpdatePlayerMutationVariables = Exact<{
   id: Scalars['Int'];
@@ -289,4 +317,4 @@ export type UpdatePlayerMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePlayerMutation = { __typename?: 'Mutation', updatePlayer: { __typename?: 'Player', currentCurrency?: number | null, id: number, name?: string | null, playerImageUrl?: string | null } };
+export type UpdatePlayerMutation = { __typename?: 'Mutation', updatePlayer: { __typename?: 'Player', copper?: number | null, silver?: number | null, elektrum?: number | null, gold?: number | null, platinum?: number | null, id: number, name?: string | null, playerImageUrl?: string | null } };

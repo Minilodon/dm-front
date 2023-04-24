@@ -1,7 +1,11 @@
 input CreatePlayerInput {
-  currentCurrency: Int
+  copper: Int
+  elektrum: Int
+  gold: Int
   name: String!
+  platinum: Int
   playerImageUrl: String
+  silver: Int
 }
 
 type Mutation {
@@ -11,15 +15,27 @@ type Mutation {
 }
 
 type Player {
-  """Quantidade de dinheiro do jogador"""
-  currentCurrency: Int
+  """Quantidade de cobre do jogador"""
+  copper: Int
+
+  """Quantidade de elektro do jogador"""
+  elektrum: Int
+
+  """Quantidade de ouro do jogador"""
+  gold: Int
   id: Int!
 
   """Nome do jogador"""
   name: String
 
+  """Quantidade de platina do jogador"""
+  platinum: Int
+
   """Link da imagem de perfil do jogador"""
   playerImageUrl: String
+
+  """Quantidade de prata do jogador"""
+  silver: Int
 }
 
 type Query {
@@ -31,7 +47,11 @@ type Query {
 }
 
 input UpdatePlayerInput {
-  currentCurrency: Int
+  copper: Int
+  elektrum: Int
+  gold: Int
   name: String
+  platinum: Int
   playerImageUrl: String
+  silver: Int
 }

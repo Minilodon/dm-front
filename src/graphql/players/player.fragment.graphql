@@ -1,6 +1,10 @@
 fragment Player on Player {
   id
   name
-  currentCurrency
+  copper
+  silver
+  gold
+  elektrum
+  platinum
   playerImageUrl
 }
