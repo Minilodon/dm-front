@@ -7,11 +7,11 @@ import { usePlayerContext } from "../../../contexts/PlayerContext";
 
 type Inputs = {
   name: string;
-  bronzeCurrency?: string;
-  silverCurrency?: string;
-  goldCurrency?: string;
-  electrumCurrency?: string;
-  platinumCurrency?: string;
+  copper?: string;
+  silver?: string;
+  gold?: string;
+  elektrum?: string;
+  platinum?: string;
   playerImgUrl: string;
 };
 
@@ -24,44 +24,38 @@ function AddNewPlayerForm() {
   } = useForm({
     defaultValues: {
       name: "Nome",
-      bronzeCurrency: "0",
-      silverCurrency: "0",
-      goldCurrency: "0",
-      electrumCurrency: "0",
-      platinumCurrency: "0",
+      copper: "0",
+      silver: "0",
+      gold: "0",
+      elektrum: "0",
+      platinum: "0",
       playerImgUrl: "",
     },
   });
 
   const { closeDrawer } = useDrawerContext();
-
-  const [creatingPlayer, setCreatingPlayer] = useState(false);
+  const { createPlayer, loading } = usePlayerContext();
 
   const onSubmit: SubmitHandler<Inputs> = async (payload: Inputs) => {
-    setCreatingPlayer(true);
-    console.log("player created!");
-    /* await createPlayer({
+    await createPlayer({
       name: payload.name,
-      currentCurrency: {
-        bronze: parseInt(payload.bronzeCurrency || "0"),
-        silver: parseInt(payload.silverCurrency || "0"),
-        gold: parseInt(payload.goldCurrency || "0"),
-        electrum: parseInt(payload.electrumCurrency || "0"),
-        platinum: parseInt(payload.platinumCurrency || "0"),
-      },
+      copper: parseInt(payload.copper || "0"),
+      silver: parseInt(payload.silver || "0"),
+      elektrum: parseInt(payload.elektrum || "0"),
+      gold: parseInt(payload.gold || "0"),
+      platinum: parseInt(payload.platinum || "0"),
       playerImageUrl: payload.playerImgUrl,
-    }); */
+    });
     closeDrawer();
     reset({
-      bronzeCurrency: "0",
-      electrumCurrency: "0",
-      goldCurrency: "0",
+      copper: "0",
+      elektrum: "0",
+      gold: "0",
       name: "Nome",
-      platinumCurrency: "0",
+      platinum: "0",
       playerImgUrl: "",
-      silverCurrency: "0",
+      silver: "0",
     });
-    setCreatingPlayer(false);
   };
 
   return (
@@ -78,24 +72,24 @@ function AddNewPlayerForm() {
               value={field.value}
               error={!!errors.name}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
             />
           )}
         />
       </section>
       <section className="mb-3">
         <Controller
-          name="bronzeCurrency"
+          name="copper"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
             <Input
-              label={"Moedas de bronze"}
+              label={"Moedas de cobre"}
               type="number"
               onChange={field.onChange}
-              error={!!errors.bronzeCurrency}
+              error={!!errors.copper}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -103,7 +97,7 @@ function AddNewPlayerForm() {
       </section>
       <section className="mb-3">
         <Controller
-          name="silverCurrency"
+          name="silver"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -111,9 +105,9 @@ function AddNewPlayerForm() {
               label={"Moedas de prata"}
               type="number"
               onChange={field.onChange}
-              error={!!errors.silverCurrency}
+              error={!!errors.silver}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -121,7 +115,7 @@ function AddNewPlayerForm() {
       </section>
       <section className="mb-3">
         <Controller
-          name="goldCurrency"
+          name="gold"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -129,9 +123,9 @@ function AddNewPlayerForm() {
               label={"Moedas de ouro"}
               type="number"
               onChange={field.onChange}
-              error={!!errors.goldCurrency}
+              error={!!errors.gold}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -139,7 +133,7 @@ function AddNewPlayerForm() {
       </section>
       <section className="mb-3">
         <Controller
-          name="electrumCurrency"
+          name="elektrum"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -147,9 +141,9 @@ function AddNewPlayerForm() {
               label={"Moedas de electrum"}
               type="number"
               onChange={field.onChange}
-              error={!!errors.electrumCurrency}
+              error={!!errors.elektrum}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -157,7 +151,7 @@ function AddNewPlayerForm() {
       </section>
       <section className="mb-3">
         <Controller
-          name="platinumCurrency"
+          name="platinum"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -165,9 +159,9 @@ function AddNewPlayerForm() {
               label={"Moedas de platina"}
               type="number"
               onChange={field.onChange}
-              error={!!errors.platinumCurrency}
+              error={!!errors.platinum}
               errorMessage={"Campo obrigatório"}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -181,7 +175,7 @@ function AddNewPlayerForm() {
             <Input
               label={"Link da imagem de perfil do jogador"}
               onChange={field.onChange}
-              disabled={creatingPlayer}
+              disabled={loading}
               value={field.value}
             />
           )}
@@ -191,7 +185,7 @@ function AddNewPlayerForm() {
         label="Salvar Jogador"
         type="submit"
         className="self-center justify-self-end"
-        disabled={creatingPlayer}
+        disabled={loading}
       />
     </form>
   );
