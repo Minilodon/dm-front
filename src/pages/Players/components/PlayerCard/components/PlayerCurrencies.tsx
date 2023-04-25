@@ -23,30 +23,35 @@ function PlayerCurrencies(props: PlayerCurrenciesProps) {
         alt="Moeda de cobre"
         currencyValue={copper}
         imageSource={Copper}
+        currencyType="copper"
       />
       <Divider orientation="vertical" flexItem />
       <CurrencyDisplay
         alt="Moeda de prata"
         currencyValue={silver}
         imageSource={Silver}
+        currencyType="silver"
       />
       <Divider orientation="vertical" flexItem />
       <CurrencyDisplay
         alt="Moeda de elektrum"
         currencyValue={elektrum}
         imageSource={Elektrum}
+        currencyType="elektrum"
       />
       <Divider orientation="vertical" flexItem />
       <CurrencyDisplay
         alt="Moeda de ouro"
         currencyValue={gold}
         imageSource={Gold}
+        currencyType="gold"
       />
       <Divider orientation="vertical" flexItem />
       <CurrencyDisplay
         alt="Moeda de platina"
         currencyValue={platinum}
         imageSource={Platinum}
+        currencyType="platinum"
       />
     </div>
   );

@@ -4,6 +4,7 @@ import PlayerContextProvider from "./PlayerContext";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContextProvider } from "./ToastContext";
+import ModalContextProvider from "./ModalContext";
 
 function AppProvider(props: React.PropsWithChildren<{}>) {
   const { children } = props;
@@ -17,7 +18,9 @@ function AppProvider(props: React.PropsWithChildren<{}>) {
         <ApolloProvider client={client}>
           <ToastContextProvider>
             <PlayerContextProvider>
-              <DrawerContextProvider>{children}</DrawerContextProvider>
+              <DrawerContextProvider>
+                <ModalContextProvider>{children}</ModalContextProvider>
+              </DrawerContextProvider>
             </PlayerContextProvider>
           </ToastContextProvider>
         </ApolloProvider>
