@@ -11,6 +11,7 @@ import {
   useCreatePlayerMutation,
   useGetAllPlayersQuery,
 } from "../generated/graphql";
+import { useToast } from "./ToastContext";
 
 interface PlayerContextValues {
   loading: boolean;
@@ -26,6 +27,8 @@ const PlayerContext = createContext({} as PlayerContextValues);
 
 function PlayerContextProvider(props: PlayerContextProviderProps) {
   const { children } = props;
+  const { addToast } = useToast();
+
   const { data, loading: loadingPlayers } = useGetAllPlayersQuery();
   const [createPlayerMutation, { loading: creatingPlayer }] =
     useCreatePlayerMutation({ refetchQueries: ["getAllPlayers"] });
@@ -38,8 +41,9 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
   const createPlayer = useCallback(async (payload: CreatePlayerInput) => {
     try {
       await createPlayerMutation({ variables: { payload } });
+      addToast({ message: "Jogador criado com sucesso!", type: "success" });
     } catch (error) {
-      throw new Error(`Algo deu errado!`);
+      addToast({ message: "Algo deu errado", type: "error" });
     }
   }, []);
 
