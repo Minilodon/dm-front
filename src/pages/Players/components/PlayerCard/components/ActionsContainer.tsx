@@ -1,4 +1,5 @@
 import React from "react";
+import ActionCard from "./ActionCard";
 
 interface ActionsContainerProps {
   currencyValue: number;
@@ -18,6 +19,16 @@ function ActionsContainer(props: ActionsContainerProps) {
     selectedChoice,
     setSelectedChoice,
   } = props;
+
+  const handleCancel = () => {
+    setInputValue("0");
+    setSelectedChoice(undefined);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div className="flex flex-col mt-3">
       <span className="text-lg text-center">
@@ -45,81 +56,29 @@ function ActionsContainer(props: ActionsContainerProps) {
           </button>
         </div>
       ) : selectedChoice === "change" ? (
-        <div className="flex flex-col items-center border border-black p-2">
-          <span className="font-semibold">Insira novo valor</span>
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            type="number"
-            min={0}
-            className="w-24 text-center bg-gray-100 border border-gray-500 rounded outline-none"
-          />
-          <button
-            onClick={() => {
-              setInputValue("0");
-              setSelectedChoice(undefined);
-            }}
-            className="border border-black hover:bg-red-800 hover:text-white transition px-5 py-1 mt-3"
-          >
-            Cancelar
-          </button>
-          <span className="font-medium">
-            Novo valor: <b className="text-red-700 font-medium">{inputValue}</b>
-          </span>
-        </div>
+        <ActionCard
+          type="change"
+          handleCancel={handleCancel}
+          handleInputChange={handleInputChange}
+          inputValue={inputValue}
+          currencyValue={currencyValue}
+        />
       ) : selectedChoice === "add" ? (
-        <div className="flex flex-col items-center border border-black p-2">
-          <span className="font-semibold">Adicione ao valor atual</span>
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            type="number"
-            min="0"
-            className="w-24 text-center bg-gray-100 border border-gray-500 rounded outline-none"
-          />
-          <button
-            onClick={() => {
-              setInputValue("0");
-              setSelectedChoice(undefined);
-            }}
-            className="border border-black hover:bg-red-800 hover:text-white transition px-5 py-1 mt-3"
-          >
-            Cancelar
-          </button>
-          <span className="font-medium">
-            Novo valor:{" "}
-            <b className="text-red-700 font-medium">
-              {parseInt(inputValue || "0") + currencyValue}
-            </b>
-          </span>
-        </div>
+        <ActionCard
+          handleCancel={handleCancel}
+          handleInputChange={handleInputChange}
+          inputValue={inputValue}
+          type="add"
+          currencyValue={currencyValue}
+        />
       ) : (
-        <div className="flex flex-col items-center border border-black p-2">
-          <span className="font-semibold">Remova do valor atual</span>
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            type="number"
-            min="0"
-            max={currencyValue}
-            className="w-24 text-center bg-gray-100 border border-gray-500 rounded outline-none"
-          />
-          <button
-            onClick={() => {
-              setInputValue("0");
-              setSelectedChoice(undefined);
-            }}
-            className="border border-black hover:bg-red-800 hover:text-white transition px-5 py-1 mt-3"
-          >
-            Cancelar
-          </button>
-          <span className="font-medium">
-            Novo valor:{" "}
-            <b className="text-red-700 font-medium">
-              {currencyValue - parseInt(inputValue || "0")}
-            </b>
-          </span>
-        </div>
+        <ActionCard
+          handleCancel={handleCancel}
+          handleInputChange={handleInputChange}
+          inputValue={inputValue}
+          type="subtract"
+          currencyValue={currencyValue}
+        />
       )}
     </div>
   );

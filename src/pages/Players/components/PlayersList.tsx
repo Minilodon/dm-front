@@ -4,7 +4,6 @@ import { usePlayerContext } from "../../../contexts/PlayerContext";
 
 const PlayersList = () => {
   const { loading, players } = usePlayerContext();
-  const onlyPlayer = players?.length === 1;
   return (
     <div className="flex flex-wrap gap-5 mt-3">
       {loading ? (

@@ -10,6 +10,7 @@ import {
   CreatePlayerInput,
   PlayerFragment,
   useCreatePlayerMutation,
+  useDeletePlayerMutation,
   useGetAllPlayersQuery,
   useUpdatePlayerMutation,
 } from "../generated/graphql";
@@ -28,6 +29,7 @@ interface PlayerContextValues {
   setSelectedPlayer: React.Dispatch<
     React.SetStateAction<PlayerFragment | undefined>
   >;
+  deletePlayer: () => Promise<void>;
 }
 
 export type Currencies = "gold" | "silver" | "elektrum" | "copper" | "platinum";
@@ -48,6 +50,9 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
 
   const [updatePlayerMutation, { loading: updatingPlayer }] =
     useUpdatePlayerMutation({ refetchQueries: ["getAllPlayers"] });
+
+  const [deletePlayerMutation, { loading: deletingPlayer }] =
+    useDeletePlayerMutation({ refetchQueries: ["getAllPlayers"] });
 
   const [selectedPlayer, setSelectedPlayer] = useState<
     PlayerFragment | undefined
@@ -83,7 +88,18 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     [selectedPlayer]
   );
 
-  const loading = loadingPlayers || creatingPlayer || updatingPlayer;
+  const deletePlayer = useCallback(async () => {
+    if (!selectedPlayer) return;
+    try {
+      await deletePlayerMutation({ variables: { id: selectedPlayer.id } });
+      addToast({ message: "Jogador deletado com sucesso!", type: "success" });
+    } catch (error) {
+      addToast({ message: "Algo deu errado", type: "error" });
+    }
+  }, [selectedPlayer]);
+
+  const loading =
+    loadingPlayers || creatingPlayer || updatingPlayer || deletingPlayer;
 
   const value = useMemo(
     () => ({
@@ -93,6 +109,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       changeCurrency,
       selectedPlayer,
       setSelectedPlayer,
+      deletePlayer,
     }),
     [
       loadingPlayers,
@@ -101,6 +118,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       changeCurrency,
       selectedPlayer,
       setSelectedPlayer,
+      deletePlayer,
     ]
   );
 
