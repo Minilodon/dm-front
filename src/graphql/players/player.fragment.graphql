@@ -1,10 +1,74 @@
 fragment Player on Player {
+  armorClass
+  class
+  currentHitPoints
+  currentTemporaryHitPoints
+  hitPoints
   id
+  inspiration
+  movement
   name
-  copper
-  silver
-  gold
-  elektrum
-  platinum
   playerImageUrl
+  race
+  size
+  temporaryHitPoints
+  currency {
+    gold
+    copper
+    platinum
+    silver
+    elektrum
+  }
+  language {
+    abyssal
+    celetial
+    common
+    deepSpeech
+    draconic
+    dwarvish
+    elvish
+    giant
+    gnomish
+    goblin
+    halfling
+    infernal
+    orc
+    primordial
+    sylvan
+    undercommon
+  }
+  attributes {
+    str
+    dex
+    con
+    wis
+    int
+    cha
+    chaSave
+    conSave
+    dexSave
+    intSave
+    strSave
+    wisSave
+  }
+  skills {
+    acrobatics
+    animalHandling
+    arcana
+    athletics
+    deception
+    history
+    insight
+    intimidation
+    investigation
+    medicine
+    nature
+    perception
+    performance
+    persuasion
+    religion
+    sleightOfHand
+    stealth
+    survival
+  }
 }

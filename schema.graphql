@@ -1,57 +1,303 @@
+type Attributes {
+  """Valor do atributo de carisma do jogador"""
+  cha: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de carisma
+  """
+  chaSave: Boolean
+
+  """Valor do atributo de constituição do jogador"""
+  con: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de constituição
+  """
+  conSave: Boolean
+
+  """Valor do atributo de destreza do jogador"""
+  dex: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de destreza
+  """
+  dexSave: Boolean
+  id: Int!
+
+  """Valor do atributo de inteligência do jogador"""
+  int: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de inteligência
+  """
+  intSave: Boolean
+  playerId: Int!
+
+  """Valor do atributo de força do jogador"""
+  str: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de força
+  """
+  strSave: Boolean
+
+  """Valor do atributo de sabedoria do jogador"""
+  wis: Int!
+
+  """
+  Booleano que indica se jogador possui proficiência em salvaguarda de sabedoria
+  """
+  wisSave: Boolean
+}
+
+enum Class {
+  Barbarian1
+  Barbarian2
+  Bard1
+  Bard2
+  Cleric1
+  Cleric2
+  Cleric3
+  Cleric4
+  Cleric5
+  Cleric6
+  Cleric7
+  Druid1
+  Druid2
+  Mage1
+  Mage2
+  Mage3
+  Mage4
+  Mage5
+  Mage6
+  Mage7
+  Mage8
+  Monk1
+  Monk2
+  Monk3
+  Paladin1
+  Paladin2
+  Paladin3
+  Ranger1
+  Ranger2
+  Rogue1
+  Rogue2
+  Rogue3
+  Sorcerer1
+  Sorcerer2
+  Warlock1
+  Warlock2
+  Warlock3
+  Warrior1
+  Warrior2
+  Warrior3
+}
+
 input CreatePlayerInput {
-  copper: Int
-  elektrum: Int
-  gold: Int
+  age: Int!
+  alignment: String!
+  armorClass: Int!
+  class: Class!
+  currentHitPoints: Int!
+  currentTemporaryHitPoints: Int!
+  hitPoints: Int!
+  inspiration: Boolean!
+  movement: Float!
   name: String!
-  platinum: Int
   playerImageUrl: String
-  silver: Int
+  race: String!
+  size: String!
+  temporaryHitPoints: Int!
+}
+
+type Currency {
+  """Quantidade de moedas de cobre"""
+  copper: Int!
+
+  """Quantidade de moedas de elektrum"""
+  elektrum: Int!
+
+  """Quantidade de moedas de ouro"""
+  gold: Int!
+  id: Int!
+
+  """Quantidade de moedas de platina"""
+  platinum: Int!
+  playerId: Int!
+
+  """Quantidade de moedas de prata"""
+  silver: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Language {
+  """Boolean que determina se o jogador conhece o idioma abissal"""
+  abyssal: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma celestial"""
+  celetial: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma comum"""
+  common: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma dialeto obscuro"""
+  deepSpeech: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma dracônico"""
+  draconic: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma anão"""
+  dwarvish: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma élfico"""
+  elvish: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma gigante"""
+  giant: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma gnômico"""
+  gnomish: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma goblin"""
+  goblin: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma pequenino"""
+  halfling: Boolean
+  id: Int!
+
+  """Boolean que determina se o jogador conhece o idioma infernal"""
+  infernal: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma orc"""
+  orc: Boolean
+  playerId: Int!
+
+  """Boolean que determina se o jogador conhece o idioma primordial"""
+  primordial: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma silvestre"""
+  sylvan: Boolean
+
+  """Boolean que determina se o jogador conhece o idioma subcomum"""
+  undercommon: Boolean
 }
 
 type Mutation {
+  createDefaultPlayer(playerName: String!): Player!
   createPlayer(payload: CreatePlayerInput!): Player!
-  deletePlayer(id: Int!): String!
-  updatePlayer(id: Int!, payload: UpdatePlayerInput!): Player!
 }
 
 type Player {
-  """Quantidade de cobre do jogador"""
-  copper: Int
+  """AC do jogador"""
+  armorClass: Int!
+  attributes: Attributes
 
-  """Quantidade de elektro do jogador"""
-  elektrum: Int
+  """Classe do jogador"""
+  class: Class!
 
-  """Quantidade de ouro do jogador"""
-  gold: Int
+  """Horário de criação do jogador"""
+  createdAt: DateTime!
+  currency: Currency
+
+  """Pontos de vida atuais do jogador"""
+  currentHitPoints: Int!
+
+  """Pontos de vida temporários atuais do jogador"""
+  currentTemporaryHitPoints: Int!
+
+  """Pontos de vida do jogador"""
+  hitPoints: Int!
   id: Int!
 
-  """Nome do jogador"""
-  name: String
+  """Campo de inspiração do jogador atual"""
+  inspiration: Boolean!
+  language: Language
 
-  """Quantidade de platina do jogador"""
-  platinum: Int
+  """Deslocamento do jogador"""
+  movement: Float!
+
+  """Nome do jogador"""
+  name: String!
 
   """Link da imagem de perfil do jogador"""
   playerImageUrl: String
 
-  """Quantidade de prata do jogador"""
-  silver: Int
+  """Raça do jogador"""
+  race: String!
+
+  """Classificação de tamanho do jogador"""
+  size: String!
+  skills: Skills
+
+  """Pontos de vida temporários do jogador"""
+  temporaryHitPoints: Int!
+
+  """Horário da última atualização do jogador"""
+  updatedAt: DateTime!
 }
 
 type Query {
-  """retorna todos os jogadores salvos"""
-  getAllPlayers: [Player!]
-
-  """retorna o jogador que possui o id passado"""
-  getPlayerById(id: Int!): Player
+  getAllPlayers: [Player!]!
 }
 
-input UpdatePlayerInput {
-  copper: Int
-  elektrum: Int
-  gold: Int
-  name: String
-  platinum: Int
-  playerImageUrl: String
-  silver: Int
+type Skills {
+  """Modificador bônus da habilidade acrobacia"""
+  acrobatics: Int
+
+  """Modificador bônus da habilidade lidar com animais"""
+  animalHandling: Int
+
+  """Modificador bônus da habilidade arcana"""
+  arcana: Int
+
+  """Modificador bônus da habilidade atletismo"""
+  athletics: Int
+
+  """Modificador bônus da habilidade enganação"""
+  deception: Int
+
+  """Modificador bônus da habilidade história"""
+  history: Int
+  id: Int!
+
+  """Modificador bônus da habilidade intuição"""
+  insight: Int
+
+  """Modificador bônus da habilidade intimidação"""
+  intimidation: Int
+
+  """Modificador bônus da habilidade investigação"""
+  investigation: Int
+
+  """Modificador bônus da habilidade medicina"""
+  medicine: Int
+
+  """Modificador bônus da habilidade natureza"""
+  nature: Int
+
+  """Modificador bônus da habilidade percepção"""
+  perception: Int
+
+  """Modificador bônus da habilidade atuação"""
+  performance: Int
+
+  """Modificador bônus da habilidade persuasão"""
+  persuasion: Int
+  playerId: Int!
+
+  """Modificador bônus da habilidade religião"""
+  religion: Int
+
+  """Modificador bônus da habilidade prestidigitação"""
+  sleightOfHand: Int
+
+  """Modificador bônus da habilidade furtividade"""
+  stealth: Int
+
+  """Modificador bônus da habilidade sobrevivência"""
+  survival: Int
 }

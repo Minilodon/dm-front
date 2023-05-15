@@ -1,38 +1,14 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
-import {
-  CreatePlayerInput,
-  PlayerFragment,
-  useCreatePlayerMutation,
-  useDeletePlayerMutation,
-  useGetAllPlayersQuery,
-  useUpdatePlayerMutation,
-} from "../generated/graphql";
-import { useToast } from "./ToastContext";
-import { getPayloadFromCurrencyType } from "./helpers/get-payload-from-currency-type";
+import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import { PlayerFragment, useGetAllPlayersQuery } from "../generated/graphql";
 
 interface PlayerContextValues {
   loading: boolean;
   players: PlayerFragment[] | null;
-  createPlayer: (payload: CreatePlayerInput) => Promise<void>;
-  changeCurrency: (
-    currencyType: Currencies,
-    newCurrency: number
-  ) => Promise<void>;
   selectedPlayer: PlayerFragment | undefined;
   setSelectedPlayer: React.Dispatch<
     React.SetStateAction<PlayerFragment | undefined>
   >;
-  deletePlayer: () => Promise<void>;
 }
-
-export type Currencies = "gold" | "silver" | "elektrum" | "copper" | "platinum";
 
 interface PlayerContextProviderProps {
   children: ReactNode;
@@ -42,17 +18,8 @@ const PlayerContext = createContext({} as PlayerContextValues);
 
 function PlayerContextProvider(props: PlayerContextProviderProps) {
   const { children } = props;
-  const { addToast } = useToast();
 
   const { data, loading: loadingPlayers } = useGetAllPlayersQuery();
-  const [createPlayerMutation, { loading: creatingPlayer }] =
-    useCreatePlayerMutation({ refetchQueries: ["getAllPlayers"] });
-
-  const [updatePlayerMutation, { loading: updatingPlayer }] =
-    useUpdatePlayerMutation({ refetchQueries: ["getAllPlayers"] });
-
-  const [deletePlayerMutation, { loading: deletingPlayer }] =
-    useDeletePlayerMutation({ refetchQueries: ["getAllPlayers"] });
 
   const [selectedPlayer, setSelectedPlayer] = useState<
     PlayerFragment | undefined
@@ -63,63 +30,17 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return data.getAllPlayers;
   }, [data?.getAllPlayers]);
 
-  const createPlayer = useCallback(async (payload: CreatePlayerInput) => {
-    try {
-      await createPlayerMutation({ variables: { payload } });
-      addToast({ message: "Jogador criado com sucesso!", type: "success" });
-    } catch (error) {
-      addToast({ message: "Algo deu errado", type: "error" });
-    }
-  }, []);
-
-  const changeCurrency = useCallback(
-    async (currencyType: Currencies, newCurrency: number) => {
-      if (!selectedPlayer) return;
-      try {
-        const payload = getPayloadFromCurrencyType(currencyType, newCurrency);
-        if (!payload) return;
-        await updatePlayerMutation({
-          variables: { id: selectedPlayer.id, payload },
-        });
-      } catch (error) {
-        addToast({ message: "Algo deu errado", type: "error" });
-      }
-    },
-    [selectedPlayer]
-  );
-
-  const deletePlayer = useCallback(async () => {
-    if (!selectedPlayer) return;
-    try {
-      await deletePlayerMutation({ variables: { id: selectedPlayer.id } });
-      addToast({ message: "Jogador deletado com sucesso!", type: "success" });
-    } catch (error) {
-      addToast({ message: "Algo deu errado", type: "error" });
-    }
-  }, [selectedPlayer]);
-
-  const loading =
-    loadingPlayers || creatingPlayer || updatingPlayer || deletingPlayer;
+  console.log(players);
+  const loading = loadingPlayers;
 
   const value = useMemo(
     () => ({
       players,
       loading,
-      createPlayer,
-      changeCurrency,
       selectedPlayer,
       setSelectedPlayer,
-      deletePlayer,
     }),
-    [
-      loadingPlayers,
-      players,
-      createPlayer,
-      changeCurrency,
-      selectedPlayer,
-      setSelectedPlayer,
-      deletePlayer,
-    ]
+    [loadingPlayers, players, selectedPlayer, setSelectedPlayer]
   );
 
   return (
