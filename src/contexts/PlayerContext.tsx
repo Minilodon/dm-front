@@ -30,7 +30,6 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return data.getAllPlayers;
   }, [data?.getAllPlayers]);
 
-  console.log(players);
   const loading = loadingPlayers;
 
   const value = useMemo(

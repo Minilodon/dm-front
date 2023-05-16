@@ -105,7 +105,7 @@ input CreatePlayerInput {
   movement: Float!
   name: String!
   playerImageUrl: String
-  race: String!
+  race: Race!
   size: String!
   temporaryHitPoints: Int!
 }
@@ -227,7 +227,7 @@ type Player {
   playerImageUrl: String
 
   """Raça do jogador"""
-  race: String!
+  race: Race!
 
   """Classificação de tamanho do jogador"""
   size: String!
@@ -242,6 +242,32 @@ type Player {
 
 type Query {
   getAllPlayers: [Player!]!
+}
+
+enum Race {
+  Dragonkind1
+  Dragonkind2
+  Dragonkind3
+  Dragonkind4
+  Dragonkind5
+  Dragonkind6
+  Dragonkind7
+  Dragonkind8
+  Dragonkind9
+  Dragonkind10
+  Dwarf1
+  Dwarf2
+  Elf1
+  Elf2
+  Elf3
+  Gnome1
+  Gnome2
+  HalfElf
+  HalfOrc
+  Halfling1
+  Halfling2
+  Human
+  Tiefling
 }
 
 type Skills {

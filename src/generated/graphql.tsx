@@ -211,7 +211,7 @@ export type CreatePlayerInput = {
   movement: Scalars['Float'];
   name: Scalars['String'];
   playerImageUrl?: InputMaybe<Scalars['String']>;
-  race: Scalars['String'];
+  race: Race;
   size: Scalars['String'];
   temporaryHitPoints: Scalars['Int'];
 };
@@ -313,7 +313,7 @@ export type Player = {
   /** Link da imagem de perfil do jogador */
   playerImageUrl?: Maybe<Scalars['String']>;
   /** Raça do jogador */
-  race: Scalars['String'];
+  race: Race;
   /** Classificação de tamanho do jogador */
   size: Scalars['String'];
   skills?: Maybe<Skills>;
@@ -327,6 +327,32 @@ export type Query = {
   __typename?: 'Query';
   getAllPlayers: Array<Player>;
 };
+
+export enum Race {
+  Dragonkind1 = 'Dragonkind1',
+  Dragonkind2 = 'Dragonkind2',
+  Dragonkind3 = 'Dragonkind3',
+  Dragonkind4 = 'Dragonkind4',
+  Dragonkind5 = 'Dragonkind5',
+  Dragonkind6 = 'Dragonkind6',
+  Dragonkind7 = 'Dragonkind7',
+  Dragonkind8 = 'Dragonkind8',
+  Dragonkind9 = 'Dragonkind9',
+  Dragonkind10 = 'Dragonkind10',
+  Dwarf1 = 'Dwarf1',
+  Dwarf2 = 'Dwarf2',
+  Elf1 = 'Elf1',
+  Elf2 = 'Elf2',
+  Elf3 = 'Elf3',
+  Gnome1 = 'Gnome1',
+  Gnome2 = 'Gnome2',
+  HalfElf = 'HalfElf',
+  HalfOrc = 'HalfOrc',
+  Halfling1 = 'Halfling1',
+  Halfling2 = 'Halfling2',
+  Human = 'Human',
+  Tiefling = 'Tiefling'
+}
 
 export type Skills = {
   __typename?: 'Skills';
@@ -373,6 +399,6 @@ export type Skills = {
 export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: string, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null }> };
+export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null }> };
 
-export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: string, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null };
+export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null };

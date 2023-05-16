@@ -6,6 +6,8 @@ import { useModalContext } from "../../../../contexts/ModalContext";
 import DeleteModalContent from "./components/DeleteModalContent";
 import Paper from "../../../../components/Paper/Paper";
 import { getNameFromClass } from "../../../../helpers/get-name-from-class";
+import { getNameFromRace } from "../../../../helpers/get-name-from-race";
+import PlayerModal from "../PlayerModal/PlayerModal";
 
 interface PlayerCardProps {
   player: PlayerFragment;
@@ -13,7 +15,6 @@ interface PlayerCardProps {
 
 function PlayerCard(props: PlayerCardProps) {
   const { player } = props;
-  console.log(player);
   const { setSelectedPlayer } = usePlayerContext();
   const { openModal, setModalContent } = useModalContext();
   const imageLink =
@@ -25,6 +26,11 @@ function PlayerCard(props: PlayerCardProps) {
     setModalContent(
       <DeleteModalContent playerName={player.name || "Jogador"} />
     );
+    openModal();
+  };
+  const handleSeeMoreInfo = () => {
+    setSelectedPlayer(player);
+    setModalContent(<PlayerModal />);
     openModal();
   };
   return (
@@ -40,11 +46,12 @@ function PlayerCard(props: PlayerCardProps) {
           src={imageLink}
           alt={"imagem do jogador"}
           className="max-h-[150px]"
+          onClick={handleSeeMoreInfo}
         />
       </div>
       <span className="self-start text-lg font-semibold">{player.name}</span>
-      <div className="flex w-full items-center justify-between">
-        <span>{player.race ?? ""}</span>
+      <div className="flex w-full flex-col justify-between">
+        <span>{getNameFromRace(player.race) ?? ""}</span>
         <span>{getNameFromClass(player.class) ?? ""}</span>
       </div>
       <PlayerCurrencies
