@@ -18,7 +18,7 @@ function Header(props: HeaderProps) {
     return setCurrentPage(2);
   };
   return (
-    <section className="w-full h-20 relative flex">
+    <section className="w-full h-25 flex">
       <span
         className=" cursor-pointer justify-self-start self-center"
         onClick={handleClickLeftArrow}

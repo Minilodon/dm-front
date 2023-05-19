@@ -8,7 +8,7 @@ interface PageProps {
 function Page(props: PageProps) {
   const { currentPage } = props;
   return (
-    <div className="w-[40vw] bg-red-100 h-[calc(80vh)] relative">
+    <div className="w-[40vw] h-[calc(80vh)] relative flex ">
       <GeneralInfoPage currentPage={currentPage} />
       <div
         className={clsx(
