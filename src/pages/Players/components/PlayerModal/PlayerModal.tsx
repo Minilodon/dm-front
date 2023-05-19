@@ -11,7 +11,7 @@ function PlayerModal() {
     ? getNameFromClass(selectedPlayer?.class)
     : "Sem classe";
   return (
-    <div className="w-[40vw] h-[80vh] flex flex-col">
+    <div className="w-[40vw] h-[80vh] flex flex-col overflow-hidden">
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Page currentPage={currentPage} />
     </div>

@@ -1,3 +1,15 @@
+enum Alignment {
+  CE
+  CG
+  CN
+  LE
+  LG
+  LN
+  N
+  NE
+  NG
+}
+
 type Attributes {
   """Valor do atributo de carisma do jogador"""
   cha: Int!
@@ -95,7 +107,7 @@ enum Class {
 
 input CreatePlayerInput {
   age: Int!
-  alignment: String!
+  alignment: Alignment!
   armorClass: Int!
   class: Class!
   currentHitPoints: Int!
@@ -106,7 +118,7 @@ input CreatePlayerInput {
   name: String!
   playerImageUrl: String
   race: Race!
-  size: String!
+  size: Size!
   temporaryHitPoints: Int!
 }
 
@@ -192,6 +204,9 @@ type Mutation {
 }
 
 type Player {
+  """Alinhamento do Jogador"""
+  alignment: Alignment!
+
   """AC do jogador"""
   armorClass: Int!
   attributes: Attributes
@@ -217,6 +232,9 @@ type Player {
   inspiration: Boolean!
   language: Language
 
+  """Nível do jogador"""
+  level: Int!
+
   """Deslocamento do jogador"""
   movement: Float!
 
@@ -230,7 +248,7 @@ type Player {
   race: Race!
 
   """Classificação de tamanho do jogador"""
-  size: String!
+  size: Size!
   skills: Skills
 
   """Pontos de vida temporários do jogador"""
@@ -268,6 +286,15 @@ enum Race {
   Halfling2
   Human
   Tiefling
+}
+
+enum Size {
+  Gargantuan
+  Huge
+  Large
+  Medium
+  Small
+  Tiny
 }
 
 type Skills {

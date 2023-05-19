@@ -1,5 +1,6 @@
 import React from "react";
 import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import HeaderContent from "./HeaderContent";
 
 interface HeaderProps {
   currentPage: number;
@@ -8,7 +9,6 @@ interface HeaderProps {
 
 function Header(props: HeaderProps) {
   const { currentPage, setCurrentPage } = props;
-  const { selectedPlayer } = usePlayerContext();
   const handleClickLeftArrow = () => {
     if (currentPage === 1) return;
     return setCurrentPage(1);
@@ -18,19 +18,20 @@ function Header(props: HeaderProps) {
     return setCurrentPage(2);
   };
   return (
-    <section className="w-full h-20 bg-blue-50 relative">
-      {selectedPlayer?.name}
+    <section className="w-full h-20 relative flex">
       <span
-        className="absolute top-[calc(50%-12px)] -right-3 cursor-pointer"
-        onClick={handleClickRightArrow}
-      >
-        {">"}
-      </span>
-      <span
-        className="absolute top-[calc(50%-12px)] -left-3 cursor-pointer"
+        className=" cursor-pointer justify-self-start self-center"
         onClick={handleClickLeftArrow}
       >
         {"<"}
+      </span>
+
+      <HeaderContent />
+      <span
+        className="cursor-pointer justify-self-end self-center"
+        onClick={handleClickRightArrow}
+      >
+        {">"}
       </span>
     </section>
   );

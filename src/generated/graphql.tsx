@@ -19,6 +19,7 @@ export const PlayerFragmentDoc = gql`
   name
   playerImageUrl
   race
+  level
   size
   temporaryHitPoints
   currency {
@@ -126,6 +127,18 @@ export type Scalars = {
   DateTime: any;
 };
 
+export enum Alignment {
+  Ce = 'CE',
+  Cg = 'CG',
+  Cn = 'CN',
+  Le = 'LE',
+  Lg = 'LG',
+  Ln = 'LN',
+  N = 'N',
+  Ne = 'NE',
+  Ng = 'NG'
+}
+
 export type Attributes = {
   __typename?: 'Attributes';
   /** Valor do atributo de carisma do jogador */
@@ -201,7 +214,7 @@ export enum Class {
 
 export type CreatePlayerInput = {
   age: Scalars['Int'];
-  alignment: Scalars['String'];
+  alignment: Alignment;
   armorClass: Scalars['Int'];
   class: Class;
   currentHitPoints: Scalars['Int'];
@@ -212,7 +225,7 @@ export type CreatePlayerInput = {
   name: Scalars['String'];
   playerImageUrl?: InputMaybe<Scalars['String']>;
   race: Race;
-  size: Scalars['String'];
+  size: Size;
   temporaryHitPoints: Scalars['Int'];
 };
 
@@ -288,6 +301,8 @@ export type MutationCreatePlayerArgs = {
 
 export type Player = {
   __typename?: 'Player';
+  /** Alinhamento do Jogador */
+  alignment: Alignment;
   /** AC do jogador */
   armorClass: Scalars['Int'];
   attributes?: Maybe<Attributes>;
@@ -306,6 +321,8 @@ export type Player = {
   /** Campo de inspiração do jogador atual */
   inspiration: Scalars['Boolean'];
   language?: Maybe<Language>;
+  /** Nível do jogador */
+  level: Scalars['Int'];
   /** Deslocamento do jogador */
   movement: Scalars['Float'];
   /** Nome do jogador */
@@ -315,7 +332,7 @@ export type Player = {
   /** Raça do jogador */
   race: Race;
   /** Classificação de tamanho do jogador */
-  size: Scalars['String'];
+  size: Size;
   skills?: Maybe<Skills>;
   /** Pontos de vida temporários do jogador */
   temporaryHitPoints: Scalars['Int'];
@@ -352,6 +369,15 @@ export enum Race {
   Halfling2 = 'Halfling2',
   Human = 'Human',
   Tiefling = 'Tiefling'
+}
+
+export enum Size {
+  Gargantuan = 'Gargantuan',
+  Huge = 'Huge',
+  Large = 'Large',
+  Medium = 'Medium',
+  Small = 'Small',
+  Tiny = 'Tiny'
 }
 
 export type Skills = {
@@ -399,6 +425,6 @@ export type Skills = {
 export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null }> };
+export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null }> };
 
-export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, size: string, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null };
+export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null };

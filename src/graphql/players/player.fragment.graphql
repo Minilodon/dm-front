@@ -10,6 +10,7 @@ fragment Player on Player {
   name
   playerImageUrl
   race
+  level
   size
   temporaryHitPoints
   currency {
