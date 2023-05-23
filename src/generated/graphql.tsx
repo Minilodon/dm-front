@@ -31,7 +31,7 @@ export const PlayerFragmentDoc = gql`
   }
   language {
     abyssal
-    celetial
+    celestial
     common
     deepSpeech
     draconic
@@ -63,23 +63,59 @@ export const PlayerFragmentDoc = gql`
   }
   skills {
     acrobatics
+    acrobaticsProf
+    acrobaticsExp
     animalHandling
+    animalHandlingProf
+    animalHandlingExp
     arcana
+    arcanaProf
+    arcanaExp
     athletics
+    athleticsProf
+    athleticsExp
     deception
+    deceptionProf
+    deceptionExp
     history
+    historyProf
+    historyExp
     insight
+    insightProf
+    insightExp
     intimidation
+    intimidationProf
+    intimidationExp
     investigation
+    investigationProf
+    investigationExp
     medicine
+    medicineProf
+    medicineExp
     nature
+    natureProf
+    natureExp
     perception
+    perceptionProf
+    perceptionExp
     performance
+    performanceProf
+    performanceExp
     persuasion
+    persuasionProf
+    persuasionExp
     religion
+    religionProf
+    religionExp
     sleightOfHand
+    sleightOfHandProf
+    sleightOfHandExp
     stealth
+    stealthProf
+    stealthExp
     survival
+    survivalProf
+    survivalExp
   }
 }
     `;
@@ -212,6 +248,33 @@ export enum Class {
   Warrior3 = 'Warrior3'
 }
 
+export type CreateCurrencyInput = {
+  copper: Scalars['Int'];
+  elektrum: Scalars['Int'];
+  gold: Scalars['Int'];
+  platinum: Scalars['Int'];
+  silver: Scalars['Int'];
+};
+
+export type CreateLanguagesInput = {
+  abyssal?: InputMaybe<Scalars['Boolean']>;
+  celestial?: InputMaybe<Scalars['Boolean']>;
+  common?: InputMaybe<Scalars['Boolean']>;
+  deepSpeech?: InputMaybe<Scalars['Boolean']>;
+  draconic?: InputMaybe<Scalars['Boolean']>;
+  dwarvish?: InputMaybe<Scalars['Boolean']>;
+  elvish?: InputMaybe<Scalars['Boolean']>;
+  giant?: InputMaybe<Scalars['Boolean']>;
+  gnomish?: InputMaybe<Scalars['Boolean']>;
+  goblin?: InputMaybe<Scalars['Boolean']>;
+  halfling?: InputMaybe<Scalars['Boolean']>;
+  infernal?: InputMaybe<Scalars['Boolean']>;
+  orc?: InputMaybe<Scalars['Boolean']>;
+  primordial?: InputMaybe<Scalars['Boolean']>;
+  sylvan?: InputMaybe<Scalars['Boolean']>;
+  undercommon?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type CreatePlayerInput = {
   age: Scalars['Int'];
   alignment: Alignment;
@@ -250,7 +313,7 @@ export type Language = {
   /** Boolean que determina se o jogador conhece o idioma abissal */
   abyssal?: Maybe<Scalars['Boolean']>;
   /** Boolean que determina se o jogador conhece o idioma celestial */
-  celetial?: Maybe<Scalars['Boolean']>;
+  celestial?: Maybe<Scalars['Boolean']>;
   /** Boolean que determina se o jogador conhece o idioma comum */
   common?: Maybe<Scalars['Boolean']>;
   /** Boolean que determina se o jogador conhece o idioma dialeto obscuro */
@@ -296,7 +359,9 @@ export type MutationCreateDefaultPlayerArgs = {
 
 
 export type MutationCreatePlayerArgs = {
-  payload: CreatePlayerInput;
+  currencyPayload?: InputMaybe<CreateCurrencyInput>;
+  languagesPayload?: InputMaybe<CreateLanguagesInput>;
+  playerPayload: CreatePlayerInput;
 };
 
 export type Player = {
@@ -383,48 +448,120 @@ export enum Size {
 export type Skills = {
   __typename?: 'Skills';
   /** Modificador bônus da habilidade acrobacia */
-  acrobatics?: Maybe<Scalars['Int']>;
+  acrobatics: Scalars['Int'];
+  /** Existência de expertise em acrobacia */
+  acrobaticsExp: Scalars['Boolean'];
+  /** Existência de proficiência em acrobacia */
+  acrobaticsProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade lidar com animais */
-  animalHandling?: Maybe<Scalars['Int']>;
-  /** Modificador bônus da habilidade arcana */
-  arcana?: Maybe<Scalars['Int']>;
+  animalHandling: Scalars['Int'];
+  /** Existência de expertise em lidar com animais */
+  animalHandlingExp: Scalars['Boolean'];
+  /** Existência de proficiência em lidar com animais */
+  animalHandlingProf: Scalars['Boolean'];
+  /** Modificador bônus da habilidade arcanismo */
+  arcana: Scalars['Int'];
+  /** Existência de expertise em arcanismo */
+  arcanaExp: Scalars['Boolean'];
+  /** Existência de proficiência em arcanismo */
+  arcanaProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade atletismo */
-  athletics?: Maybe<Scalars['Int']>;
+  athletics: Scalars['Int'];
+  /** Existência de expertise em atletismo */
+  athleticsExp: Scalars['Boolean'];
+  /** Existência de proficiência em atletismo */
+  athleticsProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade enganação */
-  deception?: Maybe<Scalars['Int']>;
+  deception: Scalars['Int'];
+  /** Existência de expertise em enganação */
+  deceptionExp: Scalars['Boolean'];
+  /** Existência de proficiência em enganação */
+  deceptionProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade história */
-  history?: Maybe<Scalars['Int']>;
+  history: Scalars['Int'];
+  /** Existência de expertise em história */
+  historyExp: Scalars['Boolean'];
+  /** Existência de proficiência em história */
+  historyProf: Scalars['Boolean'];
   id: Scalars['Int'];
   /** Modificador bônus da habilidade intuição */
-  insight?: Maybe<Scalars['Int']>;
+  insight: Scalars['Int'];
+  /** Existência de expertise em intuição */
+  insightExp: Scalars['Boolean'];
+  /** Existência de proficiência em intuição */
+  insightProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade intimidação */
-  intimidation?: Maybe<Scalars['Int']>;
+  intimidation: Scalars['Int'];
+  /** Existência de expertise em intimidação */
+  intimidationExp: Scalars['Boolean'];
+  /** Existência de proficiência em intimidação */
+  intimidationProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade investigação */
-  investigation?: Maybe<Scalars['Int']>;
+  investigation: Scalars['Int'];
+  /** Existência de expertise em investigação */
+  investigationExp: Scalars['Boolean'];
+  /** Existência de proficiência em investigação */
+  investigationProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade medicina */
-  medicine?: Maybe<Scalars['Int']>;
+  medicine: Scalars['Int'];
+  /** Existência de expertise em medicina */
+  medicineExp: Scalars['Boolean'];
+  /** Existência de proficiência em medicina */
+  medicineProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade natureza */
-  nature?: Maybe<Scalars['Int']>;
+  nature: Scalars['Int'];
+  /** Existência de expertise em natureza */
+  natureExp: Scalars['Boolean'];
+  /** Existência de proficiência em natureza */
+  natureProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade percepção */
-  perception?: Maybe<Scalars['Int']>;
+  perception: Scalars['Int'];
+  /** Existência de expertise em percepção */
+  perceptionExp: Scalars['Boolean'];
+  /** Existência de proficiência em percepção */
+  perceptionProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade atuação */
-  performance?: Maybe<Scalars['Int']>;
+  performance: Scalars['Int'];
+  /** Existência de expertise em atuação */
+  performanceExp: Scalars['Boolean'];
+  /** Existência de proficiência em atuação */
+  performanceProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade persuasão */
-  persuasion?: Maybe<Scalars['Int']>;
+  persuasion: Scalars['Int'];
+  /** Existência de expertise em persuasão */
+  persuasionExp: Scalars['Boolean'];
+  /** Existência de proficiência em persuasão */
+  persuasionProf: Scalars['Boolean'];
   playerId: Scalars['Int'];
   /** Modificador bônus da habilidade religião */
-  religion?: Maybe<Scalars['Int']>;
+  religion: Scalars['Int'];
+  /** Existência de expertise em religião */
+  religionExp: Scalars['Boolean'];
+  /** Existência de proficiência em religião */
+  religionProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade prestidigitação */
-  sleightOfHand?: Maybe<Scalars['Int']>;
+  sleightOfHand: Scalars['Int'];
+  /** Existência de expertise em prestidigitação */
+  sleightOfHandExp: Scalars['Boolean'];
+  /** Existência de proficiência em prestidigitação */
+  sleightOfHandProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade furtividade */
-  stealth?: Maybe<Scalars['Int']>;
+  stealth: Scalars['Int'];
+  /** Existência de expertise em furtividade */
+  stealthExp: Scalars['Boolean'];
+  /** Existência de proficiência em furtividade */
+  stealthProf: Scalars['Boolean'];
   /** Modificador bônus da habilidade sobrevivência */
-  survival?: Maybe<Scalars['Int']>;
+  survival: Scalars['Int'];
+  /** Existência de expertise em sobrevivência */
+  survivalExp: Scalars['Boolean'];
+  /** Existência de proficiência em sobrevivência */
+  survivalProf: Scalars['Boolean'];
 };
 
 export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null }> };
+export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null }> };
 
-export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celetial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics?: number | null, animalHandling?: number | null, arcana?: number | null, athletics?: number | null, deception?: number | null, history?: number | null, insight?: number | null, intimidation?: number | null, investigation?: number | null, medicine?: number | null, nature?: number | null, perception?: number | null, performance?: number | null, persuasion?: number | null, religion?: number | null, sleightOfHand?: number | null, stealth?: number | null, survival?: number | null } | null };
+export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null };

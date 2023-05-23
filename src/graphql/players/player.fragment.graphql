@@ -22,7 +22,7 @@ fragment Player on Player {
   }
   language {
     abyssal
-    celetial
+    celestial
     common
     deepSpeech
     draconic
@@ -54,22 +54,58 @@ fragment Player on Player {
   }
   skills {
     acrobatics
+    acrobaticsProf
+    acrobaticsExp
     animalHandling
+    animalHandlingProf
+    animalHandlingExp
     arcana
+    arcanaProf
+    arcanaExp
     athletics
+    athleticsProf
+    athleticsExp
     deception
+    deceptionProf
+    deceptionExp
     history
+    historyProf
+    historyExp
     insight
+    insightProf
+    insightExp
     intimidation
+    intimidationProf
+    intimidationExp
     investigation
+    investigationProf
+    investigationExp
     medicine
+    medicineProf
+    medicineExp
     nature
+    natureProf
+    natureExp
     perception
+    perceptionProf
+    perceptionExp
     performance
+    performanceProf
+    performanceExp
     persuasion
+    persuasionProf
+    persuasionExp
     religion
+    religionProf
+    religionExp
     sleightOfHand
+    sleightOfHandProf
+    sleightOfHandExp
     stealth
+    stealthProf
+    stealthExp
     survival
+    survivalProf
+    survivalExp
   }
 }

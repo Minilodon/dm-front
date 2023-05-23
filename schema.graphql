@@ -105,6 +105,33 @@ enum Class {
   Warrior3
 }
 
+input CreateCurrencyInput {
+  copper: Int!
+  elektrum: Int!
+  gold: Int!
+  platinum: Int!
+  silver: Int!
+}
+
+input CreateLanguagesInput {
+  abyssal: Boolean = false
+  celestial: Boolean = false
+  common: Boolean = true
+  deepSpeech: Boolean = false
+  draconic: Boolean = false
+  dwarvish: Boolean = false
+  elvish: Boolean = false
+  giant: Boolean = false
+  gnomish: Boolean = false
+  goblin: Boolean = false
+  halfling: Boolean = false
+  infernal: Boolean = false
+  orc: Boolean = false
+  primordial: Boolean = false
+  sylvan: Boolean = false
+  undercommon: Boolean = false
+}
+
 input CreatePlayerInput {
   age: Int!
   alignment: Alignment!
@@ -151,7 +178,7 @@ type Language {
   abyssal: Boolean
 
   """Boolean que determina se o jogador conhece o idioma celestial"""
-  celetial: Boolean
+  celestial: Boolean
 
   """Boolean que determina se o jogador conhece o idioma comum"""
   common: Boolean
@@ -200,7 +227,7 @@ type Language {
 
 type Mutation {
   createDefaultPlayer(playerName: String!): Player!
-  createPlayer(payload: CreatePlayerInput!): Player!
+  createPlayer(currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, playerPayload: CreatePlayerInput!): Player!
 }
 
 type Player {
@@ -299,58 +326,166 @@ enum Size {
 
 type Skills {
   """Modificador bônus da habilidade acrobacia"""
-  acrobatics: Int
+  acrobatics: Int!
+
+  """Existência de expertise em acrobacia"""
+  acrobaticsExp: Boolean!
+
+  """Existência de proficiência em acrobacia"""
+  acrobaticsProf: Boolean!
 
   """Modificador bônus da habilidade lidar com animais"""
-  animalHandling: Int
+  animalHandling: Int!
 
-  """Modificador bônus da habilidade arcana"""
-  arcana: Int
+  """Existência de expertise em lidar com animais"""
+  animalHandlingExp: Boolean!
+
+  """Existência de proficiência em lidar com animais"""
+  animalHandlingProf: Boolean!
+
+  """Modificador bônus da habilidade arcanismo"""
+  arcana: Int!
+
+  """Existência de expertise em arcanismo"""
+  arcanaExp: Boolean!
+
+  """Existência de proficiência em arcanismo"""
+  arcanaProf: Boolean!
 
   """Modificador bônus da habilidade atletismo"""
-  athletics: Int
+  athletics: Int!
+
+  """Existência de expertise em atletismo"""
+  athleticsExp: Boolean!
+
+  """Existência de proficiência em atletismo"""
+  athleticsProf: Boolean!
 
   """Modificador bônus da habilidade enganação"""
-  deception: Int
+  deception: Int!
+
+  """Existência de expertise em enganação"""
+  deceptionExp: Boolean!
+
+  """Existência de proficiência em enganação"""
+  deceptionProf: Boolean!
 
   """Modificador bônus da habilidade história"""
-  history: Int
+  history: Int!
+
+  """Existência de expertise em história"""
+  historyExp: Boolean!
+
+  """Existência de proficiência em história"""
+  historyProf: Boolean!
   id: Int!
 
   """Modificador bônus da habilidade intuição"""
-  insight: Int
+  insight: Int!
+
+  """Existência de expertise em intuição"""
+  insightExp: Boolean!
+
+  """Existência de proficiência em intuição"""
+  insightProf: Boolean!
 
   """Modificador bônus da habilidade intimidação"""
-  intimidation: Int
+  intimidation: Int!
+
+  """Existência de expertise em intimidação"""
+  intimidationExp: Boolean!
+
+  """Existência de proficiência em intimidação"""
+  intimidationProf: Boolean!
 
   """Modificador bônus da habilidade investigação"""
-  investigation: Int
+  investigation: Int!
+
+  """Existência de expertise em investigação"""
+  investigationExp: Boolean!
+
+  """Existência de proficiência em investigação"""
+  investigationProf: Boolean!
 
   """Modificador bônus da habilidade medicina"""
-  medicine: Int
+  medicine: Int!
+
+  """Existência de expertise em medicina"""
+  medicineExp: Boolean!
+
+  """Existência de proficiência em medicina"""
+  medicineProf: Boolean!
 
   """Modificador bônus da habilidade natureza"""
-  nature: Int
+  nature: Int!
+
+  """Existência de expertise em natureza"""
+  natureExp: Boolean!
+
+  """Existência de proficiência em natureza"""
+  natureProf: Boolean!
 
   """Modificador bônus da habilidade percepção"""
-  perception: Int
+  perception: Int!
+
+  """Existência de expertise em percepção"""
+  perceptionExp: Boolean!
+
+  """Existência de proficiência em percepção"""
+  perceptionProf: Boolean!
 
   """Modificador bônus da habilidade atuação"""
-  performance: Int
+  performance: Int!
+
+  """Existência de expertise em atuação"""
+  performanceExp: Boolean!
+
+  """Existência de proficiência em atuação"""
+  performanceProf: Boolean!
 
   """Modificador bônus da habilidade persuasão"""
-  persuasion: Int
+  persuasion: Int!
+
+  """Existência de expertise em persuasão"""
+  persuasionExp: Boolean!
+
+  """Existência de proficiência em persuasão"""
+  persuasionProf: Boolean!
   playerId: Int!
 
   """Modificador bônus da habilidade religião"""
-  religion: Int
+  religion: Int!
+
+  """Existência de expertise em religião"""
+  religionExp: Boolean!
+
+  """Existência de proficiência em religião"""
+  religionProf: Boolean!
 
   """Modificador bônus da habilidade prestidigitação"""
-  sleightOfHand: Int
+  sleightOfHand: Int!
+
+  """Existência de expertise em prestidigitação"""
+  sleightOfHandExp: Boolean!
+
+  """Existência de proficiência em prestidigitação"""
+  sleightOfHandProf: Boolean!
 
   """Modificador bônus da habilidade furtividade"""
-  stealth: Int
+  stealth: Int!
+
+  """Existência de expertise em furtividade"""
+  stealthExp: Boolean!
+
+  """Existência de proficiência em furtividade"""
+  stealthProf: Boolean!
 
   """Modificador bônus da habilidade sobrevivência"""
-  survival: Int
+  survival: Int!
+
+  """Existência de expertise em sobrevivência"""
+  survivalExp: Boolean!
+
+  """Existência de proficiência em sobrevivência"""
+  survivalProf: Boolean!
 }
