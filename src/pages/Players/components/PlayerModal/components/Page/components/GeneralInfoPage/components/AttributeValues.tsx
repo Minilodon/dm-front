@@ -1,5 +1,5 @@
 import React from "react";
-import { getModFromAttributes } from "../../../../../helpers/get-mod-from-attributes";
+import { getModFromAttributes } from "../../../../../../../../../helpers/get-mod-from-attributes";
 
 interface AttributeValuesProps {
   attributeValue: number | undefined;

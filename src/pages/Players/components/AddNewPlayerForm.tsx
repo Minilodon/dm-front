@@ -34,18 +34,9 @@ function AddNewPlayerForm() {
   });
 
   const { closeDrawer } = useDrawerContext();
-  const { createPlayer, loading } = usePlayerContext();
+  const { loading } = usePlayerContext();
 
   const onSubmit: SubmitHandler<Inputs> = async (payload: Inputs) => {
-    await createPlayer({
-      name: payload.name,
-      copper: parseInt(payload.copper || "0"),
-      silver: parseInt(payload.silver || "0"),
-      elektrum: parseInt(payload.elektrum || "0"),
-      gold: parseInt(payload.gold || "0"),
-      platinum: parseInt(payload.platinum || "0"),
-      playerImageUrl: payload.playerImgUrl,
-    });
     closeDrawer();
     reset({
       copper: "0",

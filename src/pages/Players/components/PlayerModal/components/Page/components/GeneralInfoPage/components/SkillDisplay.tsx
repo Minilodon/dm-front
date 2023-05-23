@@ -1,7 +1,7 @@
 import React from "react";
 import Skill from "./Skill";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
-import { getModFromAttributes } from "../../../../../helpers/get-mod-from-attributes";
+import { usePlayerContext } from "../../../../../../../../../contexts/PlayerContext";
+import { getModFromAttributes } from "../../../../../../../../../helpers/get-mod-from-attributes";
 
 function SkillDisplay() {
   const { selectedPlayer } = usePlayerContext();

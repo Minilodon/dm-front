@@ -1,6 +1,6 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
-import { getModFromAttributes } from "../../../../../helpers/get-mod-from-attributes";
+import { usePlayerContext } from "../../../../../../../../../contexts/PlayerContext";
+import { getModFromAttributes } from "../../../../../../../../../helpers/get-mod-from-attributes";
 import AttributeValues from "./AttributeValues";
 
 function AttributesDisplay() {

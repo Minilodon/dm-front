@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
-import AttributesDisplay from "./AttributesDisplay";
-import SavesDisplay from "./SavesDisplay";
-import SkillDisplay from "./SkillDisplay";
+import { usePlayerContext } from "../../../../../../../../contexts/PlayerContext";
+import AttributesDisplay from "./components/AttributesDisplay";
+import SkillDisplay from "./components/SkillDisplay";
+import SavesDisplay from "./components/SavesDisplay";
 
 interface GeneralInfoPageProps {
   currentPage: number;
