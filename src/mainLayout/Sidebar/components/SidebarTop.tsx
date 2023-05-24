@@ -13,7 +13,7 @@ const SidebarTop = (props: SidebarTopProps) => {
     <div
       className={clsx(
         isOpen ? "px-5" : "px-[10px]",
-        "flex items-center justify-between py-4"
+        "flex items-center justify-between py-4 h-8"
       )}
     >
       {isOpen && (

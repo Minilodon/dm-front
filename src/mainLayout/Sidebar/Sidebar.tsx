@@ -12,7 +12,7 @@ function Sidebar() {
 
   return (
     <motion.div
-      animate={{ width: isOpen ? "200px" : "40px" }}
+      animate={{ width: isOpen ? "200px" : "50px" }}
       className="bg-red-600 h-screen overflow-hidden"
     >
       <SidebarTop isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -26,7 +26,7 @@ function Sidebar() {
               key={route.name}
               className={clsx(
                 "flex items-center justify-start py-4 gap-4 group hover:bg-slate-100 hover:border-r-8 hover:border-r-black",
-                isOpen ? "px-5" : "px-[10px]",
+                isOpen ? "px-5" : "px-4",
                 isActive ? "bg-slate-100 border-r-8 border-r-black" : ""
               )}
             >

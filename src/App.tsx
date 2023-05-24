@@ -1,13 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import AppRoutes from "./mainLayout/AppRoutes/AppRoutes";
 import Sidebar from "./mainLayout/Sidebar/Sidebar";
+import { Box } from "@mui/material";
+import TopBar from "./mainLayout/TopBar/TopBar";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-slate-200 flex ">
+    <Box className="w-screen h-screen bg-slate-200 flex">
       <Sidebar />
-      <AppRoutes />
-    </div>
+      <div className="flex flex-col w-full ">
+        <TopBar />
+        <AppRoutes />
+      </div>
+    </Box>
   );
 }
 
