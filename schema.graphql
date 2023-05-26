@@ -105,12 +105,27 @@ enum Class {
   Warrior3
 }
 
+input CreateAttributesInput {
+  cha: Int = 10
+  chaSave: Boolean = false
+  con: Int = 10
+  conSave: Boolean = false
+  dex: Int = 10
+  dexSave: Boolean = false
+  int: Int = 10
+  intSave: Boolean = false
+  str: Int = 10
+  strSave: Boolean = false
+  wis: Int = 10
+  wisSave: Boolean = false
+}
+
 input CreateCurrencyInput {
-  copper: Int!
-  elektrum: Int!
-  gold: Int!
-  platinum: Int!
-  silver: Int!
+  copper: Int = 0
+  elektrum: Int = 0
+  gold: Int = 0
+  platinum: Int = 0
+  silver: Int = 0
 }
 
 input CreateLanguagesInput {
@@ -141,12 +156,70 @@ input CreatePlayerInput {
   currentTemporaryHitPoints: Int!
   hitPoints: Int!
   inspiration: Boolean!
+  level: Int!
   movement: Float!
   name: String!
   playerImageUrl: String
   race: Race!
   size: Size!
   temporaryHitPoints: Int!
+}
+
+input CreateSkillsInput {
+  acrobatics: Int = 0
+  acrobaticsExp: Boolean = false
+  acrobaticsProf: Boolean = false
+  animalHandling: Int = 0
+  animalHandlingExp: Boolean = false
+  animalHandlingProf: Boolean = false
+  arcana: Int = 0
+  arcanaExp: Boolean = false
+  arcanaProf: Boolean = false
+  athletics: Int = 0
+  athleticsExp: Boolean = false
+  athleticsProf: Boolean = false
+  deception: Int = 0
+  deceptionExp: Boolean = false
+  deceptionProf: Boolean = false
+  history: Int = 0
+  historyExp: Boolean = false
+  historyProf: Boolean = false
+  insight: Int = 0
+  insightExp: Boolean = false
+  insightProf: Boolean = false
+  intimidation: Int = 0
+  intimidationExp: Boolean = false
+  intimidationProf: Boolean = false
+  investigation: Int = 0
+  investigationExp: Boolean = false
+  investigationProf: Boolean = false
+  medicine: Int = 0
+  medicineExp: Boolean = false
+  medicineProf: Boolean = false
+  nature: Int = 0
+  natureExp: Boolean = false
+  natureProf: Boolean = false
+  perception: Int = 0
+  perceptionExp: Boolean = false
+  perceptionProf: Boolean = false
+  performance: Int = 0
+  performanceExp: Boolean = false
+  performanceProf: Boolean = false
+  persuasion: Int = 0
+  persuasionExp: Boolean = false
+  persuasionProf: Boolean = false
+  religion: Int = 0
+  religionExp: Boolean = false
+  religionProf: Boolean = false
+  sleightOfHand: Int = 0
+  sleightOfHandExp: Boolean = false
+  sleightOfHandProf: Boolean = false
+  stealth: Int = 0
+  stealthExp: Boolean = false
+  stealthProf: Boolean = false
+  survival: Int = 0
+  survivalExp: Boolean = false
+  survivalProf: Boolean = false
 }
 
 type Currency {
@@ -227,7 +300,7 @@ type Language {
 
 type Mutation {
   createDefaultPlayer(playerName: String!): Player!
-  createPlayer(currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, playerPayload: CreatePlayerInput!): Player!
+  createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
 }
 
 type Player {
@@ -287,6 +360,7 @@ type Player {
 
 type Query {
   getAllPlayers: [Player!]!
+  getPlayerById(playerId: Float!): Player!
 }
 
 enum Race {

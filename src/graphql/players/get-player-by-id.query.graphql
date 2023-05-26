@@ -1,0 +1,5 @@
+query getPlayerById($playerId: Float!) {
+  getPlayerById(playerId: $playerId) {
+    ...Player
+  }
+}

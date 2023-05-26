@@ -1,5 +1,11 @@
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
-import { PlayerFragment, useGetAllPlayersQuery } from "../generated/graphql";
+import {
+  PlayerFragment,
+  useGetAllPlayersQuery,
+  useGetPlayerByIdQuery,
+} from "../generated/graphql";
+import { useLocation } from "react-router-dom";
+import { getPlayerIdInPathname } from "../helpers/get-player-id-in-pathname";
 
 interface PlayerContextValues {
   loading: boolean;
@@ -18,12 +24,19 @@ const PlayerContext = createContext({} as PlayerContextValues);
 
 function PlayerContextProvider(props: PlayerContextProviderProps) {
   const { children } = props;
+  const location = useLocation();
 
   const { data, loading: loadingPlayers } = useGetAllPlayersQuery();
 
   const [selectedPlayer, setSelectedPlayer] = useState<
     PlayerFragment | undefined
   >();
+
+  const { data: player, loading: fetchingPlayer } = useGetPlayerByIdQuery({
+    variables: { playerId: parseInt(getPlayerIdInPathname(location.pathname)) },
+  });
+
+  console.log(player);
 
   const players: PlayerFragment[] | [] = useMemo(() => {
     if (!data?.getAllPlayers) return [];

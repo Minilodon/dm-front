@@ -8,6 +8,7 @@ import Paper from "../../../../components/Paper/Paper";
 import { getNameFromClass } from "../../../../helpers/get-name-from-class";
 import { getNameFromRace } from "../../../../helpers/get-name-from-race";
 import PlayerModal from "../PlayerModal/PlayerModal";
+import { useNavigate } from "react-router-dom";
 
 interface PlayerCardProps {
   player: PlayerFragment;
@@ -17,6 +18,7 @@ function PlayerCard(props: PlayerCardProps) {
   const { player } = props;
   const { setSelectedPlayer } = usePlayerContext();
   const { openModal, setModalContent } = useModalContext();
+  const navigate = useNavigate();
   const imageLink =
     player.playerImageUrl ||
     "https://api-private.atlassian.com/users/6b5c1609134a5887d7f3ab1b73557664/avatar";
@@ -29,9 +31,10 @@ function PlayerCard(props: PlayerCardProps) {
     openModal();
   };
   const handleSeeMoreInfo = () => {
-    setSelectedPlayer(player);
+    navigate(`/player/${player.id}`);
+    /* setSelectedPlayer(player);
     setModalContent(<PlayerModal />);
-    openModal();
+    openModal(); */
   };
   return (
     <Paper onClick={() => setSelectedPlayer(player)}>

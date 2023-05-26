@@ -153,6 +153,41 @@ export function useGetAllPlayersLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllPlayersQueryHookResult = ReturnType<typeof useGetAllPlayersQuery>;
 export type GetAllPlayersLazyQueryHookResult = ReturnType<typeof useGetAllPlayersLazyQuery>;
 export type GetAllPlayersQueryResult = Apollo.QueryResult<GetAllPlayersQuery, GetAllPlayersQueryVariables>;
+export const GetPlayerByIdDocument = gql`
+    query getPlayerById($playerId: Float!) {
+  getPlayerById(playerId: $playerId) {
+    ...Player
+  }
+}
+    ${PlayerFragmentDoc}`;
+
+/**
+ * __useGetPlayerByIdQuery__
+ *
+ * To run a query within a React component, call `useGetPlayerByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPlayerByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPlayerByIdQuery({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *   },
+ * });
+ */
+export function useGetPlayerByIdQuery(baseOptions: Apollo.QueryHookOptions<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>(GetPlayerByIdDocument, options);
+      }
+export function useGetPlayerByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>(GetPlayerByIdDocument, options);
+        }
+export type GetPlayerByIdQueryHookResult = ReturnType<typeof useGetPlayerByIdQuery>;
+export type GetPlayerByIdLazyQueryHookResult = ReturnType<typeof useGetPlayerByIdLazyQuery>;
+export type GetPlayerByIdQueryResult = Apollo.QueryResult<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -248,12 +283,27 @@ export enum Class {
   Warrior3 = 'Warrior3'
 }
 
+export type CreateAttributesInput = {
+  cha?: InputMaybe<Scalars['Int']>;
+  chaSave?: InputMaybe<Scalars['Boolean']>;
+  con?: InputMaybe<Scalars['Int']>;
+  conSave?: InputMaybe<Scalars['Boolean']>;
+  dex?: InputMaybe<Scalars['Int']>;
+  dexSave?: InputMaybe<Scalars['Boolean']>;
+  int?: InputMaybe<Scalars['Int']>;
+  intSave?: InputMaybe<Scalars['Boolean']>;
+  str?: InputMaybe<Scalars['Int']>;
+  strSave?: InputMaybe<Scalars['Boolean']>;
+  wis?: InputMaybe<Scalars['Int']>;
+  wisSave?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type CreateCurrencyInput = {
-  copper: Scalars['Int'];
-  elektrum: Scalars['Int'];
-  gold: Scalars['Int'];
-  platinum: Scalars['Int'];
-  silver: Scalars['Int'];
+  copper?: InputMaybe<Scalars['Int']>;
+  elektrum?: InputMaybe<Scalars['Int']>;
+  gold?: InputMaybe<Scalars['Int']>;
+  platinum?: InputMaybe<Scalars['Int']>;
+  silver?: InputMaybe<Scalars['Int']>;
 };
 
 export type CreateLanguagesInput = {
@@ -284,12 +334,70 @@ export type CreatePlayerInput = {
   currentTemporaryHitPoints: Scalars['Int'];
   hitPoints: Scalars['Int'];
   inspiration: Scalars['Boolean'];
+  level: Scalars['Int'];
   movement: Scalars['Float'];
   name: Scalars['String'];
   playerImageUrl?: InputMaybe<Scalars['String']>;
   race: Race;
   size: Size;
   temporaryHitPoints: Scalars['Int'];
+};
+
+export type CreateSkillsInput = {
+  acrobatics?: InputMaybe<Scalars['Int']>;
+  acrobaticsExp?: InputMaybe<Scalars['Boolean']>;
+  acrobaticsProf?: InputMaybe<Scalars['Boolean']>;
+  animalHandling?: InputMaybe<Scalars['Int']>;
+  animalHandlingExp?: InputMaybe<Scalars['Boolean']>;
+  animalHandlingProf?: InputMaybe<Scalars['Boolean']>;
+  arcana?: InputMaybe<Scalars['Int']>;
+  arcanaExp?: InputMaybe<Scalars['Boolean']>;
+  arcanaProf?: InputMaybe<Scalars['Boolean']>;
+  athletics?: InputMaybe<Scalars['Int']>;
+  athleticsExp?: InputMaybe<Scalars['Boolean']>;
+  athleticsProf?: InputMaybe<Scalars['Boolean']>;
+  deception?: InputMaybe<Scalars['Int']>;
+  deceptionExp?: InputMaybe<Scalars['Boolean']>;
+  deceptionProf?: InputMaybe<Scalars['Boolean']>;
+  history?: InputMaybe<Scalars['Int']>;
+  historyExp?: InputMaybe<Scalars['Boolean']>;
+  historyProf?: InputMaybe<Scalars['Boolean']>;
+  insight?: InputMaybe<Scalars['Int']>;
+  insightExp?: InputMaybe<Scalars['Boolean']>;
+  insightProf?: InputMaybe<Scalars['Boolean']>;
+  intimidation?: InputMaybe<Scalars['Int']>;
+  intimidationExp?: InputMaybe<Scalars['Boolean']>;
+  intimidationProf?: InputMaybe<Scalars['Boolean']>;
+  investigation?: InputMaybe<Scalars['Int']>;
+  investigationExp?: InputMaybe<Scalars['Boolean']>;
+  investigationProf?: InputMaybe<Scalars['Boolean']>;
+  medicine?: InputMaybe<Scalars['Int']>;
+  medicineExp?: InputMaybe<Scalars['Boolean']>;
+  medicineProf?: InputMaybe<Scalars['Boolean']>;
+  nature?: InputMaybe<Scalars['Int']>;
+  natureExp?: InputMaybe<Scalars['Boolean']>;
+  natureProf?: InputMaybe<Scalars['Boolean']>;
+  perception?: InputMaybe<Scalars['Int']>;
+  perceptionExp?: InputMaybe<Scalars['Boolean']>;
+  perceptionProf?: InputMaybe<Scalars['Boolean']>;
+  performance?: InputMaybe<Scalars['Int']>;
+  performanceExp?: InputMaybe<Scalars['Boolean']>;
+  performanceProf?: InputMaybe<Scalars['Boolean']>;
+  persuasion?: InputMaybe<Scalars['Int']>;
+  persuasionExp?: InputMaybe<Scalars['Boolean']>;
+  persuasionProf?: InputMaybe<Scalars['Boolean']>;
+  religion?: InputMaybe<Scalars['Int']>;
+  religionExp?: InputMaybe<Scalars['Boolean']>;
+  religionProf?: InputMaybe<Scalars['Boolean']>;
+  sleightOfHand?: InputMaybe<Scalars['Int']>;
+  sleightOfHandExp?: InputMaybe<Scalars['Boolean']>;
+  sleightOfHandProf?: InputMaybe<Scalars['Boolean']>;
+  stealth?: InputMaybe<Scalars['Int']>;
+  stealthExp?: InputMaybe<Scalars['Boolean']>;
+  stealthProf?: InputMaybe<Scalars['Boolean']>;
+  survival?: InputMaybe<Scalars['Int']>;
+  survivalExp?: InputMaybe<Scalars['Boolean']>;
+  survivalProf?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Currency = {
@@ -359,9 +467,11 @@ export type MutationCreateDefaultPlayerArgs = {
 
 
 export type MutationCreatePlayerArgs = {
+  attributesPayload?: InputMaybe<CreateAttributesInput>;
   currencyPayload?: InputMaybe<CreateCurrencyInput>;
   languagesPayload?: InputMaybe<CreateLanguagesInput>;
   playerPayload: CreatePlayerInput;
+  skillsPayload?: InputMaybe<CreateSkillsInput>;
 };
 
 export type Player = {
@@ -408,6 +518,12 @@ export type Player = {
 export type Query = {
   __typename?: 'Query';
   getAllPlayers: Array<Player>;
+  getPlayerById: Player;
+};
+
+
+export type QueryGetPlayerByIdArgs = {
+  playerId: Scalars['Float'];
 };
 
 export enum Race {
@@ -563,5 +679,12 @@ export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllPlayersQuery = { __typename?: 'Query', getAllPlayers: Array<{ __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null }> };
+
+export type GetPlayerByIdQueryVariables = Exact<{
+  playerId: Scalars['Float'];
+}>;
+
+
+export type GetPlayerByIdQuery = { __typename?: 'Query', getPlayerById: { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null } };
 
 export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null };
