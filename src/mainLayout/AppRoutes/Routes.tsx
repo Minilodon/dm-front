@@ -2,13 +2,23 @@ import { FaHome, FaUser } from "react-icons/fa";
 
 export const availableRoutes = [
   {
-    path: "/",
-    name: "Home",
-    icon: <FaHome />,
-  },
-  {
     path: "/players",
     name: "Jogadores",
-    icon: <FaUser />,
+  },
+  {
+    path: "/widgets",
+    name: "Utilitários",
+  },
+  {
+    path: "/",
+    name: "DM Helper",
+  },
+  {
+    path: "/items",
+    name: "Itens",
+  },
+  {
+    path: "/magic",
+    name: "Magias",
   },
 ];

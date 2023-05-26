@@ -7,7 +7,6 @@ import TopBar from "./mainLayout/TopBar/TopBar";
 function App() {
   return (
     <Box className="w-screen h-screen bg-slate-200 flex">
-      <Sidebar />
       <div className="flex flex-col w-full ">
         <TopBar />
         <AppRoutes />
