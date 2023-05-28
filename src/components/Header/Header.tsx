@@ -7,13 +7,23 @@ interface HeaderProps {
   title: string;
   buttonLabel?: string;
   buttonAction?: React.MouseEventHandler<HTMLButtonElement>;
+  goBackAlternative?: string;
 }
 
 const Header = (props: HeaderProps) => {
-  const { title, buttonLabel = "Clique aqui", buttonAction } = props;
+  const {
+    title,
+    buttonLabel = "Clique aqui",
+    buttonAction,
+    goBackAlternative,
+  } = props;
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/");
+    if (goBackAlternative) {
+      navigate(goBackAlternative);
+    } else {
+      navigate("/");
+    }
   };
   return (
     <div className="flex justify-between w-full h-20 items-center">

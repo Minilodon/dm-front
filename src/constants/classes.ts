@@ -2,168 +2,209 @@ import { Class } from "../generated/graphql";
 
 export interface ClassDesc {
   type: Class;
+  subclass: string;
   name: string;
 }
 
 export const CLASSES: ClassDesc[] = [
   {
     type: Class.Barbarian1,
-    name: "Bárbaro Trilha do Berserker",
+    name: "Bárbaro",
+    subclass: "Trilha do Berserker",
   },
   {
     type: Class.Barbarian2,
-    name: "Bárbaro Trilha do Ancestral Totêmico",
+    name: "Bárbaro",
+    subclass: "Trilha do Ancestral Totêmico",
   },
   {
     type: Class.Bard1,
-    name: "Bardo Colégio do Conhecimento",
+    name: "Bardo",
+    subclass: "Colégio do Conhecimento",
   },
   {
     type: Class.Bard2,
-    name: "Bardo Colégio da Bravura",
+    name: "Bardo",
+    subclass: "Colégio da Bravura",
   },
   {
     type: Class.Warlock1,
-    name: "Bruxo da Arquifada",
+    name: "Bruxo",
+    subclass: "Servo da Arquifada",
   },
   {
     type: Class.Warlock2,
-    name: "Bruxo do Ínfero",
+    name: "Bruxo",
+    subclass: "Servo do Ínfero",
   },
   {
     type: Class.Warlock3,
-    name: "Bruxo do Grande Antigo",
+    name: "Bruxo",
+    subclass: "Servo do Grande Antigo",
   },
   {
     type: Class.Cleric1,
-    name: "Clérigo do Domínio da Guerra",
+    name: "Clérigo",
+    subclass: "Domínio da Guerra",
   },
   {
     type: Class.Cleric2,
-    name: "Clérigo do Domínio da Luz",
+    name: "Clérigo",
+    subclass: "Domínio da Luz",
   },
   {
     type: Class.Cleric3,
-    name: "Clérigo do Domínio da Natureza",
+    name: "Clérigo",
+    subclass: "Domínio da Natureza",
   },
   {
     type: Class.Cleric4,
-    name: "Clérigo do Domínio da Tempestade",
+    name: "Clérigo",
+    subclass: "Domínio da Tempestade",
   },
   {
     type: Class.Cleric5,
-    name: "Clérigo do Domínio da Trapaça",
+    name: "Clérigo",
+    subclass: "Domínio da Trapaça",
   },
   {
     type: Class.Cleric6,
-    name: "Clérigo do Domínio da Conhecimento",
+    name: "Clérigo",
+    subclass: "Domínio da Conhecimento",
   },
   {
     type: Class.Cleric7,
-    name: "Clérigo do Domínio da Vida",
+    name: "Clérigo",
+    subclass: "Domínio da Vida",
   },
   {
     type: Class.Druid1,
-    name: "Druida do Círculo da Terra",
+    name: "Druida",
+    subclass: "Círculo da Terra",
   },
   {
     type: Class.Druid2,
-    name: "Druida do Círculo da Lua",
+    name: "Druida",
+    subclass: "Círculo da Lua",
   },
   {
     type: Class.Sorcerer1,
-    name: "Feiticeiro da Linhagem Dracônica",
+    name: "Feiticeiro",
+    subclass: "Linhagem Dracônica",
   },
   {
     type: Class.Sorcerer2,
-    name: "Feiticeiro da Magia Selvagem",
+    name: "Feiticeiro",
+    subclass: "Magia Selvagem",
   },
   {
     type: Class.Ranger1,
-    name: "Guardião Caçador",
+    name: "Guardião",
+    subclass: "Caçador",
   },
   {
     type: Class.Ranger2,
-    name: "Guardião Senhor das Feras",
+    name: "Guardião",
+    subclass: "Senhor das Feras",
   },
   {
     type: Class.Warrior1,
-    name: "Guerreiro Campeão",
+    name: "Guerreiro",
+    subclass: "Campeão",
   },
   {
     type: Class.Warrior2,
-    name: "Guerreiro Mestre da Batalha",
+    name: "Guerreiro",
+    subclass: "Mestre da Batalha",
   },
   {
     type: Class.Warrior3,
-    name: "Guerreiro Cavaleiro Místico",
+    name: "Guerreiro",
+    subclass: "Cavaleiro Místico",
   },
   {
     type: Class.Rogue1,
-    name: "Ladino Ladrão",
+    name: "Ladino",
+    subclass: "Ladrão",
   },
   {
     type: Class.Rogue2,
-    name: "Ladino Trapaceiro Arcano",
+    name: "Ladino",
+    subclass: "Trapaceiro Arcano",
   },
   {
     type: Class.Rogue3,
-    name: "Ladino Assassino",
+    name: "Ladino",
+    subclass: "Assassino",
   },
   {
     type: Class.Mage1,
-    name: "Mago da Escola de Abjuração",
+    name: "Mago",
+    subclass: "Escola de Abjuração",
   },
   {
     type: Class.Mage2,
-    name: "Mago da Escola de Adivinhação",
+    name: "Mago",
+    subclass: "Escola de Adivinhação",
   },
   {
     type: Class.Mage3,
-    name: "Mago da Escola de Encantamento",
+    name: "Mago",
+    subclass: "Escola de Encantamento",
   },
   {
     type: Class.Mage4,
-    name: "Mago da Escola de Evocação",
+    name: "Mago",
+    subclass: "Escola de Evocação",
   },
   {
     type: Class.Mage5,
-    name: "Mago da Escola de Ilusão",
+    name: "Mago",
+    subclass: "Escola de Ilusão",
   },
   {
     type: Class.Mage6,
-    name: "Mago da Escola de Invocação",
+    name: "Mago",
+    subclass: "Escola de Invocação",
   },
   {
     type: Class.Mage7,
-    name: "Mago da Escola de Necromancia",
+    name: "Mago",
+    subclass: "Escola de Necromancia",
   },
   {
     type: Class.Mage8,
-    name: "Mago da Escola de Transmutação",
+    name: "Mago",
+    subclass: "Escola de Transmutação",
   },
   {
     type: Class.Monk1,
-    name: "Monge do Caminho da Mão Espalmada",
+    name: "Monge",
+    subclass: "Caminho da Mão Espalmada",
   },
   {
     type: Class.Monk2,
-    name: "Monge do Caminho das Sombras",
+    name: "Monge",
+    subclass: "Caminho das Sombras",
   },
   {
     type: Class.Monk3,
-    name: "Monge do Caminho dos Quatro Elementos",
+    name: "Monge",
+    subclass: "Caminho dos Quatro Elementos",
   },
   {
     type: Class.Paladin1,
-    name: "Paladino do Juramento da Devoção",
+    name: "Paladino",
+    subclass: "Juramento da Devoção",
   },
   {
     type: Class.Paladin2,
-    name: "Paladino do Juramento dos Anciões",
+    name: "Paladino",
+    subclass: "Juramento dos Anciões",
   },
   {
     type: Class.Paladin3,
-    name: "Paladino do Juramento da Devoção",
+    name: "Paladino",
+    subclass: "Juramento da Devoção",
   },
 ];
