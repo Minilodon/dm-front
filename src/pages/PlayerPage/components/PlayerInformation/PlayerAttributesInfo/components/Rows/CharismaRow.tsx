@@ -8,39 +8,44 @@ function CharismaRow() {
   const { player } = usePlayerContext();
   return (
     <div className="flex-1 flex items-center w-full">
-      <AttrAndModDisplay
-        attributeName="Carisma"
-        attributeValue={player?.attributes?.cha}
-      />
-      <SaveDisplay
-        attrValue={player?.attributes?.cha}
-        hasProficiency={player?.attributes?.chaSave || false}
-      />
+      <div className="w-fit flex">
+        <AttrAndModDisplay
+          attributeName="Carisma"
+          attributeValue={player?.attributes?.cha}
+        />
+        <SaveDisplay
+          attrValue={player?.attributes?.cha}
+          hasProficiency={player?.attributes?.chaSave || false}
+        />
+      </div>
       <SkillDisplay
-        attrValue={player?.attributes?.cha}
-        hasProficiency={player?.skills?.performanceProf}
-        hasExpertise={player?.skills?.performanceExp}
-        skillName="Atuação"
+        skills={[
+          {
+            attributeValue: player?.attributes?.cha,
+            hasProficiency: player?.skills?.performanceProf,
+            hasExpertise: player?.skills?.performanceExp,
+            name: "Atuação",
+          },
+          {
+            attributeValue: player?.attributes?.cha,
+            hasProficiency: player?.skills?.deceptionProf,
+            hasExpertise: player?.skills?.deceptionExp,
+            name: "Enganação",
+          },
+          {
+            attributeValue: player?.attributes?.cha,
+            hasProficiency: player?.skills?.intimidationProf,
+            hasExpertise: player?.skills?.intimidationExp,
+            name: "Intimidação",
+          },
+          {
+            attributeValue: player?.attributes?.cha,
+            hasProficiency: player?.skills?.persuasionProf,
+            hasExpertise: player?.skills?.persuasionExp,
+            name: "Persuasão",
+          },
+        ]}
       />
-      <SkillDisplay
-        attrValue={player?.attributes?.cha}
-        hasProficiency={player?.skills?.deceptionProf}
-        hasExpertise={player?.skills?.deceptionExp}
-        skillName="Enganação"
-      />
-      <SkillDisplay
-        attrValue={player?.attributes?.cha}
-        hasProficiency={player?.skills?.intimidationProf}
-        hasExpertise={player?.skills?.intimidationExp}
-        skillName="Intimidação"
-      />
-      <SkillDisplay
-        attrValue={player?.attributes?.cha}
-        hasProficiency={player?.skills?.persuasionProf}
-        hasExpertise={player?.skills?.persuasionExp}
-        skillName="Persuasão"
-      />
-      <div className="w-1/7"></div>
     </div>
   );
 }

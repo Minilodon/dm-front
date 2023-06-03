@@ -10,7 +10,7 @@ function AttrAndModDisplay(props: AttrAndModDisplayProps) {
   const { attributeName, attributeValue } = props;
   const modifier = getModFromAttributes(attributeValue);
   return (
-    <div className="flex flex-col items-center relative w-20 ml-8 w-1/7">
+    <div className="flex flex-col items-center relative w-20 ml-8">
       <span className="font-semibold">{attributeName}</span>
       <div className="border-2 border-black flex items-center justify-center w-14 h-[70px]">
         <span className="font-semibold">

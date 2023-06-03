@@ -18,7 +18,7 @@ function SaveDisplay(props: SaveDisplayProps) {
     : getModFromAttributes(attrValue);
   const modText = mod < 0 ? mod.toString() : "+" + mod.toString();
   return (
-    <div className="flex flex-col items-center ml-4 w-1/7">
+    <div className="flex flex-col items-center ml-4">
       <span className="font-semibold">Salvaguarda</span>
       <div className="h-[50px] border-2 border-black w-14 flex items-center justify-center font-semibold">
         {modText}

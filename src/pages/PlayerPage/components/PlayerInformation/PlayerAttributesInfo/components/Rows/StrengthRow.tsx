@@ -1,31 +1,33 @@
 import React from "react";
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
-import SkillDisplay from "../SkillDisplay";
 import { usePlayerContext } from "../../../../../../../contexts/PlayerContext";
+import SkillDisplay from "../SkillDisplay";
 
 function StrengthRow() {
   const { player } = usePlayerContext();
   return (
     <div className="flex-1 flex items-center w-full">
-      <AttrAndModDisplay
-        attributeName="Força"
-        attributeValue={player?.attributes?.str}
-      />
-      <SaveDisplay
-        attrValue={player?.attributes?.str}
-        hasProficiency={player?.attributes?.strSave || false}
-      />
+      <div className="w-fit flex">
+        <AttrAndModDisplay
+          attributeName="Força"
+          attributeValue={player?.attributes?.str}
+        />
+        <SaveDisplay
+          attrValue={player?.attributes?.str}
+          hasProficiency={player?.attributes?.strSave || false}
+        />
+      </div>
       <SkillDisplay
-        attrValue={player?.attributes?.str}
-        hasProficiency={player?.skills?.athleticsProf}
-        hasExpertise={player?.skills?.athleticsExp}
-        skillName="Atletismo"
+        skills={[
+          {
+            attributeValue: 10,
+            hasExpertise: player?.skills?.athleticsExp,
+            hasProficiency: player?.skills?.athleticsProf,
+            name: "Atletismo",
+          },
+        ]}
       />
-      <div className="w-1/7"></div>
-      <div className="w-1/7"></div>
-      <div className="w-1/7"></div>
-      <div className="w-1/7"></div>
     </div>
   );
 }

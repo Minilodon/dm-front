@@ -3,46 +3,61 @@ import { getModFromAttributes } from "../../../../../../helpers/get-mod-from-att
 import { Tooltip } from "@mui/material";
 import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
 import { getProfBonus } from "../../../../../../helpers/get-prof-bonus";
-
-interface SkillDisplayProps {
-  attrValue: number | undefined;
+import { splitArray } from "../../../../../../helpers/split-array";
+import DoubleCheckbox from "../../../../../../components/DoubleCheckbox/DoubleCheckbox";
+import SkillModDisplay from "../../../../../../components/SkillModDisplay.tsx/SkillModDisplay";
+export interface Skill {
+  name: string | undefined;
+  attributeValue: number | undefined;
   hasProficiency: boolean | undefined;
   hasExpertise: boolean | undefined;
-  skillName: string;
+}
+
+interface SkillDisplayProps {
+  skills?: Skill[];
 }
 
 function SkillDisplay(props: SkillDisplayProps) {
-  const { attrValue, hasProficiency, hasExpertise, skillName } = props;
-  const { player } = usePlayerContext();
-  const profMod = getProfBonus(player?.level);
-  const mod = hasProficiency
-    ? hasExpertise
-      ? getModFromAttributes(attrValue) + 2 * profMod
-      : getModFromAttributes(attrValue) + profMod
-    : getModFromAttributes(attrValue);
-  const modText = mod < 0 ? mod.toString() : "+" + mod.toString();
+  const { skills } = props;
+
+  const groupedArrays = skills ? splitArray(skills, 3) : null;
+
   return (
-    <div className="flex flex-col items-center ml-4 w-1/7">
-      <span className="font-semibold">{skillName}</span>
-      <div className="h-[50px] border-2 border-black w-14 flex items-center justify-center font-semibold">
-        {modText}
+    <div className="w-full h-full border-l border-l-black ml-4 flex mt-4 border-b">
+      <div className="flex-1 flex flex-col h-full ml-8">
+        {groupedArrays &&
+          groupedArrays[0].map((skill, index) => (
+            <div className="flex items-center flex-1 gap-x-2" key={index}>
+              <DoubleCheckbox
+                biggerBoolean={skill.hasProficiency || false}
+                smallerBoolean={skill.hasExpertise || false}
+              />
+              <SkillModDisplay
+                attributeValue={skill.attributeValue || 10}
+                hasExpertise={skill.hasExpertise || false}
+                hasProficiency={skill.hasProficiency || false}
+              />
+              <span>{skill.name}</span>
+            </div>
+          ))}
       </div>
-      <div className="h-[20px] border-b-2 border-l-2 border-r-2 border-black w-14 flex items-center justify-center cursor-pointer">
-        {hasProficiency ? (
-          hasExpertise ? (
-            <Tooltip title={"Expertise"}>
-              <span className="font-semibold">E</span>
-            </Tooltip>
-          ) : (
-            <Tooltip title={"Proficiência"}>
-              <span className="font-semibold">P</span>
-            </Tooltip>
-          )
-        ) : (
-          <Tooltip title={"Não proficiente"}>
-            <div className="w-full h-full"></div>
-          </Tooltip>
-        )}
+      <div className="flex-1 flex flex-col h-full ml-2">
+        {groupedArrays &&
+          groupedArrays.length > 1 &&
+          groupedArrays[1].map((skill, index) => (
+            <div className="flex items-center flex-1 gap-x-2" key={index}>
+              <DoubleCheckbox
+                biggerBoolean={skill.hasProficiency || false}
+                smallerBoolean={skill.hasExpertise || false}
+              />
+              <SkillModDisplay
+                attributeValue={skill.attributeValue || 10}
+                hasExpertise={skill.hasExpertise || false}
+                hasProficiency={skill.hasProficiency || false}
+              />
+              <span>{skill.name}</span>
+            </div>
+          ))}
       </div>
     </div>
   );

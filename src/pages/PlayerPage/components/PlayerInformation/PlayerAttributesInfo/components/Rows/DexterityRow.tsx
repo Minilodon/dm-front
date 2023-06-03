@@ -8,34 +8,38 @@ function DexterityRow() {
   const { player } = usePlayerContext();
   return (
     <div className="flex-1 flex items-center w-full">
-      <AttrAndModDisplay
-        attributeName="Destreza"
-        attributeValue={player?.attributes?.dex}
-      />
-      <SaveDisplay
-        attrValue={player?.attributes?.dex}
-        hasProficiency={player?.attributes?.dexSave || false}
-      />
+      <div className="w-fit flex">
+        <AttrAndModDisplay
+          attributeName="Destreza"
+          attributeValue={player?.attributes?.dex}
+        />
+        <SaveDisplay
+          attrValue={player?.attributes?.dex}
+          hasProficiency={player?.attributes?.dexSave || false}
+        />
+      </div>
       <SkillDisplay
-        attrValue={player?.attributes?.dex}
-        hasProficiency={player?.skills?.acrobaticsProf}
-        hasExpertise={player?.skills?.acrobaticsExp}
-        skillName="Acrobacia"
+        skills={[
+          {
+            attributeValue: player?.attributes?.dex,
+            hasExpertise: player?.skills?.acrobaticsExp,
+            hasProficiency: player?.skills?.acrobaticsProf,
+            name: "Acrobacia",
+          },
+          {
+            attributeValue: player?.attributes?.dex,
+            hasExpertise: player?.skills?.stealthExp,
+            hasProficiency: player?.skills?.stealthProf,
+            name: "Furtividade",
+          },
+          {
+            attributeValue: player?.attributes?.dex,
+            hasExpertise: player?.skills?.sleightOfHandExp,
+            hasProficiency: player?.skills?.sleightOfHandProf,
+            name: "Prestidigitação",
+          },
+        ]}
       />
-      <SkillDisplay
-        attrValue={player?.attributes?.dex}
-        hasProficiency={player?.skills?.stealthProf}
-        hasExpertise={player?.skills?.stealthExp}
-        skillName="Furtividade"
-      />
-      <SkillDisplay
-        attrValue={player?.attributes?.dex}
-        hasProficiency={player?.skills?.sleightOfHandProf}
-        hasExpertise={player?.skills?.sleightOfHandExp}
-        skillName="Prestidigitação"
-      />
-      <div className="w-1/7"></div>
-      <div className="w-1/7"></div>
     </div>
   );
 }
