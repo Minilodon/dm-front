@@ -3,6 +3,8 @@ import PlayerGeneralInfo from "./PlayerGeneralInfo/PlayerGeneralInfo";
 import PlayerAttributesInfo from "./PlayerAttributesInfo/PlayerAttributesInfo";
 import clsx from "clsx";
 import PlayerInventory from "./PlayerInventory/PlayerInventory";
+import PlayerFeats from "./PlayerFeats/PlayerFeats";
+import PlayerMagic from "./PlayerMagic/PlayerMagic";
 
 function PlayerInformation() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,7 +13,7 @@ function PlayerInformation() {
     setCurrentPage(currentPage - 1);
   };
   const handleGoRight = () => {
-    if (currentPage === 2) return;
+    if (currentPage === 4) return;
     setCurrentPage(currentPage + 1);
   };
   return (
@@ -33,6 +35,8 @@ function PlayerInformation() {
         <div className="w-full h-full relative">
           <PlayerAttributesInfo currentPage={currentPage} />
           <PlayerInventory currentPage={currentPage} />
+          <PlayerFeats currentPage={currentPage} />
+          <PlayerMagic currentPage={currentPage} />
         </div>
       </div>
     </div>

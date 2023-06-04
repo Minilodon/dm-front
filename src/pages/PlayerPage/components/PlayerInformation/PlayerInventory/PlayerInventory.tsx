@@ -12,13 +12,14 @@ interface PlayerInventoryProps {
 function PlayerInventory(props: PlayerInventoryProps) {
   const { currentPage } = props;
   const { player } = usePlayerContext();
+  const display =
+    currentPage === 1
+      ? "translate-x-[calc(100%+32px)]"
+      : currentPage === 2
+      ? ""
+      : "-translate-x-[calc(100%+32px)]";
   return (
-    <div
-      className={clsx(
-        "w-full h-full transition flex flex-col",
-        currentPage === 1 ? "translate-x-[calc(100%+32px)]" : ""
-      )}
-    >
+    <div className={clsx("w-full h-full transition flex flex-col", display)}>
       <section className="self-center text-lg font-semibold mb-4">
         Inventário e Proficiências
       </section>

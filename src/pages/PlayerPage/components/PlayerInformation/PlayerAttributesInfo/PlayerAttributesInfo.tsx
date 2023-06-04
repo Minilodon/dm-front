@@ -13,11 +13,17 @@ interface PlayerAttributesInfoProps {
 
 function PlayerAttributesInfo(props: PlayerAttributesInfoProps) {
   const { currentPage } = props;
+  const display =
+    currentPage === 1
+      ? ""
+      : currentPage === 2
+      ? "-translate-x-[calc(100%+32px)]"
+      : "-translate-x-[calc(200%+64px)]";
   return (
     <div
       className={clsx(
         "w-full h-full flex flex-col absolute top-0 left-0 transition",
-        currentPage === 1 ? "" : "-translate-x-[calc(100%+32px)]"
+        display
       )}
     >
       <section className="self-center text-lg font-semibold">
