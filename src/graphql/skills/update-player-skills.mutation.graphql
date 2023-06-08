@@ -1,0 +1,5 @@
+mutation updatePlayerSkills($playerId: Float!, $payload: UpdateSkillsInput!) {
+  updatePlayerSkills(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}

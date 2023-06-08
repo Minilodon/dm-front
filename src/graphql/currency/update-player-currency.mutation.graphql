@@ -1,0 +1,8 @@
+mutation updatePlayerCurrency(
+  $playerId: Float!
+  $payload: UpdateCurrencyInput!
+) {
+  updatePlayerCurrency(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}

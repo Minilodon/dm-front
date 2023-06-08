@@ -1,0 +1,8 @@
+mutation updatePlayerAttributes(
+  $playerId: Float!
+  $payload: UpdateAttributesInput!
+) {
+  updatePlayerAttributes(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}

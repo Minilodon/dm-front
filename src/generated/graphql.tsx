@@ -119,6 +119,142 @@ export const PlayerFragmentDoc = gql`
   }
 }
     `;
+export const UpdatePlayerAttributesDocument = gql`
+    mutation updatePlayerAttributes($playerId: Float!, $payload: UpdateAttributesInput!) {
+  updatePlayerAttributes(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}
+    `;
+export type UpdatePlayerAttributesMutationFn = Apollo.MutationFunction<UpdatePlayerAttributesMutation, UpdatePlayerAttributesMutationVariables>;
+
+/**
+ * __useUpdatePlayerAttributesMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerAttributesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerAttributesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerAttributesMutation, { data, loading, error }] = useUpdatePlayerAttributesMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerAttributesMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerAttributesMutation, UpdatePlayerAttributesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerAttributesMutation, UpdatePlayerAttributesMutationVariables>(UpdatePlayerAttributesDocument, options);
+      }
+export type UpdatePlayerAttributesMutationHookResult = ReturnType<typeof useUpdatePlayerAttributesMutation>;
+export type UpdatePlayerAttributesMutationResult = Apollo.MutationResult<UpdatePlayerAttributesMutation>;
+export type UpdatePlayerAttributesMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerAttributesMutation, UpdatePlayerAttributesMutationVariables>;
+export const UpdatePlayerCurrencyDocument = gql`
+    mutation updatePlayerCurrency($playerId: Float!, $payload: UpdateCurrencyInput!) {
+  updatePlayerCurrency(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}
+    `;
+export type UpdatePlayerCurrencyMutationFn = Apollo.MutationFunction<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+
+/**
+ * __useUpdatePlayerCurrencyMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerCurrencyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerCurrencyMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerCurrencyMutation, { data, loading, error }] = useUpdatePlayerCurrencyMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerCurrencyMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>(UpdatePlayerCurrencyDocument, options);
+      }
+export type UpdatePlayerCurrencyMutationHookResult = ReturnType<typeof useUpdatePlayerCurrencyMutation>;
+export type UpdatePlayerCurrencyMutationResult = Apollo.MutationResult<UpdatePlayerCurrencyMutation>;
+export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+export const UpdatePlayerLanguageDocument = gql`
+    mutation updatePlayerLanguage($playerId: Float!, $payload: UpdateLanguagesInput!) {
+  updatePlayerLanguage(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}
+    `;
+export type UpdatePlayerLanguageMutationFn = Apollo.MutationFunction<UpdatePlayerLanguageMutation, UpdatePlayerLanguageMutationVariables>;
+
+/**
+ * __useUpdatePlayerLanguageMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerLanguageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerLanguageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerLanguageMutation, { data, loading, error }] = useUpdatePlayerLanguageMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerLanguageMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerLanguageMutation, UpdatePlayerLanguageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerLanguageMutation, UpdatePlayerLanguageMutationVariables>(UpdatePlayerLanguageDocument, options);
+      }
+export type UpdatePlayerLanguageMutationHookResult = ReturnType<typeof useUpdatePlayerLanguageMutation>;
+export type UpdatePlayerLanguageMutationResult = Apollo.MutationResult<UpdatePlayerLanguageMutation>;
+export type UpdatePlayerLanguageMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerLanguageMutation, UpdatePlayerLanguageMutationVariables>;
+export const UpdatePlayerMagicDocument = gql`
+    mutation updatePlayerMagic($playerId: Float!, $payload: UpdateMagicInput!) {
+  updatePlayerMagic(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}
+    `;
+export type UpdatePlayerMagicMutationFn = Apollo.MutationFunction<UpdatePlayerMagicMutation, UpdatePlayerMagicMutationVariables>;
+
+/**
+ * __useUpdatePlayerMagicMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerMagicMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerMagicMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerMagicMutation, { data, loading, error }] = useUpdatePlayerMagicMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerMagicMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerMagicMutation, UpdatePlayerMagicMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerMagicMutation, UpdatePlayerMagicMutationVariables>(UpdatePlayerMagicDocument, options);
+      }
+export type UpdatePlayerMagicMutationHookResult = ReturnType<typeof useUpdatePlayerMagicMutation>;
+export type UpdatePlayerMagicMutationResult = Apollo.MutationResult<UpdatePlayerMagicMutation>;
+export type UpdatePlayerMagicMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerMagicMutation, UpdatePlayerMagicMutationVariables>;
 export const GetAllPlayersDocument = gql`
     query getAllPlayers {
   getAllPlayers {
@@ -188,6 +324,74 @@ export function useGetPlayerByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetPlayerByIdQueryHookResult = ReturnType<typeof useGetPlayerByIdQuery>;
 export type GetPlayerByIdLazyQueryHookResult = ReturnType<typeof useGetPlayerByIdLazyQuery>;
 export type GetPlayerByIdQueryResult = Apollo.QueryResult<GetPlayerByIdQuery, GetPlayerByIdQueryVariables>;
+export const UpdatePlayerDocument = gql`
+    mutation updatePlayer($playerId: Float!, $payload: UpdatePlayerInput!) {
+  updatePlayer(playerId: $playerId, payload: $payload) {
+    id
+  }
+}
+    `;
+export type UpdatePlayerMutationFn = Apollo.MutationFunction<UpdatePlayerMutation, UpdatePlayerMutationVariables>;
+
+/**
+ * __useUpdatePlayerMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerMutation, { data, loading, error }] = useUpdatePlayerMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerMutation, UpdatePlayerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerMutation, UpdatePlayerMutationVariables>(UpdatePlayerDocument, options);
+      }
+export type UpdatePlayerMutationHookResult = ReturnType<typeof useUpdatePlayerMutation>;
+export type UpdatePlayerMutationResult = Apollo.MutationResult<UpdatePlayerMutation>;
+export type UpdatePlayerMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerMutation, UpdatePlayerMutationVariables>;
+export const UpdatePlayerSkillsDocument = gql`
+    mutation updatePlayerSkills($playerId: Float!, $payload: UpdateSkillsInput!) {
+  updatePlayerSkills(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}
+    `;
+export type UpdatePlayerSkillsMutationFn = Apollo.MutationFunction<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>;
+
+/**
+ * __useUpdatePlayerSkillsMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerSkillsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerSkillsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerSkillsMutation, { data, loading, error }] = useUpdatePlayerSkillsMutation({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerSkillsMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>(UpdatePlayerSkillsDocument, options);
+      }
+export type UpdatePlayerSkillsMutationHookResult = ReturnType<typeof useUpdatePlayerSkillsMutation>;
+export type UpdatePlayerSkillsMutationResult = Apollo.MutationResult<UpdatePlayerSkillsMutation>;
+export type UpdatePlayerSkillsMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -239,6 +443,15 @@ export type Attributes = {
   /** Booleano que indica se jogador possui proficiência em salvaguarda de sabedoria */
   wisSave?: Maybe<Scalars['Boolean']>;
 };
+
+export enum AttributesEnum {
+  Charisma = 'Charisma',
+  Constitution = 'Constitution',
+  Dexterity = 'Dexterity',
+  Intelligence = 'Intelligence',
+  Strength = 'Strength',
+  Wisdom = 'Wisdom'
+}
 
 export enum Class {
   Barbarian1 = 'Barbarian1',
@@ -323,6 +536,33 @@ export type CreateLanguagesInput = {
   primordial?: InputMaybe<Scalars['Boolean']>;
   sylvan?: InputMaybe<Scalars['Boolean']>;
   undercommon?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CreateMagicInput = {
+  attribute: AttributesEnum;
+  cantrips?: InputMaybe<Scalars['Int']>;
+  isMage?: InputMaybe<Scalars['Boolean']>;
+  knownSpells?: InputMaybe<Scalars['Int']>;
+  level1AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level1Spells?: InputMaybe<Scalars['Int']>;
+  level2AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level2Spells?: InputMaybe<Scalars['Int']>;
+  level3AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level3Spells?: InputMaybe<Scalars['Int']>;
+  level4AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level4Spells?: InputMaybe<Scalars['Int']>;
+  level5AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level5Spells?: InputMaybe<Scalars['Int']>;
+  level6AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level6Spells?: InputMaybe<Scalars['Int']>;
+  level7AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level7Spells?: InputMaybe<Scalars['Int']>;
+  level8AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level8Spells?: InputMaybe<Scalars['Int']>;
+  level9AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level9Spells?: InputMaybe<Scalars['Int']>;
+  preparedSpells?: InputMaybe<Scalars['Boolean']>;
+  ritualCaster?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type CreatePlayerInput = {
@@ -454,15 +694,69 @@ export type Language = {
   undercommon?: Maybe<Scalars['Boolean']>;
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createDefaultPlayer: Player;
-  createPlayer: Player;
+export type Magic = {
+  __typename?: 'Magic';
+  attribute: AttributesEnum;
+  /** Quantidade de truques disponíveis */
+  cantrips: Scalars['Int'];
+  id: Scalars['Int'];
+  /** Informa se o jogador consegue preparar magias */
+  isMage: Scalars['Boolean'];
+  /** Quantidade de magias conhecidas */
+  knownSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 1 disponíveis do jogador */
+  level1AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 1 do jogador */
+  level1Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 2 disponíveis do jogador */
+  level2AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 2 do jogador */
+  level2Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 3 disponíveis do jogador */
+  level3AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 3 do jogador */
+  level3Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 4 disponíveis do jogador */
+  level4AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 4 do jogador */
+  level4Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 5 disponíveis do jogador */
+  level5AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 5 do jogador */
+  level5Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 6 disponíveis do jogador */
+  level6AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 6 do jogador */
+  level6Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 7 disponíveis do jogador */
+  level7AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 7 do jogador */
+  level7Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 8 disponíveis do jogador */
+  level8AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 8 do jogador */
+  level8Spells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 9 disponíveis do jogador */
+  level9AvailableSpells: Scalars['Int'];
+  /** Total de espaços de magia do círculo 9 do jogador */
+  level9Spells: Scalars['Int'];
+  playerId: Scalars['Int'];
+  /** Informa se o jogador consegue preparar magias */
+  preparedSpells: Scalars['Boolean'];
+  /** Informa se o jogador consegue conjurar magias como ritual */
+  ritualCaster: Scalars['Boolean'];
 };
 
-
-export type MutationCreateDefaultPlayerArgs = {
-  playerName: Scalars['String'];
+export type Mutation = {
+  __typename?: 'Mutation';
+  createPlayer: Player;
+  createPlayerMagic: Magic;
+  updatePlayer: Player;
+  updatePlayerAttributes: Attributes;
+  updatePlayerCurrency: Currency;
+  updatePlayerLanguage: Language;
+  updatePlayerMagic: Magic;
+  updatePlayerSkills: Skills;
 };
 
 
@@ -470,8 +764,51 @@ export type MutationCreatePlayerArgs = {
   attributesPayload?: InputMaybe<CreateAttributesInput>;
   currencyPayload?: InputMaybe<CreateCurrencyInput>;
   languagesPayload?: InputMaybe<CreateLanguagesInput>;
+  magicPayload?: InputMaybe<CreateMagicInput>;
   playerPayload: CreatePlayerInput;
   skillsPayload?: InputMaybe<CreateSkillsInput>;
+};
+
+
+export type MutationCreatePlayerMagicArgs = {
+  payload: CreateMagicInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerArgs = {
+  payload: UpdatePlayerInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerAttributesArgs = {
+  payload: UpdateAttributesInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerCurrencyArgs = {
+  payload: UpdateCurrencyInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerLanguageArgs = {
+  payload: UpdateLanguagesInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerMagicArgs = {
+  payload: UpdateMagicInput;
+  playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerSkillsArgs = {
+  payload: UpdateSkillsInput;
+  playerId: Scalars['Float'];
 };
 
 export type Player = {
@@ -498,6 +835,7 @@ export type Player = {
   language?: Maybe<Language>;
   /** Nível do jogador */
   level: Scalars['Int'];
+  magic?: Maybe<Magic>;
   /** Deslocamento do jogador */
   movement: Scalars['Float'];
   /** Nome do jogador */
@@ -675,6 +1013,182 @@ export type Skills = {
   survivalProf: Scalars['Boolean'];
 };
 
+export type UpdateAttributesInput = {
+  cha?: Scalars['Int'];
+  chaSave?: Scalars['Boolean'];
+  con?: Scalars['Int'];
+  conSave?: Scalars['Boolean'];
+  dex?: Scalars['Int'];
+  dexSave?: Scalars['Boolean'];
+  int?: Scalars['Int'];
+  intSave?: Scalars['Boolean'];
+  str?: Scalars['Int'];
+  strSave?: Scalars['Boolean'];
+  wis?: Scalars['Int'];
+  wisSave?: Scalars['Boolean'];
+};
+
+export type UpdateCurrencyInput = {
+  copper?: InputMaybe<Scalars['Int']>;
+  elektrum?: InputMaybe<Scalars['Int']>;
+  gold?: InputMaybe<Scalars['Int']>;
+  platinum?: InputMaybe<Scalars['Int']>;
+  silver?: InputMaybe<Scalars['Int']>;
+};
+
+export type UpdateLanguagesInput = {
+  abyssal?: InputMaybe<Scalars['Boolean']>;
+  celestial?: InputMaybe<Scalars['Boolean']>;
+  common?: InputMaybe<Scalars['Boolean']>;
+  deepSpeech?: InputMaybe<Scalars['Boolean']>;
+  draconic?: InputMaybe<Scalars['Boolean']>;
+  dwarvish?: InputMaybe<Scalars['Boolean']>;
+  elvish?: InputMaybe<Scalars['Boolean']>;
+  giant?: InputMaybe<Scalars['Boolean']>;
+  gnomish?: InputMaybe<Scalars['Boolean']>;
+  goblin?: InputMaybe<Scalars['Boolean']>;
+  halfling?: InputMaybe<Scalars['Boolean']>;
+  infernal?: InputMaybe<Scalars['Boolean']>;
+  orc?: InputMaybe<Scalars['Boolean']>;
+  primordial?: InputMaybe<Scalars['Boolean']>;
+  sylvan?: InputMaybe<Scalars['Boolean']>;
+  undercommon?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type UpdateMagicInput = {
+  attribute?: InputMaybe<AttributesEnum>;
+  cantrips?: InputMaybe<Scalars['Int']>;
+  isMage?: InputMaybe<Scalars['Boolean']>;
+  knownSpells?: InputMaybe<Scalars['Int']>;
+  level1AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level1Spells?: InputMaybe<Scalars['Int']>;
+  level2AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level2Spells?: InputMaybe<Scalars['Int']>;
+  level3AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level3Spells?: InputMaybe<Scalars['Int']>;
+  level4AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level4Spells?: InputMaybe<Scalars['Int']>;
+  level5AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level5Spells?: InputMaybe<Scalars['Int']>;
+  level6AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level6Spells?: InputMaybe<Scalars['Int']>;
+  level7AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level7Spells?: InputMaybe<Scalars['Int']>;
+  level8AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level8Spells?: InputMaybe<Scalars['Int']>;
+  level9AvailableSpells?: InputMaybe<Scalars['Int']>;
+  level9Spells?: InputMaybe<Scalars['Int']>;
+  preparedSpells?: InputMaybe<Scalars['Boolean']>;
+  ritualCaster?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type UpdatePlayerInput = {
+  age?: InputMaybe<Scalars['Int']>;
+  alignment?: InputMaybe<Alignment>;
+  armorClass?: InputMaybe<Scalars['Int']>;
+  class?: InputMaybe<Class>;
+  currentHitPoints?: InputMaybe<Scalars['Int']>;
+  currentTemporaryHitPoints?: InputMaybe<Scalars['Int']>;
+  hitPoints?: InputMaybe<Scalars['Int']>;
+  inspiration?: InputMaybe<Scalars['Boolean']>;
+  level?: InputMaybe<Scalars['Int']>;
+  movement?: InputMaybe<Scalars['Float']>;
+  name?: InputMaybe<Scalars['String']>;
+  playerImageUrl?: InputMaybe<Scalars['String']>;
+  race?: InputMaybe<Race>;
+  size?: InputMaybe<Size>;
+  temporaryHitPoints?: InputMaybe<Scalars['Int']>;
+};
+
+export type UpdateSkillsInput = {
+  acrobatics?: InputMaybe<Scalars['Int']>;
+  acrobaticsExp?: InputMaybe<Scalars['Boolean']>;
+  acrobaticsProf?: InputMaybe<Scalars['Boolean']>;
+  animalHandling?: InputMaybe<Scalars['Int']>;
+  animalHandlingExp?: InputMaybe<Scalars['Boolean']>;
+  animalHandlingProf?: InputMaybe<Scalars['Boolean']>;
+  arcana?: InputMaybe<Scalars['Int']>;
+  arcanaExp?: InputMaybe<Scalars['Boolean']>;
+  arcanaProf?: InputMaybe<Scalars['Boolean']>;
+  athletics?: InputMaybe<Scalars['Int']>;
+  athleticsExp?: InputMaybe<Scalars['Boolean']>;
+  athleticsProf?: InputMaybe<Scalars['Boolean']>;
+  deception?: InputMaybe<Scalars['Int']>;
+  deceptionExp?: InputMaybe<Scalars['Boolean']>;
+  deceptionProf?: InputMaybe<Scalars['Boolean']>;
+  history?: InputMaybe<Scalars['Int']>;
+  historyExp?: InputMaybe<Scalars['Boolean']>;
+  historyProf?: InputMaybe<Scalars['Boolean']>;
+  insight?: InputMaybe<Scalars['Int']>;
+  insightExp?: InputMaybe<Scalars['Boolean']>;
+  insightProf?: InputMaybe<Scalars['Boolean']>;
+  intimidation?: InputMaybe<Scalars['Int']>;
+  intimidationExp?: InputMaybe<Scalars['Boolean']>;
+  intimidationProf?: InputMaybe<Scalars['Boolean']>;
+  investigation?: InputMaybe<Scalars['Int']>;
+  investigationExp?: InputMaybe<Scalars['Boolean']>;
+  investigationProf?: InputMaybe<Scalars['Boolean']>;
+  medicine?: InputMaybe<Scalars['Int']>;
+  medicineExp?: InputMaybe<Scalars['Boolean']>;
+  medicineProf?: InputMaybe<Scalars['Boolean']>;
+  nature?: InputMaybe<Scalars['Int']>;
+  natureExp?: InputMaybe<Scalars['Boolean']>;
+  natureProf?: InputMaybe<Scalars['Boolean']>;
+  perception?: InputMaybe<Scalars['Int']>;
+  perceptionExp?: InputMaybe<Scalars['Boolean']>;
+  perceptionProf?: InputMaybe<Scalars['Boolean']>;
+  performance?: InputMaybe<Scalars['Int']>;
+  performanceExp?: InputMaybe<Scalars['Boolean']>;
+  performanceProf?: InputMaybe<Scalars['Boolean']>;
+  persuasion?: InputMaybe<Scalars['Int']>;
+  persuasionExp?: InputMaybe<Scalars['Boolean']>;
+  persuasionProf?: InputMaybe<Scalars['Boolean']>;
+  religion?: InputMaybe<Scalars['Int']>;
+  religionExp?: InputMaybe<Scalars['Boolean']>;
+  religionProf?: InputMaybe<Scalars['Boolean']>;
+  sleightOfHand?: InputMaybe<Scalars['Int']>;
+  sleightOfHandExp?: InputMaybe<Scalars['Boolean']>;
+  sleightOfHandProf?: InputMaybe<Scalars['Boolean']>;
+  stealth?: InputMaybe<Scalars['Int']>;
+  stealthExp?: InputMaybe<Scalars['Boolean']>;
+  stealthProf?: InputMaybe<Scalars['Boolean']>;
+  survival?: InputMaybe<Scalars['Int']>;
+  survivalExp?: InputMaybe<Scalars['Boolean']>;
+  survivalProf?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type UpdatePlayerAttributesMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdateAttributesInput;
+}>;
+
+
+export type UpdatePlayerAttributesMutation = { __typename?: 'Mutation', updatePlayerAttributes: { __typename?: 'Attributes', playerId: number } };
+
+export type UpdatePlayerCurrencyMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdateCurrencyInput;
+}>;
+
+
+export type UpdatePlayerCurrencyMutation = { __typename?: 'Mutation', updatePlayerCurrency: { __typename?: 'Currency', playerId: number } };
+
+export type UpdatePlayerLanguageMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdateLanguagesInput;
+}>;
+
+
+export type UpdatePlayerLanguageMutation = { __typename?: 'Mutation', updatePlayerLanguage: { __typename?: 'Language', playerId: number } };
+
+export type UpdatePlayerMagicMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdateMagicInput;
+}>;
+
+
+export type UpdatePlayerMagicMutation = { __typename?: 'Mutation', updatePlayerMagic: { __typename?: 'Magic', playerId: number } };
+
 export type GetAllPlayersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -688,3 +1202,19 @@ export type GetPlayerByIdQueryVariables = Exact<{
 export type GetPlayerByIdQuery = { __typename?: 'Query', getPlayerById: { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null } };
 
 export type PlayerFragment = { __typename?: 'Player', armorClass: number, class: Class, currentHitPoints: number, currentTemporaryHitPoints: number, hitPoints: number, id: number, inspiration: boolean, movement: number, name: string, playerImageUrl?: string | null, race: Race, level: number, size: Size, temporaryHitPoints: number, currency?: { __typename?: 'Currency', gold: number, copper: number, platinum: number, silver: number, elektrum: number } | null, language?: { __typename?: 'Language', abyssal?: boolean | null, celestial?: boolean | null, common?: boolean | null, deepSpeech?: boolean | null, draconic?: boolean | null, dwarvish?: boolean | null, elvish?: boolean | null, giant?: boolean | null, gnomish?: boolean | null, goblin?: boolean | null, halfling?: boolean | null, infernal?: boolean | null, orc?: boolean | null, primordial?: boolean | null, sylvan?: boolean | null, undercommon?: boolean | null } | null, attributes?: { __typename?: 'Attributes', str: number, dex: number, con: number, wis: number, int: number, cha: number, chaSave?: boolean | null, conSave?: boolean | null, dexSave?: boolean | null, intSave?: boolean | null, strSave?: boolean | null, wisSave?: boolean | null } | null, skills?: { __typename?: 'Skills', acrobatics: number, acrobaticsProf: boolean, acrobaticsExp: boolean, animalHandling: number, animalHandlingProf: boolean, animalHandlingExp: boolean, arcana: number, arcanaProf: boolean, arcanaExp: boolean, athletics: number, athleticsProf: boolean, athleticsExp: boolean, deception: number, deceptionProf: boolean, deceptionExp: boolean, history: number, historyProf: boolean, historyExp: boolean, insight: number, insightProf: boolean, insightExp: boolean, intimidation: number, intimidationProf: boolean, intimidationExp: boolean, investigation: number, investigationProf: boolean, investigationExp: boolean, medicine: number, medicineProf: boolean, medicineExp: boolean, nature: number, natureProf: boolean, natureExp: boolean, perception: number, perceptionProf: boolean, perceptionExp: boolean, performance: number, performanceProf: boolean, performanceExp: boolean, persuasion: number, persuasionProf: boolean, persuasionExp: boolean, religion: number, religionProf: boolean, religionExp: boolean, sleightOfHand: number, sleightOfHandProf: boolean, sleightOfHandExp: boolean, stealth: number, stealthProf: boolean, stealthExp: boolean, survival: number, survivalProf: boolean, survivalExp: boolean } | null };
+
+export type UpdatePlayerMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdatePlayerInput;
+}>;
+
+
+export type UpdatePlayerMutation = { __typename?: 'Mutation', updatePlayer: { __typename?: 'Player', id: number } };
+
+export type UpdatePlayerSkillsMutationVariables = Exact<{
+  playerId: Scalars['Float'];
+  payload: UpdateSkillsInput;
+}>;
+
+
+export type UpdatePlayerSkillsMutation = { __typename?: 'Mutation', updatePlayerSkills: { __typename?: 'Skills', playerId: number } };

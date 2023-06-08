@@ -1,0 +1,8 @@
+mutation updatePlayerLanguage(
+  $playerId: Float!
+  $payload: UpdateLanguagesInput!
+) {
+  updatePlayerLanguage(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}

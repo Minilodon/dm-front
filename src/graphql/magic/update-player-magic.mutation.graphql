@@ -1,0 +1,5 @@
+mutation updatePlayerMagic($playerId: Float!, $payload: UpdateMagicInput!) {
+  updatePlayerMagic(playerId: $playerId, payload: $payload) {
+    playerId
+  }
+}

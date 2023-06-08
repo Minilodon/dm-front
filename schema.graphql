@@ -62,6 +62,15 @@ type Attributes {
   wisSave: Boolean
 }
 
+enum AttributesEnum {
+  Charisma
+  Constitution
+  Dexterity
+  Intelligence
+  Strength
+  Wisdom
+}
+
 enum Class {
   Barbarian1
   Barbarian2
@@ -145,6 +154,33 @@ input CreateLanguagesInput {
   primordial: Boolean = false
   sylvan: Boolean = false
   undercommon: Boolean = false
+}
+
+input CreateMagicInput {
+  attribute: AttributesEnum!
+  cantrips: Int = 0
+  isMage: Boolean = false
+  knownSpells: Int = 0
+  level1AvailableSpells: Int = 0
+  level1Spells: Int = 0
+  level2AvailableSpells: Int = 0
+  level2Spells: Int = 0
+  level3AvailableSpells: Int = 0
+  level3Spells: Int = 0
+  level4AvailableSpells: Int = 0
+  level4Spells: Int = 0
+  level5AvailableSpells: Int = 0
+  level5Spells: Int = 0
+  level6AvailableSpells: Int = 0
+  level6Spells: Int = 0
+  level7AvailableSpells: Int = 0
+  level7Spells: Int = 0
+  level8AvailableSpells: Int = 0
+  level8Spells: Int = 0
+  level9AvailableSpells: Int = 0
+  level9Spells: Int = 0
+  preparedSpells: Boolean = false
+  ritualCaster: Boolean = false
 }
 
 input CreatePlayerInput {
@@ -298,9 +334,90 @@ type Language {
   undercommon: Boolean
 }
 
+type Magic {
+  attribute: AttributesEnum!
+
+  """Quantidade de truques disponíveis"""
+  cantrips: Int!
+  id: Int!
+
+  """Informa se o jogador consegue preparar magias"""
+  isMage: Boolean!
+
+  """Quantidade de magias conhecidas"""
+  knownSpells: Int!
+
+  """Total de espaços de magia do círculo 1 disponíveis do jogador"""
+  level1AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 1 do jogador"""
+  level1Spells: Int!
+
+  """Total de espaços de magia do círculo 2 disponíveis do jogador"""
+  level2AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 2 do jogador"""
+  level2Spells: Int!
+
+  """Total de espaços de magia do círculo 3 disponíveis do jogador"""
+  level3AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 3 do jogador"""
+  level3Spells: Int!
+
+  """Total de espaços de magia do círculo 4 disponíveis do jogador"""
+  level4AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 4 do jogador"""
+  level4Spells: Int!
+
+  """Total de espaços de magia do círculo 5 disponíveis do jogador"""
+  level5AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 5 do jogador"""
+  level5Spells: Int!
+
+  """Total de espaços de magia do círculo 6 disponíveis do jogador"""
+  level6AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 6 do jogador"""
+  level6Spells: Int!
+
+  """Total de espaços de magia do círculo 7 disponíveis do jogador"""
+  level7AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 7 do jogador"""
+  level7Spells: Int!
+
+  """Total de espaços de magia do círculo 8 disponíveis do jogador"""
+  level8AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 8 do jogador"""
+  level8Spells: Int!
+
+  """Total de espaços de magia do círculo 9 disponíveis do jogador"""
+  level9AvailableSpells: Int!
+
+  """Total de espaços de magia do círculo 9 do jogador"""
+  level9Spells: Int!
+  playerId: Int!
+
+  """Informa se o jogador consegue preparar magias"""
+  preparedSpells: Boolean!
+
+  """Informa se o jogador consegue conjurar magias como ritual"""
+  ritualCaster: Boolean!
+}
+
 type Mutation {
-  createDefaultPlayer(playerName: String!): Player!
-  createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
+  createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, magicPayload: CreateMagicInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
+  createPlayerMagic(payload: CreateMagicInput!, playerId: Float!): Magic!
+  updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
+  updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
+  updatePlayerCurrency(payload: UpdateCurrencyInput!, playerId: Float!): Currency!
+  updatePlayerLanguage(payload: UpdateLanguagesInput!, playerId: Float!): Language!
+  updatePlayerMagic(payload: UpdateMagicInput!, playerId: Float!): Magic!
+  updatePlayerSkills(payload: UpdateSkillsInput!, playerId: Float!): Skills!
 }
 
 type Player {
@@ -334,6 +451,7 @@ type Player {
 
   """Nível do jogador"""
   level: Int!
+  magic: Magic
 
   """Deslocamento do jogador"""
   movement: Float!
@@ -562,4 +680,148 @@ type Skills {
 
   """Existência de proficiência em sobrevivência"""
   survivalProf: Boolean!
+}
+
+input UpdateAttributesInput {
+  cha: Int! = 10
+  chaSave: Boolean! = false
+  con: Int! = 10
+  conSave: Boolean! = false
+  dex: Int! = 10
+  dexSave: Boolean! = false
+  int: Int! = 10
+  intSave: Boolean! = false
+  str: Int! = 10
+  strSave: Boolean! = false
+  wis: Int! = 10
+  wisSave: Boolean! = false
+}
+
+input UpdateCurrencyInput {
+  copper: Int
+  elektrum: Int
+  gold: Int
+  platinum: Int
+  silver: Int
+}
+
+input UpdateLanguagesInput {
+  abyssal: Boolean
+  celestial: Boolean
+  common: Boolean
+  deepSpeech: Boolean
+  draconic: Boolean
+  dwarvish: Boolean
+  elvish: Boolean
+  giant: Boolean
+  gnomish: Boolean
+  goblin: Boolean
+  halfling: Boolean
+  infernal: Boolean
+  orc: Boolean
+  primordial: Boolean
+  sylvan: Boolean
+  undercommon: Boolean
+}
+
+input UpdateMagicInput {
+  attribute: AttributesEnum
+  cantrips: Int
+  isMage: Boolean
+  knownSpells: Int
+  level1AvailableSpells: Int
+  level1Spells: Int
+  level2AvailableSpells: Int
+  level2Spells: Int
+  level3AvailableSpells: Int
+  level3Spells: Int
+  level4AvailableSpells: Int
+  level4Spells: Int
+  level5AvailableSpells: Int
+  level5Spells: Int
+  level6AvailableSpells: Int
+  level6Spells: Int
+  level7AvailableSpells: Int
+  level7Spells: Int
+  level8AvailableSpells: Int
+  level8Spells: Int
+  level9AvailableSpells: Int
+  level9Spells: Int
+  preparedSpells: Boolean
+  ritualCaster: Boolean
+}
+
+input UpdatePlayerInput {
+  age: Int
+  alignment: Alignment
+  armorClass: Int
+  class: Class
+  currentHitPoints: Int
+  currentTemporaryHitPoints: Int
+  hitPoints: Int
+  inspiration: Boolean
+  level: Int
+  movement: Float
+  name: String
+  playerImageUrl: String
+  race: Race
+  size: Size
+  temporaryHitPoints: Int
+}
+
+input UpdateSkillsInput {
+  acrobatics: Int
+  acrobaticsExp: Boolean
+  acrobaticsProf: Boolean
+  animalHandling: Int
+  animalHandlingExp: Boolean
+  animalHandlingProf: Boolean
+  arcana: Int
+  arcanaExp: Boolean
+  arcanaProf: Boolean
+  athletics: Int
+  athleticsExp: Boolean
+  athleticsProf: Boolean
+  deception: Int
+  deceptionExp: Boolean
+  deceptionProf: Boolean
+  history: Int
+  historyExp: Boolean
+  historyProf: Boolean
+  insight: Int
+  insightExp: Boolean
+  insightProf: Boolean
+  intimidation: Int
+  intimidationExp: Boolean
+  intimidationProf: Boolean
+  investigation: Int
+  investigationExp: Boolean
+  investigationProf: Boolean
+  medicine: Int
+  medicineExp: Boolean
+  medicineProf: Boolean
+  nature: Int
+  natureExp: Boolean
+  natureProf: Boolean
+  perception: Int
+  perceptionExp: Boolean
+  perceptionProf: Boolean
+  performance: Int
+  performanceExp: Boolean
+  performanceProf: Boolean
+  persuasion: Int
+  persuasionExp: Boolean
+  persuasionProf: Boolean
+  religion: Int
+  religionExp: Boolean
+  religionProf: Boolean
+  sleightOfHand: Int
+  sleightOfHandExp: Boolean
+  sleightOfHandProf: Boolean
+  stealth: Int
+  stealthExp: Boolean
+  stealthProf: Boolean
+  survival: Int
+  survivalExp: Boolean
+  survivalProf: Boolean
 }

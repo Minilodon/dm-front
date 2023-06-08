@@ -46,8 +46,6 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return playerQueryResponse?.getPlayerById;
   }, [playerQueryResponse?.getPlayerById]);
 
-  console.log("context: ", player);
-
   const players: PlayerFragment[] | [] = useMemo(() => {
     if (!data?.getAllPlayers) return [];
     return data.getAllPlayers;
