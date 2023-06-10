@@ -12,7 +12,7 @@ function Overlay(props: OverlayProps) {
   return (
     <div
       className={clsx(
-        "fixed inset-0 z-10 bg-gray-500 bg-opacity-25 overflow-hidden backdrop-blur-sm",
+        "fixed inset-0 z-40 bg-gray-500 bg-opacity-25 overflow-hidden backdrop-blur-sm",
         modal && "flex items-center justify-center"
       )}
       onClick={handleClickOverlay}

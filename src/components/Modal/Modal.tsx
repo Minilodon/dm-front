@@ -24,7 +24,7 @@ function Modal(props: ModalProps) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className={clsx("bg-white z-30 p-3 rounded-sm shadow")}
+            className={clsx("bg-white z-50 p-3 rounded-sm shadow")}
           >
             <div className="h-full">
               <div className="h-full">{modalContent}</div>
