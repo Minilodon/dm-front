@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import ProgressiveBar from "../../../../../../components/ProgressiveBar/ProgressiveBar";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
-import { Input } from "@mui/material";
+import ChangeHpModal from "../../../../../../components/Modals/ChangeHpModal";
 
 interface HitPointsDisplayProps {
   current: number | undefined;
   total: number | undefined;
   label: string;
+  type: "current" | "normal";
 }
 
 function HitPointsDisplay(props: HitPointsDisplayProps) {
-  const { current, label, total } = props;
+  const { current, label, total, type } = props;
   const { setModalContent, openModal } = useModalContext();
-  const [content, setContent] = useState("");
   const handleClick = () => {
-    setModalContent(
-      <div className="flex flex-col p-4 items-center">
-        <span>HP</span>
-        <Input />
-      </div>
-    );
+    setModalContent(<ChangeHpModal type={type} />);
     openModal();
   };
   return (

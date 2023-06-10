@@ -24,11 +24,13 @@ function PlayerGeneralInfo() {
             label="HP:"
             current={player?.currentHitPoints}
             total={player?.hitPoints}
+            type="normal"
           />
           <HitPointsDisplay
             label="Extra:"
             current={player?.currentTemporaryHitPoints}
             total={player?.temporaryHitPoints}
+            type="current"
           />
           <PlayerImage />
         </div>
