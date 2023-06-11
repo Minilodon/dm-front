@@ -4,6 +4,8 @@ import { useUpdatePlayerMutation } from "../../generated/graphql";
 import { usePlayerContext } from "../../contexts/PlayerContext";
 import { getCurrentHpPayload } from "./get-current-hp-payload";
 import { useModalContext } from "../../contexts/ModalContext";
+import Skeleton from "react-loading-skeleton";
+import { handleChangeHpInput } from "./handle-change-hp-input";
 
 interface HpChangeInputProps {
   label: string;
@@ -11,40 +13,27 @@ interface HpChangeInputProps {
 
 const HpChangeInput = (props: HpChangeInputProps) => {
   const { label } = props;
-  const [value, setValue] = useState<string>("");
+  const [currentHP, setCurrentHP] = useState<string>("");
   const { player } = usePlayerContext();
   const { closeModal } = useModalContext();
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue: string = event.target.value;
-
-    // Remove qualquer caractere que não seja número, "-" ou "+"
-    const sanitizedValue: string = inputValue.replace(/[^0-9+-]/g, "");
-
-    // Verifica se "+" ou "-" estão sendo inseridos em posições inválidas
-    if (sanitizedValue.length > 1) {
-      setValue(
-        sanitizedValue[0] + sanitizedValue.slice(1).replace(/[+-]/g, "")
-      );
-    } else {
-      setValue(sanitizedValue);
-    }
-  };
 
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
     refetchQueries: ["getPlayerById"],
   });
 
-  const currentHp = getCurrentHpPayload(value, player?.currentHitPoints || 0);
+  const currentHpPayload = getCurrentHpPayload(
+    currentHP,
+    player?.currentHitPoints || 0
+  );
 
   const handleSubmit = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (!player) return;
     if (event.key === "Enter") {
       try {
-        const updatedPlayer = await updatePlayer({
+        await updatePlayer({
           variables: {
             playerId: player?.id,
-            payload: { currentHitPoints: currentHp },
+            payload: { currentHitPoints: currentHpPayload },
           },
         });
       } catch (error) {
@@ -56,17 +45,21 @@ const HpChangeInput = (props: HpChangeInputProps) => {
   };
 
   return (
-    <div className="flex flex-col">
-      <TextField
-        label={label}
-        value={value}
-        onChange={handleChange}
-        inputProps={{
-          maxLength: 10,
-        }}
-        onKeyDown={handleSubmit}
-      />
-    </div>
+    <>
+      {loading ? (
+        <Skeleton width={"100%"} height={"56px"} />
+      ) : (
+        <TextField
+          label={label}
+          value={currentHP}
+          onChange={(event) => handleChangeHpInput(event, setCurrentHP)}
+          inputProps={{
+            maxLength: 10,
+          }}
+          onKeyDown={handleSubmit}
+        />
+      )}
+    </>
   );
 };
 

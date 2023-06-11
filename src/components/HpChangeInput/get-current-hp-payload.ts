@@ -3,6 +3,9 @@ import { extractNumbersFromString } from "../../helpers/extract-numbers-from-str
 export function getCurrentHpPayload(value: string, playerHp: number) {
   const hasMinus = value.includes("-");
   const hasPlus = value.includes("+");
+  if (extractNumbersFromString(value).length === 0) {
+    return 1337;
+  }
   const number = extractNumbersFromString(value)[0];
   if (hasMinus) {
     return playerHp - number;
