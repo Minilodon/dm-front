@@ -1,11 +1,21 @@
 import React from "react";
 import Shield from "../../../../../../components/Icons/Shield.svg";
 import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { useModalContext } from "../../../../../../contexts/ModalContext";
+import ChangeACModal from "../../../../../../components/Modals/ChangeACModal";
 
 function ACDisplay() {
   const { player } = usePlayerContext();
+  const { openModal, setModalContent } = useModalContext();
+  const handleOpenModal = () => {
+    setModalContent(<ChangeACModal />);
+    openModal();
+  };
   return (
-    <div className="flex flex-col items-center">
+    <div
+      className="flex flex-col items-center cursor-pointer"
+      onClick={handleOpenModal}
+    >
       <span>AC</span>
       <div className="w-10 h-10 relative flex items-center justify-center">
         <img
