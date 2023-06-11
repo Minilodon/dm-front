@@ -1,0 +1,15 @@
+export enum playerProperties {
+  armorClass = "armorClass",
+  class = "class",
+  currentHitPoints = "currentHitPoints",
+  currentTemporaryHitPoints = "currentTemporaryHitPoints",
+  hitPoints = "hitPoints",
+  inspiration = "inspiration",
+  movement = "movement",
+  name = "name",
+  playerImageUrl = "playerImageUrl",
+  race = "race",
+  level = "level",
+  size = "size",
+  temporaryHitPoints = "temporaryHitPoints",
+}

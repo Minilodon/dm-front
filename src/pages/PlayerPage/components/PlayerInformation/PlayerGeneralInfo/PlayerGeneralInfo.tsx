@@ -63,7 +63,7 @@ function PlayerGeneralInfo() {
             <ul className="w-full h-32 overflow-auto border border-black px-2 py-1">
               {playerLanguages.map((language, index) => {
                 return (
-                  <li key={language} className="mb-2">
+                  <li key={index} className="mb-2">
                     {language}
                   </li>
                 );
