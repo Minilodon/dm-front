@@ -6,6 +6,7 @@ import WidgetsPage from "../../pages/WidgetsPage/WidgetsPage";
 import ItemsPage from "../../pages/ItemsPage/ItemsPage";
 import MagicPage from "../../pages/MagicPage/MagicPage";
 import PlayerPage from "../../pages/PlayerPage/PlayerPage";
+import FeatsPage from "../../pages/FeatsPage/FeatsPage";
 
 function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ function AppRoutes() {
         <Route path="/widgets" element={<WidgetsPage />} />
         <Route path="/items" element={<ItemsPage />} />
         <Route path="/magic" element={<MagicPage />} />
+        <Route path="/feats" element={<FeatsPage />} />
         <Route path="/player/:id" element={<PlayerPage />} />
         <Route path="*" element={<>not found</>} />
       </Routes>

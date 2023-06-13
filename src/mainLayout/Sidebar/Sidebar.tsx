@@ -35,9 +35,7 @@ function Sidebar() {
                   " group-hover:text-black",
                   isActive ? "text-black" : "text-slate-100"
                 )}
-              >
-                {route.icon}
-              </div>
+              ></div>
               <span
                 className={clsx(
                   " group-hover:text-black",

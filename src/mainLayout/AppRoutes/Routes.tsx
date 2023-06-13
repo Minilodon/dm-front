@@ -21,4 +21,8 @@ export const availableRoutes = [
     path: "/magic",
     name: "Magias",
   },
+  {
+    path: "/feats",
+    name: "Talentos e Habilidades",
+  },
 ];
