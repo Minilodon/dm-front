@@ -114,6 +114,15 @@ enum Class {
   Warrior3
 }
 
+input ConnectFeatToPlayerInput {
+  active: Boolean = false
+  currentCharges: Int
+  featId: Int!
+  playerId: Int!
+  source: String = "level up"
+  totalCharges: Int
+}
+
 input CreateAttributesInput {
   cha: Int = 10
   chaSave: Boolean = false
@@ -135,6 +144,12 @@ input CreateCurrencyInput {
   gold: Int = 0
   platinum: Int = 0
   silver: Int = 0
+}
+
+input CreateFeatInput {
+  description: String!
+  iconUrl: String = "https://icons-for-free.com/download-icon-tools+icon-1320196834740421314_0.svg"
+  name: String!
 }
 
 input CreateLanguagesInput {
@@ -282,6 +297,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Feat {
+  description: String!
+  iconUrl: String!
+  id: Int!
+  name: String!
+  players: [Player]
+}
+
 type Language {
   """Boolean que determina se o jogador conhece o idioma abissal"""
   abyssal: Boolean
@@ -410,6 +433,8 @@ type Magic {
 }
 
 type Mutation {
+  connectFeatToPlayer(payload: ConnectFeatToPlayerInput!): PlayerOnFeat!
+  createFeat(payload: CreateFeatInput!): Feat!
   createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, magicPayload: CreateMagicInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
   createPlayerMagic(payload: CreateMagicInput!, playerId: Float!): Magic!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
@@ -476,9 +501,21 @@ type Player {
   updatedAt: DateTime!
 }
 
+type PlayerOnFeat {
+  active: Boolean!
+  currentCharges: Int
+  featId: Int!
+  playerId: Int!
+  source: String!
+  totalCharges: Int
+}
+
 type Query {
+  getAllFeats: [Feat!]!
   getAllPlayers: [Player!]!
+  getFeatsFromPlayer(playerId: Float!): [Feat]!
   getPlayerById(playerId: Float!): Player!
+  getPlayersFromFeat(featId: Float!): [Player]!
 }
 
 enum Race {

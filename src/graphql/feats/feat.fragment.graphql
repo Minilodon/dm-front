@@ -1,0 +1,10 @@
+fragment Feat on Feat {
+  id
+  name
+  description
+  iconUrl
+  players {
+    name
+    id
+  }
+}

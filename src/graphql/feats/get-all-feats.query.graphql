@@ -1,0 +1,5 @@
+query getAllFeats {
+  getAllFeats {
+    ...Feat
+  }
+}

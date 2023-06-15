@@ -6,6 +6,18 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
+export const FeatFragmentDoc = gql`
+    fragment Feat on Feat {
+  id
+  name
+  description
+  iconUrl
+  players {
+    name
+    id
+  }
+}
+    `;
 export const PlayerFragmentDoc = gql`
     fragment Player on Player {
   armorClass
@@ -187,6 +199,40 @@ export function useUpdatePlayerCurrencyMutation(baseOptions?: Apollo.MutationHoo
 export type UpdatePlayerCurrencyMutationHookResult = ReturnType<typeof useUpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationResult = Apollo.MutationResult<UpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+export const GetAllFeatsDocument = gql`
+    query getAllFeats {
+  getAllFeats {
+    ...Feat
+  }
+}
+    ${FeatFragmentDoc}`;
+
+/**
+ * __useGetAllFeatsQuery__
+ *
+ * To run a query within a React component, call `useGetAllFeatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllFeatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllFeatsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllFeatsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllFeatsQuery, GetAllFeatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllFeatsQuery, GetAllFeatsQueryVariables>(GetAllFeatsDocument, options);
+      }
+export function useGetAllFeatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllFeatsQuery, GetAllFeatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllFeatsQuery, GetAllFeatsQueryVariables>(GetAllFeatsDocument, options);
+        }
+export type GetAllFeatsQueryHookResult = ReturnType<typeof useGetAllFeatsQuery>;
+export type GetAllFeatsLazyQueryHookResult = ReturnType<typeof useGetAllFeatsLazyQuery>;
+export type GetAllFeatsQueryResult = Apollo.QueryResult<GetAllFeatsQuery, GetAllFeatsQueryVariables>;
 export const UpdatePlayerLanguageDocument = gql`
     mutation updatePlayerLanguage($playerId: Float!, $payload: UpdateLanguagesInput!) {
   updatePlayerLanguage(playerId: $playerId, payload: $payload) {
@@ -496,6 +542,15 @@ export enum Class {
   Warrior3 = 'Warrior3'
 }
 
+export type ConnectFeatToPlayerInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  currentCharges?: InputMaybe<Scalars['Int']>;
+  featId: Scalars['Int'];
+  playerId: Scalars['Int'];
+  source?: InputMaybe<Scalars['String']>;
+  totalCharges?: InputMaybe<Scalars['Int']>;
+};
+
 export type CreateAttributesInput = {
   cha?: InputMaybe<Scalars['Int']>;
   chaSave?: InputMaybe<Scalars['Boolean']>;
@@ -517,6 +572,12 @@ export type CreateCurrencyInput = {
   gold?: InputMaybe<Scalars['Int']>;
   platinum?: InputMaybe<Scalars['Int']>;
   silver?: InputMaybe<Scalars['Int']>;
+};
+
+export type CreateFeatInput = {
+  description: Scalars['String'];
+  iconUrl?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type CreateLanguagesInput = {
@@ -656,6 +717,15 @@ export type Currency = {
   silver: Scalars['Int'];
 };
 
+export type Feat = {
+  __typename?: 'Feat';
+  description: Scalars['String'];
+  iconUrl: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  players?: Maybe<Array<Maybe<Player>>>;
+};
+
 export type Language = {
   __typename?: 'Language';
   /** Boolean que determina se o jogador conhece o idioma abissal */
@@ -749,6 +819,8 @@ export type Magic = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  connectFeatToPlayer: PlayerOnFeat;
+  createFeat: Feat;
   createPlayer: Player;
   createPlayerMagic: Magic;
   updatePlayer: Player;
@@ -757,6 +829,16 @@ export type Mutation = {
   updatePlayerLanguage: Language;
   updatePlayerMagic: Magic;
   updatePlayerSkills: Skills;
+};
+
+
+export type MutationConnectFeatToPlayerArgs = {
+  payload: ConnectFeatToPlayerInput;
+};
+
+
+export type MutationCreateFeatArgs = {
+  payload: CreateFeatInput;
 };
 
 
@@ -853,15 +935,38 @@ export type Player = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type PlayerOnFeat = {
+  __typename?: 'PlayerOnFeat';
+  active: Scalars['Boolean'];
+  currentCharges?: Maybe<Scalars['Int']>;
+  featId: Scalars['Int'];
+  playerId: Scalars['Int'];
+  source: Scalars['String'];
+  totalCharges?: Maybe<Scalars['Int']>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  getAllFeats: Array<Feat>;
   getAllPlayers: Array<Player>;
+  getFeatsFromPlayer: Array<Maybe<Feat>>;
   getPlayerById: Player;
+  getPlayersFromFeat: Array<Maybe<Player>>;
+};
+
+
+export type QueryGetFeatsFromPlayerArgs = {
+  playerId: Scalars['Float'];
 };
 
 
 export type QueryGetPlayerByIdArgs = {
   playerId: Scalars['Float'];
+};
+
+
+export type QueryGetPlayersFromFeatArgs = {
+  featId: Scalars['Float'];
 };
 
 export enum Race {
@@ -1172,6 +1277,13 @@ export type UpdatePlayerCurrencyMutationVariables = Exact<{
 
 
 export type UpdatePlayerCurrencyMutation = { __typename?: 'Mutation', updatePlayerCurrency: { __typename?: 'Currency', playerId: number } };
+
+export type FeatFragment = { __typename?: 'Feat', id: number, name: string, description: string, iconUrl: string, players?: Array<{ __typename?: 'Player', name: string, id: number } | null> | null };
+
+export type GetAllFeatsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllFeatsQuery = { __typename?: 'Query', getAllFeats: Array<{ __typename?: 'Feat', id: number, name: string, description: string, iconUrl: string, players?: Array<{ __typename?: 'Player', name: string, id: number } | null> | null }> };
 
 export type UpdatePlayerLanguageMutationVariables = Exact<{
   playerId: Scalars['Float'];
