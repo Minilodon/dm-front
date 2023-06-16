@@ -7,9 +7,11 @@ import {
   useState,
 } from "react";
 import {
+  PlayerFeats,
   PlayerFragment,
   useGetAllPlayersQuery,
   useGetPlayerByIdQuery,
+  useGetPlayerFeatsQuery,
 } from "../generated/graphql";
 import { useLocation } from "react-router-dom";
 import { getPlayerIdInPathname } from "../helpers/get-player-id-in-pathname";
@@ -24,6 +26,7 @@ interface PlayerContextValues {
   >;
   player: PlayerFragment | undefined;
   fetchingPlayer: boolean;
+  playerFeats: PlayerFeats[] | undefined;
 }
 
 interface PlayerContextProviderProps {
@@ -41,14 +44,30 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     PlayerFragment | undefined
   >();
 
+  const currentPlayerId = useMemo(() => {
+    return getPlayerIdInPathname(location.pathname);
+  }, [location.pathname]);
+
   const {
     data: playerQueryResponse,
     loading: fetchingPlayer,
     refetch,
   } = useGetPlayerByIdQuery({
     variables: {
-      playerId: parseInt(getPlayerIdInPathname(location.pathname)),
+      playerId: currentPlayerId || 0,
     },
+    skip: !currentPlayerId,
+  });
+
+  const {
+    data: playerFeatsQueryResponse,
+    loading: fetchingFeats,
+    refetch: refetchFeats,
+  } = useGetPlayerFeatsQuery({
+    variables: {
+      playerId: currentPlayerId || 0,
+    },
+    skip: !currentPlayerId,
   });
 
   const player: PlayerFragment | undefined = useMemo(() => {
@@ -57,21 +76,30 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return playerQueryResponse?.getPlayerById;
   }, [playerQueryResponse?.getPlayerById]);
 
+  const playerFeats: PlayerFeats[] | undefined = useMemo(() => {
+    if (!playerFeatsQueryResponse?.getPlayerFeats) return undefined;
+    return playerFeatsQueryResponse?.getPlayerFeats;
+  }, [playerFeatsQueryResponse?.getPlayerFeats]);
+
   const players: PlayerFragment[] | [] = useMemo(() => {
     if (!data?.getAllPlayers) return [];
     return data.getAllPlayers;
   }, [data?.getAllPlayers]);
 
-  const loading = loadingPlayers;
+  const loading = loadingPlayers || fetchingFeats;
 
   useEffect(() => {
     const refetchQuery = async () => {
+      if (!currentPlayerId) return;
       await refetch({
-        playerId: parseInt(getPlayerIdInPathname(location.pathname)),
+        playerId: currentPlayerId,
+      });
+      await refetchFeats({
+        playerId: currentPlayerId,
       });
     };
     refetchQuery();
-  }, []);
+  }, [location]);
 
   const value = useMemo(
     () => ({
@@ -81,6 +109,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       player,
       setSelectedPlayer,
       fetchingPlayer,
+      playerFeats,
     }),
     [
       loadingPlayers,
@@ -89,6 +118,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       setSelectedPlayer,
       player,
       fetchingPlayer,
+      playerFeats,
     ]
   );
 

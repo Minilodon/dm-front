@@ -501,6 +501,15 @@ type Player {
   updatedAt: DateTime!
 }
 
+type PlayerFeats {
+  active: Boolean!
+  currentCharges: Int
+  featDescription: String!
+  featName: String!
+  source: String!
+  totalCharges: Int
+}
+
 type PlayerOnFeat {
   active: Boolean!
   currentCharges: Int
@@ -515,6 +524,7 @@ type Query {
   getAllPlayers: [Player!]!
   getFeatsFromPlayer(playerId: Float!): [Feat]!
   getPlayerById(playerId: Float!): Player!
+  getPlayerFeats(playerId: Float!): [PlayerFeats!]!
   getPlayersFromFeat(featId: Float!): [Player]!
 }
 

@@ -1,0 +1,10 @@
+query getPlayerFeats($playerId: Float!) {
+  getPlayerFeats(playerId: $playerId) {
+    featName
+    featDescription
+    currentCharges
+    totalCharges
+    active
+    source
+  }
+}

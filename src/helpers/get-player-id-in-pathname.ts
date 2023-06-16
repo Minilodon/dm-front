@@ -1,5 +1,5 @@
-export function getPlayerIdInPathname(pathname: string): string {
+export function getPlayerIdInPathname(pathname: string) {
   const [, playerId] = pathname.split("player/");
-  if (!playerId) return "0";
-  return playerId;
+  if (!playerId) return null;
+  return parseInt(playerId);
 }

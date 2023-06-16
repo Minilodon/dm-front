@@ -233,6 +233,46 @@ export function useGetAllFeatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetAllFeatsQueryHookResult = ReturnType<typeof useGetAllFeatsQuery>;
 export type GetAllFeatsLazyQueryHookResult = ReturnType<typeof useGetAllFeatsLazyQuery>;
 export type GetAllFeatsQueryResult = Apollo.QueryResult<GetAllFeatsQuery, GetAllFeatsQueryVariables>;
+export const GetPlayerFeatsDocument = gql`
+    query getPlayerFeats($playerId: Float!) {
+  getPlayerFeats(playerId: $playerId) {
+    featName
+    featDescription
+    currentCharges
+    totalCharges
+    active
+    source
+  }
+}
+    `;
+
+/**
+ * __useGetPlayerFeatsQuery__
+ *
+ * To run a query within a React component, call `useGetPlayerFeatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPlayerFeatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPlayerFeatsQuery({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *   },
+ * });
+ */
+export function useGetPlayerFeatsQuery(baseOptions: Apollo.QueryHookOptions<GetPlayerFeatsQuery, GetPlayerFeatsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPlayerFeatsQuery, GetPlayerFeatsQueryVariables>(GetPlayerFeatsDocument, options);
+      }
+export function useGetPlayerFeatsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPlayerFeatsQuery, GetPlayerFeatsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPlayerFeatsQuery, GetPlayerFeatsQueryVariables>(GetPlayerFeatsDocument, options);
+        }
+export type GetPlayerFeatsQueryHookResult = ReturnType<typeof useGetPlayerFeatsQuery>;
+export type GetPlayerFeatsLazyQueryHookResult = ReturnType<typeof useGetPlayerFeatsLazyQuery>;
+export type GetPlayerFeatsQueryResult = Apollo.QueryResult<GetPlayerFeatsQuery, GetPlayerFeatsQueryVariables>;
 export const UpdatePlayerLanguageDocument = gql`
     mutation updatePlayerLanguage($playerId: Float!, $payload: UpdateLanguagesInput!) {
   updatePlayerLanguage(playerId: $playerId, payload: $payload) {
@@ -935,6 +975,16 @@ export type Player = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type PlayerFeats = {
+  __typename?: 'PlayerFeats';
+  active: Scalars['Boolean'];
+  currentCharges?: Maybe<Scalars['Int']>;
+  featDescription: Scalars['String'];
+  featName: Scalars['String'];
+  source: Scalars['String'];
+  totalCharges?: Maybe<Scalars['Int']>;
+};
+
 export type PlayerOnFeat = {
   __typename?: 'PlayerOnFeat';
   active: Scalars['Boolean'];
@@ -951,6 +1001,7 @@ export type Query = {
   getAllPlayers: Array<Player>;
   getFeatsFromPlayer: Array<Maybe<Feat>>;
   getPlayerById: Player;
+  getPlayerFeats: Array<PlayerFeats>;
   getPlayersFromFeat: Array<Maybe<Player>>;
 };
 
@@ -961,6 +1012,11 @@ export type QueryGetFeatsFromPlayerArgs = {
 
 
 export type QueryGetPlayerByIdArgs = {
+  playerId: Scalars['Float'];
+};
+
+
+export type QueryGetPlayerFeatsArgs = {
   playerId: Scalars['Float'];
 };
 
@@ -1284,6 +1340,13 @@ export type GetAllFeatsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllFeatsQuery = { __typename?: 'Query', getAllFeats: Array<{ __typename?: 'Feat', id: number, name: string, description: string, iconUrl: string, players?: Array<{ __typename?: 'Player', name: string, id: number } | null> | null }> };
+
+export type GetPlayerFeatsQueryVariables = Exact<{
+  playerId: Scalars['Float'];
+}>;
+
+
+export type GetPlayerFeatsQuery = { __typename?: 'Query', getPlayerFeats: Array<{ __typename?: 'PlayerFeats', featName: string, featDescription: string, currentCharges?: number | null, totalCharges?: number | null, active: boolean, source: string }> };
 
 export type UpdatePlayerLanguageMutationVariables = Exact<{
   playerId: Scalars['Float'];
