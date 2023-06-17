@@ -7,7 +7,7 @@ interface PageProps {
 function Page(props: PageProps) {
   const { children } = props;
   return (
-    <div className="w-full h-full p-8 overflow-y-auto flex flex-col">
+    <div className="w-full h-full p-8 flex flex-col bg-slate-200">
       {children}
     </div>
   );

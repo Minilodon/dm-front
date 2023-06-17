@@ -199,6 +199,107 @@ export function useUpdatePlayerCurrencyMutation(baseOptions?: Apollo.MutationHoo
 export type UpdatePlayerCurrencyMutationHookResult = ReturnType<typeof useUpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationResult = Apollo.MutationResult<UpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+export const ConnectFeatToPlayerDocument = gql`
+    mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
+  connectFeatToPlayer(payload: $payload) {
+    playerId
+    featId
+  }
+}
+    `;
+export type ConnectFeatToPlayerMutationFn = Apollo.MutationFunction<ConnectFeatToPlayerMutation, ConnectFeatToPlayerMutationVariables>;
+
+/**
+ * __useConnectFeatToPlayerMutation__
+ *
+ * To run a mutation, you first call `useConnectFeatToPlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConnectFeatToPlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [connectFeatToPlayerMutation, { data, loading, error }] = useConnectFeatToPlayerMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useConnectFeatToPlayerMutation(baseOptions?: Apollo.MutationHookOptions<ConnectFeatToPlayerMutation, ConnectFeatToPlayerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ConnectFeatToPlayerMutation, ConnectFeatToPlayerMutationVariables>(ConnectFeatToPlayerDocument, options);
+      }
+export type ConnectFeatToPlayerMutationHookResult = ReturnType<typeof useConnectFeatToPlayerMutation>;
+export type ConnectFeatToPlayerMutationResult = Apollo.MutationResult<ConnectFeatToPlayerMutation>;
+export type ConnectFeatToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectFeatToPlayerMutation, ConnectFeatToPlayerMutationVariables>;
+export const CreateFeatDocument = gql`
+    mutation createFeat($payload: CreateFeatInput!) {
+  createFeat(payload: $payload) {
+    name
+  }
+}
+    `;
+export type CreateFeatMutationFn = Apollo.MutationFunction<CreateFeatMutation, CreateFeatMutationVariables>;
+
+/**
+ * __useCreateFeatMutation__
+ *
+ * To run a mutation, you first call `useCreateFeatMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFeatMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createFeatMutation, { data, loading, error }] = useCreateFeatMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useCreateFeatMutation(baseOptions?: Apollo.MutationHookOptions<CreateFeatMutation, CreateFeatMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateFeatMutation, CreateFeatMutationVariables>(CreateFeatDocument, options);
+      }
+export type CreateFeatMutationHookResult = ReturnType<typeof useCreateFeatMutation>;
+export type CreateFeatMutationResult = Apollo.MutationResult<CreateFeatMutation>;
+export type CreateFeatMutationOptions = Apollo.BaseMutationOptions<CreateFeatMutation, CreateFeatMutationVariables>;
+export const DeleteFeatDocument = gql`
+    mutation deleteFeat($featId: Float!) {
+  deleteFeat(featId: $featId) {
+    id
+    name
+  }
+}
+    `;
+export type DeleteFeatMutationFn = Apollo.MutationFunction<DeleteFeatMutation, DeleteFeatMutationVariables>;
+
+/**
+ * __useDeleteFeatMutation__
+ *
+ * To run a mutation, you first call `useDeleteFeatMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteFeatMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteFeatMutation, { data, loading, error }] = useDeleteFeatMutation({
+ *   variables: {
+ *      featId: // value for 'featId'
+ *   },
+ * });
+ */
+export function useDeleteFeatMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFeatMutation, DeleteFeatMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteFeatMutation, DeleteFeatMutationVariables>(DeleteFeatDocument, options);
+      }
+export type DeleteFeatMutationHookResult = ReturnType<typeof useDeleteFeatMutation>;
+export type DeleteFeatMutationResult = Apollo.MutationResult<DeleteFeatMutation>;
+export type DeleteFeatMutationOptions = Apollo.BaseMutationOptions<DeleteFeatMutation, DeleteFeatMutationVariables>;
 export const GetAllFeatsDocument = gql`
     query getAllFeats {
   getAllFeats {
@@ -863,6 +964,7 @@ export type Mutation = {
   createFeat: Feat;
   createPlayer: Player;
   createPlayerMagic: Magic;
+  deleteFeat: Feat;
   updatePlayer: Player;
   updatePlayerAttributes: Attributes;
   updatePlayerCurrency: Currency;
@@ -895,6 +997,11 @@ export type MutationCreatePlayerArgs = {
 export type MutationCreatePlayerMagicArgs = {
   payload: CreateMagicInput;
   playerId: Scalars['Float'];
+};
+
+
+export type MutationDeleteFeatArgs = {
+  featId: Scalars['Float'];
 };
 
 
@@ -949,6 +1056,7 @@ export type Player = {
   currentHitPoints: Scalars['Int'];
   /** Pontos de vida temporários atuais do jogador */
   currentTemporaryHitPoints: Scalars['Int'];
+  feats?: Maybe<Array<PlayerFeats>>;
   /** Pontos de vida do jogador */
   hitPoints: Scalars['Int'];
   id: Scalars['Int'];
@@ -1333,6 +1441,27 @@ export type UpdatePlayerCurrencyMutationVariables = Exact<{
 
 
 export type UpdatePlayerCurrencyMutation = { __typename?: 'Mutation', updatePlayerCurrency: { __typename?: 'Currency', playerId: number } };
+
+export type ConnectFeatToPlayerMutationVariables = Exact<{
+  payload: ConnectFeatToPlayerInput;
+}>;
+
+
+export type ConnectFeatToPlayerMutation = { __typename?: 'Mutation', connectFeatToPlayer: { __typename?: 'PlayerOnFeat', playerId: number, featId: number } };
+
+export type CreateFeatMutationVariables = Exact<{
+  payload: CreateFeatInput;
+}>;
+
+
+export type CreateFeatMutation = { __typename?: 'Mutation', createFeat: { __typename?: 'Feat', name: string } };
+
+export type DeleteFeatMutationVariables = Exact<{
+  featId: Scalars['Float'];
+}>;
+
+
+export type DeleteFeatMutation = { __typename?: 'Mutation', deleteFeat: { __typename?: 'Feat', id: number, name: string } };
 
 export type FeatFragment = { __typename?: 'Feat', id: number, name: string, description: string, iconUrl: string, players?: Array<{ __typename?: 'Player', name: string, id: number } | null> | null };
 

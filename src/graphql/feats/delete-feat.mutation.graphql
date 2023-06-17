@@ -1,0 +1,6 @@
+mutation deleteFeat($featId: Float!) {
+  deleteFeat(featId: $featId) {
+    id
+    name
+  }
+}

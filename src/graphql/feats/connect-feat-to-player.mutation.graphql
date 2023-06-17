@@ -1,0 +1,6 @@
+mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
+  connectFeatToPlayer(payload: $payload) {
+    playerId
+    featId
+  }
+}

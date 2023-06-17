@@ -1,0 +1,5 @@
+mutation createFeat($payload: CreateFeatInput!) {
+  createFeat(payload: $payload) {
+    name
+  }
+}

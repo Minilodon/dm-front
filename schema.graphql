@@ -437,6 +437,7 @@ type Mutation {
   createFeat(payload: CreateFeatInput!): Feat!
   createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, magicPayload: CreateMagicInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
   createPlayerMagic(payload: CreateMagicInput!, playerId: Float!): Magic!
+  deleteFeat(featId: Float!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
   updatePlayerCurrency(payload: UpdateCurrencyInput!, playerId: Float!): Currency!
@@ -465,6 +466,7 @@ type Player {
 
   """Pontos de vida temporários atuais do jogador"""
   currentTemporaryHitPoints: Int!
+  feats: [PlayerFeats!]
 
   """Pontos de vida do jogador"""
   hitPoints: Int!

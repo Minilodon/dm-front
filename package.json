@@ -13,12 +13,14 @@
     "@apollo/client": "^3.7.11",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@hookform/resolvers": "^3.1.1",
     "@mui/material": "^5.12.1",
     "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loading-skeleton": "^3.3.1",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-svgr": "^3.2.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "3.3.0",
