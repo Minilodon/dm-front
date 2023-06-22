@@ -10,6 +10,25 @@ enum Alignment {
   NG
 }
 
+type Armor {
+  AC: Int!
+  armorImage: String
+  cost: Float!
+  id: Int!
+  minStr: Int
+  name: String!
+  stealthDis: Boolean
+  type: ArmorType!
+  weight: Float!
+}
+
+enum ArmorType {
+  Heavy
+  Light
+  Medium
+  Shield
+}
+
 type Attributes {
   """Valor do atributo de carisma do jogador"""
   cha: Int!
@@ -123,6 +142,17 @@ input ConnectFeatToPlayerInput {
   totalCharges: Int
 }
 
+input CreateArmorInput {
+  AC: Int!
+  armorImage: String
+  cost: Float!
+  minStr: Int
+  name: String!
+  stealthDis: Boolean = false
+  type: ArmorType!
+  weight: Float!
+}
+
 input CreateAttributesInput {
   cha: Int = 10
   chaSave: Boolean = false
@@ -144,6 +174,16 @@ input CreateCurrencyInput {
   gold: Int = 0
   platinum: Int = 0
   silver: Int = 0
+}
+
+input CreateEquipmentInput {
+  capacity: String
+  cost: Float!
+  description: String!
+  equipmentImage: String
+  name: String!
+  type: EquipmentType!
+  weight: Float!
 }
 
 input CreateFeatInput {
@@ -273,6 +313,37 @@ input CreateSkillsInput {
   survivalProf: Boolean = false
 }
 
+input CreateSpellInput {
+  circle: Int!
+  conjurationTime: String = "Uma ação"
+  description: String!
+  duration: String!
+  effectArea: String!
+  focus: Boolean = false
+  higherLevel: String
+  material: Boolean!
+  name: String!
+  obligatoryMaterial: Boolean = false
+  range: Float!
+  ritual: Boolean = false
+  school: SchoolOfMagic!
+  somatic: Boolean!
+  targets: String!
+  verbal: Boolean!
+}
+
+input CreateWeaponInput {
+  cost: Float!
+  damageDice: Int!
+  description: String!
+  diceQuantity: Int! = 1
+  dmgType: DamageType!
+  name: String!
+  type: WeaponType!
+  weaponImage: String
+  weight: Float!
+}
+
 type Currency {
   """Quantidade de moedas de cobre"""
   copper: Int!
@@ -292,10 +363,44 @@ type Currency {
   silver: Int!
 }
 
+enum DamageType {
+  Acid
+  Bludgeoning
+  Cold
+  Fire
+  Force
+  Lightning
+  Necrotic
+  Piercing
+  Poison
+  Psychic
+  Radiant
+  Slashing
+  Thunder
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Equipment {
+  capacity: String
+  cost: Float!
+  description: String!
+  equipmentImage: String
+  id: Int!
+  name: String!
+  type: EquipmentType!
+  weight: Float!
+}
+
+enum EquipmentType {
+  Artisan
+  Gaming
+  Musical
+  Other
+}
 
 type Feat {
   description: String!
@@ -434,9 +539,13 @@ type Magic {
 
 type Mutation {
   connectFeatToPlayer(payload: ConnectFeatToPlayerInput!): PlayerOnFeat!
+  createArmor(payload: CreateArmorInput!): Armor!
+  createEquipment(payload: CreateEquipmentInput!): Equipment!
   createFeat(payload: CreateFeatInput!): Feat!
   createPlayer(attributesPayload: CreateAttributesInput, currencyPayload: CreateCurrencyInput, languagesPayload: CreateLanguagesInput, magicPayload: CreateMagicInput, playerPayload: CreatePlayerInput!, skillsPayload: CreateSkillsInput): Player!
   createPlayerMagic(payload: CreateMagicInput!, playerId: Float!): Magic!
+  createSpell(payload: CreateSpellInput!): Spell!
+  createWeapon(payload: CreateWeaponInput!): Weapon!
   deleteFeat(featId: Float!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
@@ -524,10 +633,14 @@ type PlayerOnFeat {
 type Query {
   getAllFeats: [Feat!]!
   getAllPlayers: [Player!]!
+  getArmors: [Armor!]!
+  getEquipments: [Equipment!]!
   getFeatsFromPlayer(playerId: Float!): [Feat]!
   getPlayerById(playerId: Float!): Player!
   getPlayerFeats(playerId: Float!): [PlayerFeats!]!
   getPlayersFromFeat(featId: Float!): [Player]!
+  getSpells: [Spell!]!
+  getWeapons: [Weapon!]!
 }
 
 enum Race {
@@ -554,6 +667,17 @@ enum Race {
   Halfling2
   Human
   Tiefling
+}
+
+enum SchoolOfMagic {
+  Abjuration
+  Conjuration
+  Divination
+  Enchantment
+  Evocation
+  Illusion
+  Necromancy
+  Transmutation
 }
 
 enum Size {
@@ -731,6 +855,26 @@ type Skills {
   survivalProf: Boolean!
 }
 
+type Spell {
+  circle: Int!
+  conjurationTime: String
+  description: String!
+  duration: String!
+  effectArea: String!
+  focus: Boolean
+  higherLevel: String
+  id: Int!
+  material: Boolean!
+  name: String!
+  obligatoryMaterial: Boolean
+  range: Float!
+  ritual: Boolean
+  school: SchoolOfMagic!
+  somatic: Boolean!
+  targets: String!
+  verbal: Boolean!
+}
+
 input UpdateAttributesInput {
   cha: Int! = 10
   chaSave: Boolean! = false
@@ -873,4 +1017,24 @@ input UpdateSkillsInput {
   survival: Int
   survivalExp: Boolean
   survivalProf: Boolean
+}
+
+type Weapon {
+  cost: Float!
+  damageDice: Int!
+  description: String!
+  diceQuantity: Int!
+  dmgType: DamageType!
+  id: Int!
+  name: String!
+  type: WeaponType!
+  weaponImage: String
+  weight: Float!
+}
+
+enum WeaponType {
+  MartialMelee
+  MartialRanged
+  SimpleMelee
+  SimpleRanged
 }

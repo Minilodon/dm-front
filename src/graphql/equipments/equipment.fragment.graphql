@@ -1,0 +1,10 @@
+fragment Equipment on Equipment {
+  id
+  name
+  description
+  cost
+  weight
+  capacity
+  equipmentImage
+  type
+}

@@ -6,6 +6,31 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
+export const ArmorFragmentDoc = gql`
+    fragment Armor on Armor {
+  id
+  type
+  name
+  cost
+  armorImage
+  AC
+  minStr
+  stealthDis
+  weight
+}
+    `;
+export const EquipmentFragmentDoc = gql`
+    fragment Equipment on Equipment {
+  id
+  name
+  description
+  cost
+  weight
+  capacity
+  equipmentImage
+  type
+}
+    `;
 export const FeatFragmentDoc = gql`
     fragment Feat on Feat {
   id
@@ -131,6 +156,54 @@ export const PlayerFragmentDoc = gql`
   }
 }
     `;
+export const WeaponFragmentDoc = gql`
+    fragment Weapon on Weapon {
+  id
+  name
+  description
+  type
+  cost
+  dmgType
+  damageDice
+  diceQuantity
+  weight
+  weaponImage
+}
+    `;
+export const GetAllArmorsDocument = gql`
+    query getAllArmors {
+  getArmors {
+    ...Armor
+  }
+}
+    ${ArmorFragmentDoc}`;
+
+/**
+ * __useGetAllArmorsQuery__
+ *
+ * To run a query within a React component, call `useGetAllArmorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllArmorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllArmorsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllArmorsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllArmorsQuery, GetAllArmorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllArmorsQuery, GetAllArmorsQueryVariables>(GetAllArmorsDocument, options);
+      }
+export function useGetAllArmorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllArmorsQuery, GetAllArmorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllArmorsQuery, GetAllArmorsQueryVariables>(GetAllArmorsDocument, options);
+        }
+export type GetAllArmorsQueryHookResult = ReturnType<typeof useGetAllArmorsQuery>;
+export type GetAllArmorsLazyQueryHookResult = ReturnType<typeof useGetAllArmorsLazyQuery>;
+export type GetAllArmorsQueryResult = Apollo.QueryResult<GetAllArmorsQuery, GetAllArmorsQueryVariables>;
 export const UpdatePlayerAttributesDocument = gql`
     mutation updatePlayerAttributes($playerId: Float!, $payload: UpdateAttributesInput!) {
   updatePlayerAttributes(playerId: $playerId, payload: $payload) {
@@ -199,6 +272,40 @@ export function useUpdatePlayerCurrencyMutation(baseOptions?: Apollo.MutationHoo
 export type UpdatePlayerCurrencyMutationHookResult = ReturnType<typeof useUpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationResult = Apollo.MutationResult<UpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+export const GetAllEquipmentsDocument = gql`
+    query getAllEquipments {
+  getEquipments {
+    ...Equipment
+  }
+}
+    ${EquipmentFragmentDoc}`;
+
+/**
+ * __useGetAllEquipmentsQuery__
+ *
+ * To run a query within a React component, call `useGetAllEquipmentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllEquipmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllEquipmentsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllEquipmentsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>(GetAllEquipmentsDocument, options);
+      }
+export function useGetAllEquipmentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>(GetAllEquipmentsDocument, options);
+        }
+export type GetAllEquipmentsQueryHookResult = ReturnType<typeof useGetAllEquipmentsQuery>;
+export type GetAllEquipmentsLazyQueryHookResult = ReturnType<typeof useGetAllEquipmentsLazyQuery>;
+export type GetAllEquipmentsQueryResult = Apollo.QueryResult<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>;
 export const ConnectFeatToPlayerDocument = gql`
     mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
   connectFeatToPlayer(payload: $payload) {
@@ -579,6 +686,49 @@ export function useUpdatePlayerSkillsMutation(baseOptions?: Apollo.MutationHookO
 export type UpdatePlayerSkillsMutationHookResult = ReturnType<typeof useUpdatePlayerSkillsMutation>;
 export type UpdatePlayerSkillsMutationResult = Apollo.MutationResult<UpdatePlayerSkillsMutation>;
 export type UpdatePlayerSkillsMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>;
+export const GetAllWeaponsDocument = gql`
+    query getAllWeapons {
+  getWeapons {
+    id
+    name
+    description
+    type
+    cost
+    damageDice
+    dmgType
+    diceQuantity
+    weight
+    weaponImage
+  }
+}
+    `;
+
+/**
+ * __useGetAllWeaponsQuery__
+ *
+ * To run a query within a React component, call `useGetAllWeaponsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllWeaponsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllWeaponsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllWeaponsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>(GetAllWeaponsDocument, options);
+      }
+export function useGetAllWeaponsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>(GetAllWeaponsDocument, options);
+        }
+export type GetAllWeaponsQueryHookResult = ReturnType<typeof useGetAllWeaponsQuery>;
+export type GetAllWeaponsLazyQueryHookResult = ReturnType<typeof useGetAllWeaponsLazyQuery>;
+export type GetAllWeaponsQueryResult = Apollo.QueryResult<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -599,6 +749,26 @@ export enum Alignment {
   N = 'N',
   Ne = 'NE',
   Ng = 'NG'
+}
+
+export type Armor = {
+  __typename?: 'Armor';
+  AC: Scalars['Int'];
+  armorImage?: Maybe<Scalars['String']>;
+  cost: Scalars['Float'];
+  id: Scalars['Int'];
+  minStr?: Maybe<Scalars['Int']>;
+  name: Scalars['String'];
+  stealthDis?: Maybe<Scalars['Boolean']>;
+  type: ArmorType;
+  weight: Scalars['Float'];
+};
+
+export enum ArmorType {
+  Heavy = 'Heavy',
+  Light = 'Light',
+  Medium = 'Medium',
+  Shield = 'Shield'
 }
 
 export type Attributes = {
@@ -692,6 +862,17 @@ export type ConnectFeatToPlayerInput = {
   totalCharges?: InputMaybe<Scalars['Int']>;
 };
 
+export type CreateArmorInput = {
+  AC: Scalars['Int'];
+  armorImage?: InputMaybe<Scalars['String']>;
+  cost: Scalars['Float'];
+  minStr?: InputMaybe<Scalars['Int']>;
+  name: Scalars['String'];
+  stealthDis?: InputMaybe<Scalars['Boolean']>;
+  type: ArmorType;
+  weight: Scalars['Float'];
+};
+
 export type CreateAttributesInput = {
   cha?: InputMaybe<Scalars['Int']>;
   chaSave?: InputMaybe<Scalars['Boolean']>;
@@ -713,6 +894,16 @@ export type CreateCurrencyInput = {
   gold?: InputMaybe<Scalars['Int']>;
   platinum?: InputMaybe<Scalars['Int']>;
   silver?: InputMaybe<Scalars['Int']>;
+};
+
+export type CreateEquipmentInput = {
+  capacity?: InputMaybe<Scalars['String']>;
+  cost: Scalars['Float'];
+  description: Scalars['String'];
+  equipmentImage?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  type: EquipmentType;
+  weight: Scalars['Float'];
 };
 
 export type CreateFeatInput = {
@@ -842,6 +1033,37 @@ export type CreateSkillsInput = {
   survivalProf?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type CreateSpellInput = {
+  circle: Scalars['Int'];
+  conjurationTime?: InputMaybe<Scalars['String']>;
+  description: Scalars['String'];
+  duration: Scalars['String'];
+  effectArea: Scalars['String'];
+  focus?: InputMaybe<Scalars['Boolean']>;
+  higherLevel?: InputMaybe<Scalars['String']>;
+  material: Scalars['Boolean'];
+  name: Scalars['String'];
+  obligatoryMaterial?: InputMaybe<Scalars['Boolean']>;
+  range: Scalars['Float'];
+  ritual?: InputMaybe<Scalars['Boolean']>;
+  school: SchoolOfMagic;
+  somatic: Scalars['Boolean'];
+  targets: Scalars['String'];
+  verbal: Scalars['Boolean'];
+};
+
+export type CreateWeaponInput = {
+  cost: Scalars['Float'];
+  damageDice: Scalars['Int'];
+  description: Scalars['String'];
+  diceQuantity?: Scalars['Int'];
+  dmgType: DamageType;
+  name: Scalars['String'];
+  type: WeaponType;
+  weaponImage?: InputMaybe<Scalars['String']>;
+  weight: Scalars['Float'];
+};
+
 export type Currency = {
   __typename?: 'Currency';
   /** Quantidade de moedas de cobre */
@@ -857,6 +1079,41 @@ export type Currency = {
   /** Quantidade de moedas de prata */
   silver: Scalars['Int'];
 };
+
+export enum DamageType {
+  Acid = 'Acid',
+  Bludgeoning = 'Bludgeoning',
+  Cold = 'Cold',
+  Fire = 'Fire',
+  Force = 'Force',
+  Lightning = 'Lightning',
+  Necrotic = 'Necrotic',
+  Piercing = 'Piercing',
+  Poison = 'Poison',
+  Psychic = 'Psychic',
+  Radiant = 'Radiant',
+  Slashing = 'Slashing',
+  Thunder = 'Thunder'
+}
+
+export type Equipment = {
+  __typename?: 'Equipment';
+  capacity?: Maybe<Scalars['String']>;
+  cost: Scalars['Float'];
+  description: Scalars['String'];
+  equipmentImage?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  type: EquipmentType;
+  weight: Scalars['Float'];
+};
+
+export enum EquipmentType {
+  Artisan = 'Artisan',
+  Gaming = 'Gaming',
+  Musical = 'Musical',
+  Other = 'Other'
+}
 
 export type Feat = {
   __typename?: 'Feat';
@@ -961,9 +1218,13 @@ export type Magic = {
 export type Mutation = {
   __typename?: 'Mutation';
   connectFeatToPlayer: PlayerOnFeat;
+  createArmor: Armor;
+  createEquipment: Equipment;
   createFeat: Feat;
   createPlayer: Player;
   createPlayerMagic: Magic;
+  createSpell: Spell;
+  createWeapon: Weapon;
   deleteFeat: Feat;
   updatePlayer: Player;
   updatePlayerAttributes: Attributes;
@@ -976,6 +1237,16 @@ export type Mutation = {
 
 export type MutationConnectFeatToPlayerArgs = {
   payload: ConnectFeatToPlayerInput;
+};
+
+
+export type MutationCreateArmorArgs = {
+  payload: CreateArmorInput;
+};
+
+
+export type MutationCreateEquipmentArgs = {
+  payload: CreateEquipmentInput;
 };
 
 
@@ -997,6 +1268,16 @@ export type MutationCreatePlayerArgs = {
 export type MutationCreatePlayerMagicArgs = {
   payload: CreateMagicInput;
   playerId: Scalars['Float'];
+};
+
+
+export type MutationCreateSpellArgs = {
+  payload: CreateSpellInput;
+};
+
+
+export type MutationCreateWeaponArgs = {
+  payload: CreateWeaponInput;
 };
 
 
@@ -1107,10 +1388,14 @@ export type Query = {
   __typename?: 'Query';
   getAllFeats: Array<Feat>;
   getAllPlayers: Array<Player>;
+  getArmors: Array<Armor>;
+  getEquipments: Array<Equipment>;
   getFeatsFromPlayer: Array<Maybe<Feat>>;
   getPlayerById: Player;
   getPlayerFeats: Array<PlayerFeats>;
   getPlayersFromFeat: Array<Maybe<Player>>;
+  getSpells: Array<Spell>;
+  getWeapons: Array<Weapon>;
 };
 
 
@@ -1157,6 +1442,17 @@ export enum Race {
   Halfling2 = 'Halfling2',
   Human = 'Human',
   Tiefling = 'Tiefling'
+}
+
+export enum SchoolOfMagic {
+  Abjuration = 'Abjuration',
+  Conjuration = 'Conjuration',
+  Divination = 'Divination',
+  Enchantment = 'Enchantment',
+  Evocation = 'Evocation',
+  Illusion = 'Illusion',
+  Necromancy = 'Necromancy',
+  Transmutation = 'Transmutation'
 }
 
 export enum Size {
@@ -1280,6 +1576,27 @@ export type Skills = {
   survivalExp: Scalars['Boolean'];
   /** Existência de proficiência em sobrevivência */
   survivalProf: Scalars['Boolean'];
+};
+
+export type Spell = {
+  __typename?: 'Spell';
+  circle: Scalars['Int'];
+  conjurationTime?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
+  duration: Scalars['String'];
+  effectArea: Scalars['String'];
+  focus?: Maybe<Scalars['Boolean']>;
+  higherLevel?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  material: Scalars['Boolean'];
+  name: Scalars['String'];
+  obligatoryMaterial?: Maybe<Scalars['Boolean']>;
+  range: Scalars['Float'];
+  ritual?: Maybe<Scalars['Boolean']>;
+  school: SchoolOfMagic;
+  somatic: Scalars['Boolean'];
+  targets: Scalars['String'];
+  verbal: Scalars['Boolean'];
 };
 
 export type UpdateAttributesInput = {
@@ -1426,6 +1743,34 @@ export type UpdateSkillsInput = {
   survivalProf?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Weapon = {
+  __typename?: 'Weapon';
+  cost: Scalars['Float'];
+  damageDice: Scalars['Int'];
+  description: Scalars['String'];
+  diceQuantity: Scalars['Int'];
+  dmgType: DamageType;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  type: WeaponType;
+  weaponImage?: Maybe<Scalars['String']>;
+  weight: Scalars['Float'];
+};
+
+export enum WeaponType {
+  MartialMelee = 'MartialMelee',
+  MartialRanged = 'MartialRanged',
+  SimpleMelee = 'SimpleMelee',
+  SimpleRanged = 'SimpleRanged'
+}
+
+export type ArmorFragment = { __typename?: 'Armor', id: number, type: ArmorType, name: string, cost: number, armorImage?: string | null, AC: number, minStr?: number | null, stealthDis?: boolean | null, weight: number };
+
+export type GetAllArmorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllArmorsQuery = { __typename?: 'Query', getArmors: Array<{ __typename?: 'Armor', id: number, type: ArmorType, name: string, cost: number, armorImage?: string | null, AC: number, minStr?: number | null, stealthDis?: boolean | null, weight: number }> };
+
 export type UpdatePlayerAttributesMutationVariables = Exact<{
   playerId: Scalars['Float'];
   payload: UpdateAttributesInput;
@@ -1441,6 +1786,13 @@ export type UpdatePlayerCurrencyMutationVariables = Exact<{
 
 
 export type UpdatePlayerCurrencyMutation = { __typename?: 'Mutation', updatePlayerCurrency: { __typename?: 'Currency', playerId: number } };
+
+export type EquipmentFragment = { __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType };
+
+export type GetAllEquipmentsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllEquipmentsQuery = { __typename?: 'Query', getEquipments: Array<{ __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType }> };
 
 export type ConnectFeatToPlayerMutationVariables = Exact<{
   payload: ConnectFeatToPlayerInput;
@@ -1522,3 +1874,10 @@ export type UpdatePlayerSkillsMutationVariables = Exact<{
 
 
 export type UpdatePlayerSkillsMutation = { __typename?: 'Mutation', updatePlayerSkills: { __typename?: 'Skills', playerId: number } };
+
+export type GetAllWeaponsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllWeaponsQuery = { __typename?: 'Query', getWeapons: Array<{ __typename?: 'Weapon', id: number, name: string, description: string, type: WeaponType, cost: number, damageDice: number, dmgType: DamageType, diceQuantity: number, weight: number, weaponImage?: string | null }> };
+
+export type WeaponFragment = { __typename?: 'Weapon', id: number, name: string, description: string, type: WeaponType, cost: number, dmgType: DamageType, damageDice: number, diceQuantity: number, weight: number, weaponImage?: string | null };

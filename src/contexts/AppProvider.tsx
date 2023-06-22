@@ -6,6 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContextProvider } from "./ToastContext";
 import ModalContextProvider from "./ModalContext";
 import FeatsContextProvider from "./FeatsContext";
+import WeaponsContextProvider from "./WeaponsContext";
+import ArmorContextProvider from "./ArmorContext";
+import EquipmentsContextProvider from "./EquipmentContext";
 
 function AppProvider(props: React.PropsWithChildren<{}>) {
   const { children } = props;
@@ -20,9 +23,15 @@ function AppProvider(props: React.PropsWithChildren<{}>) {
           <ToastContextProvider>
             <PlayerContextProvider>
               <FeatsContextProvider>
-                <DrawerContextProvider>
-                  <ModalContextProvider>{children}</ModalContextProvider>
-                </DrawerContextProvider>
+                <WeaponsContextProvider>
+                  <ArmorContextProvider>
+                    <EquipmentsContextProvider>
+                      <DrawerContextProvider>
+                        <ModalContextProvider>{children}</ModalContextProvider>
+                      </DrawerContextProvider>
+                    </EquipmentsContextProvider>
+                  </ArmorContextProvider>
+                </WeaponsContextProvider>
               </FeatsContextProvider>
             </PlayerContextProvider>
           </ToastContextProvider>

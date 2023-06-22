@@ -1,0 +1,14 @@
+query getAllWeapons {
+  getWeapons {
+    id
+    name
+    description
+    type
+    cost
+    damageDice
+    dmgType
+    diceQuantity
+    weight
+    weaponImage
+  }
+}

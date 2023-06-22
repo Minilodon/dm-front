@@ -1,0 +1,12 @@
+fragment Weapon on Weapon {
+  id
+  name
+  description
+  type
+  cost
+  dmgType
+  damageDice
+  diceQuantity
+  weight
+  weaponImage
+}

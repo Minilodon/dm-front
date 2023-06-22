@@ -1,0 +1,11 @@
+fragment Armor on Armor {
+  id
+  type
+  name
+  cost
+  armorImage
+  AC
+  minStr
+  stealthDis
+  weight
+}
