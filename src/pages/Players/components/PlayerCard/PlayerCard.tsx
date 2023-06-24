@@ -1,14 +1,13 @@
 import React from "react";
 import { PlayerFragment } from "../../../../generated/graphql";
-import PlayerCurrencies from "./components/PlayerCurrencies";
 import { usePlayerContext } from "../../../../contexts/PlayerContext";
 import { useModalContext } from "../../../../contexts/ModalContext";
 import DeleteModalContent from "./components/DeleteModalContent";
 import Paper from "../../../../components/Paper/Paper";
 import { getNameFromClass } from "../../../../helpers/get-name-from-class";
 import { getNameFromRace } from "../../../../helpers/get-name-from-race";
-import PlayerModal from "../PlayerModal/PlayerModal";
 import { useNavigate } from "react-router-dom";
+import HitPointsDisplay from "../../../PlayerPage/components/PlayerInformation/PlayerGeneralInfo/components/HitPointsDisplay";
 
 interface PlayerCardProps {
   player: PlayerFragment;
@@ -32,9 +31,6 @@ function PlayerCard(props: PlayerCardProps) {
   };
   const handleSeeMoreInfo = () => {
     navigate(`/player/${player.id}`);
-    /* setSelectedPlayer(player);
-    setModalContent(<PlayerModal />);
-    openModal(); */
   };
   return (
     <Paper onClick={() => setSelectedPlayer(player)}>
@@ -57,13 +53,20 @@ function PlayerCard(props: PlayerCardProps) {
         <span>{getNameFromRace(player.race) ?? ""}</span>
         <span>{getNameFromClass(player.class) ?? ""}</span>
       </div>
-      <PlayerCurrencies
-        copper={player.currency?.copper || 0}
-        elektrum={player.currency?.elektrum || 0}
-        gold={player.currency?.gold || 0}
-        platinum={player.currency?.platinum || 0}
-        silver={player.currency?.silver || 0}
-      />
+      <div className="w-[350px]">
+        <HitPointsDisplay
+          label="HP:"
+          current={player?.currentHitPoints}
+          total={player?.hitPoints}
+          type="normal"
+        />
+        <HitPointsDisplay
+          label="Extra:"
+          current={player?.currentTemporaryHitPoints}
+          total={player?.temporaryHitPoints}
+          type="current"
+        />
+      </div>
     </Paper>
   );
 }
