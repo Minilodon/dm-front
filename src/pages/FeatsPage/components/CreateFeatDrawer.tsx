@@ -4,7 +4,6 @@ import Button from "../../../components/Button/Button";
 import { Controller, useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCreateFeatMutation } from "../../../generated/graphql";
 import { useDrawerContext } from "../../../contexts/DrawerContext";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";

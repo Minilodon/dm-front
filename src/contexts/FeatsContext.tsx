@@ -11,6 +11,7 @@ import {
   CreateFeatInput,
   FeatFragment,
   useCreateFeatMutation,
+  useDeleteFeatMutation,
   useGetAllFeatsQuery,
 } from "../generated/graphql";
 
@@ -18,6 +19,7 @@ interface FeatsContextValues {
   loading: boolean;
   feats: FeatFragment[] | null;
   createFeat: (payload: CreateFeatInput) => Promise<void>;
+  deleteFeat: (featId: number) => Promise<void>;
 }
 
 interface FeatsContextProviderProps {
@@ -40,7 +42,12 @@ function FeatsContextProvider(props: FeatsContextProviderProps) {
       refetchQueries: "all",
     }
   );
-  const loading = loadingFeats || creatingFeat;
+
+  const [deleteFeatMutation, { loading: deletingFeat }] = useDeleteFeatMutation(
+    { refetchQueries: "all" }
+  );
+
+  const loading = loadingFeats || creatingFeat || deletingFeat;
 
   const createFeat = useCallback(async (payload: CreateFeatInput) => {
     try {
@@ -50,13 +57,22 @@ function FeatsContextProvider(props: FeatsContextProviderProps) {
     }
   }, []);
 
+  const deleteFeat = useCallback(async (featId: number) => {
+    try {
+      await deleteFeatMutation({ variables: { featId } });
+    } catch (error) {
+      throw new Error(`Algo deu errado ao deletar esse talento`);
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       loading,
       feats,
       createFeat,
+      deleteFeat,
     }),
-    [loading, feats, createFeat]
+    [loading, feats, createFeat, deleteFeat]
   );
 
   return (

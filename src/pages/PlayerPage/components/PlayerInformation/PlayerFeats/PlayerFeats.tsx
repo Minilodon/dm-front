@@ -6,6 +6,7 @@ import Button from "../../../../../components/Button/Button";
 import { useModalContext } from "../../../../../contexts/ModalContext";
 import { useFeatsContext } from "../../../../../contexts/FeatsContext";
 import { useConnectFeatToPlayerMutation } from "../../../../../generated/graphql";
+import DOMPurify from "dompurify";
 
 interface PlayerFeatsProps {
   currentPage: number;
@@ -109,7 +110,11 @@ function PlayerFeats(props: PlayerFeatsProps) {
                   {feat.currentCharges ? <span>Sim</span> : <span>Não</span>}
                 </span>
                 <div className="w-full h-full border overflow-auto text-sm p-1">
-                  {feat.featDescription}
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(feat.featDescription),
+                    }}
+                  ></p>
                 </div>
               </div>
             );
