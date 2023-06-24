@@ -1,0 +1,5 @@
+query getAllSpells {
+  getSpells {
+    ...Spell
+  }
+}

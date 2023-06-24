@@ -1,0 +1,19 @@
+fragment Spell on Spell {
+  id
+  circle
+  ritual
+  conjurationTime
+  range
+  verbal
+  somatic
+  material
+  obligatoryMaterial
+  duration
+  focus
+  school
+  targets
+  effectArea
+  description
+  higherLevel
+  name
+}

@@ -6,12 +6,15 @@ import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateFeatMutation } from "../../../generated/graphql";
 import { useDrawerContext } from "../../../contexts/DrawerContext";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useFeatsContext } from "../../../contexts/FeatsContext";
 
 const schema = object({
   name: string().required("Campo obrigatório").min(1, "Digite um nome válido"),
   description: string()
     .required("Campo obrigatório")
-    .min(1, "Digite uma descrição válida"),
+    .min(2, "Digite uma descrição válida"),
   iconUrl: string().url("Esse campo deve ser o endereço da imagem").nullable(),
 });
 
@@ -31,33 +34,17 @@ function CreateFeatDrawer() {
     },
   });
   const { closeDrawer } = useDrawerContext();
-
-  const [createFeat, { loading }] = useCreateFeatMutation({
-    refetchQueries: "all",
-  });
+  const { createFeat, loading } = useFeatsContext();
 
   const onSubmit = async (data: FormValues) => {
     if (!data) return;
-    try {
-      await createFeat({
-        variables: {
-          payload: {
-            description: data.description,
-            name: data.name,
-            iconUrl: data.iconUrl,
-          },
-        },
-      });
-    } catch (error) {
-      throw new Error("Algo deu errado");
-    } finally {
-      closeDrawer();
-      reset({
-        description: "",
-        name: "",
-        iconUrl: "",
-      });
-    }
+    await createFeat(data);
+    closeDrawer();
+    reset({
+      description: "",
+      name: "",
+      iconUrl: "",
+    });
   };
 
   return (
@@ -79,14 +66,19 @@ function CreateFeatDrawer() {
       />
       <Controller
         name="description"
-        render={({ field, fieldState }) => (
-          <TextField
-            label="Descrição"
-            multiline
-            {...field}
-            error={!!fieldState.error?.message}
-            helperText={fieldState.error?.message}
-          />
+        render={({ field, formState }) => (
+          <div>
+            <ReactQuill
+              value={field.value}
+              onChange={field.onChange}
+              theme="snow"
+              className="h-52 mb-14"
+              placeholder="Descrição"
+            />
+            <span className="text-red-500">
+              {formState.errors.description?.message ?? null}
+            </span>
+          </div>
         )}
         control={control}
       />

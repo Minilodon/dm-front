@@ -9,12 +9,19 @@ import FeatsContextProvider from "./FeatsContext";
 import WeaponsContextProvider from "./WeaponsContext";
 import ArmorContextProvider from "./ArmorContext";
 import EquipmentsContextProvider from "./EquipmentContext";
+import SpellContextProvider from "./SpellContext";
+import { createUploadLink } from "apollo-upload-client";
+
+const httpLink = createUploadLink({
+  uri: "http://localhost:8080/graphql",
+});
 
 function AppProvider(props: React.PropsWithChildren<{}>) {
   const { children } = props;
   const client = new ApolloClient({
     uri: "http://localhost:8080/graphql",
     cache: new InMemoryCache(),
+    link: httpLink,
   });
   return (
     <div>
@@ -26,9 +33,13 @@ function AppProvider(props: React.PropsWithChildren<{}>) {
                 <WeaponsContextProvider>
                   <ArmorContextProvider>
                     <EquipmentsContextProvider>
-                      <DrawerContextProvider>
-                        <ModalContextProvider>{children}</ModalContextProvider>
-                      </DrawerContextProvider>
+                      <SpellContextProvider>
+                        <DrawerContextProvider>
+                          <ModalContextProvider>
+                            {children}
+                          </ModalContextProvider>
+                        </DrawerContextProvider>
+                      </SpellContextProvider>
                     </EquipmentsContextProvider>
                   </ArmorContextProvider>
                 </WeaponsContextProvider>

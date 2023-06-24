@@ -7,6 +7,8 @@ import CreateFeatDrawer from "./components/CreateFeatDrawer";
 import { useModalContext } from "../../contexts/ModalContext";
 import Button from "../../components/Button/Button";
 import { useDeleteFeatMutation } from "../../generated/graphql";
+import Test from "./components/Test";
+import DOMPurify from "dompurify";
 
 function FeatsPage() {
   const { feats, loading } = useFeatsContext();
@@ -78,7 +80,11 @@ function FeatsPage() {
                     {feat.name}
                   </span>
                   <div className="h-52 overflow-auto text-sm">
-                    {feat.description}
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(feat.description),
+                      }}
+                    ></p>
                   </div>
                   {feat.players && (
                     <div className="flex flex-col">

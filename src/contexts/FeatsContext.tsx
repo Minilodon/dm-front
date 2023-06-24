@@ -1,17 +1,23 @@
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
+  useState,
 } from "react";
-import { FeatFragment, useGetAllFeatsQuery } from "../generated/graphql";
-import { useLocation } from "react-router-dom";
-import { getPlayerIdInPathname } from "../helpers/get-player-id-in-pathname";
+import {
+  CreateFeatInput,
+  FeatFragment,
+  useCreateFeatMutation,
+  useGetAllFeatsQuery,
+} from "../generated/graphql";
 
 interface FeatsContextValues {
   loading: boolean;
   feats: FeatFragment[] | null;
+  createFeat: (payload: CreateFeatInput) => Promise<void>;
 }
 
 interface FeatsContextProviderProps {
@@ -22,7 +28,6 @@ const FeatsContext = createContext({} as FeatsContextValues);
 
 function FeatsContextProvider(props: FeatsContextProviderProps) {
   const { children } = props;
-  const location = useLocation();
   const { data, loading: loadingFeats } = useGetAllFeatsQuery();
 
   const feats: FeatFragment[] | [] = useMemo(() => {
@@ -30,14 +35,28 @@ function FeatsContextProvider(props: FeatsContextProviderProps) {
     return data.getAllFeats;
   }, [data?.getAllFeats]);
 
-  const loading = loadingFeats;
+  const [createFeatMutation, { loading: creatingFeat }] = useCreateFeatMutation(
+    {
+      refetchQueries: "all",
+    }
+  );
+  const loading = loadingFeats || creatingFeat;
+
+  const createFeat = useCallback(async (payload: CreateFeatInput) => {
+    try {
+      await createFeatMutation({ variables: { payload } });
+    } catch (error) {
+      throw new Error(`Algo deu errado com a criação deste talento`);
+    }
+  }, []);
 
   const value = useMemo(
     () => ({
       loading,
       feats,
+      createFeat,
     }),
-    [loading, feats]
+    [loading, feats, createFeat]
   );
 
   return (

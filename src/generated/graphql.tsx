@@ -156,6 +156,27 @@ export const PlayerFragmentDoc = gql`
   }
 }
     `;
+export const SpellFragmentDoc = gql`
+    fragment Spell on Spell {
+  id
+  circle
+  ritual
+  conjurationTime
+  range
+  verbal
+  somatic
+  material
+  obligatoryMaterial
+  duration
+  focus
+  school
+  targets
+  effectArea
+  description
+  higherLevel
+  name
+}
+    `;
 export const WeaponFragmentDoc = gql`
     fragment Weapon on Weapon {
   id
@@ -686,6 +707,40 @@ export function useUpdatePlayerSkillsMutation(baseOptions?: Apollo.MutationHookO
 export type UpdatePlayerSkillsMutationHookResult = ReturnType<typeof useUpdatePlayerSkillsMutation>;
 export type UpdatePlayerSkillsMutationResult = Apollo.MutationResult<UpdatePlayerSkillsMutation>;
 export type UpdatePlayerSkillsMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerSkillsMutation, UpdatePlayerSkillsMutationVariables>;
+export const GetAllSpellsDocument = gql`
+    query getAllSpells {
+  getSpells {
+    ...Spell
+  }
+}
+    ${SpellFragmentDoc}`;
+
+/**
+ * __useGetAllSpellsQuery__
+ *
+ * To run a query within a React component, call `useGetAllSpellsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllSpellsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllSpellsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllSpellsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllSpellsQuery, GetAllSpellsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllSpellsQuery, GetAllSpellsQueryVariables>(GetAllSpellsDocument, options);
+      }
+export function useGetAllSpellsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllSpellsQuery, GetAllSpellsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllSpellsQuery, GetAllSpellsQueryVariables>(GetAllSpellsDocument, options);
+        }
+export type GetAllSpellsQueryHookResult = ReturnType<typeof useGetAllSpellsQuery>;
+export type GetAllSpellsLazyQueryHookResult = ReturnType<typeof useGetAllSpellsLazyQuery>;
+export type GetAllSpellsQueryResult = Apollo.QueryResult<GetAllSpellsQuery, GetAllSpellsQueryVariables>;
 export const GetAllWeaponsDocument = gql`
     query getAllWeapons {
   getWeapons {
@@ -1874,6 +1929,13 @@ export type UpdatePlayerSkillsMutationVariables = Exact<{
 
 
 export type UpdatePlayerSkillsMutation = { __typename?: 'Mutation', updatePlayerSkills: { __typename?: 'Skills', playerId: number } };
+
+export type GetAllSpellsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllSpellsQuery = { __typename?: 'Query', getSpells: Array<{ __typename?: 'Spell', id: number, circle: number, ritual?: boolean | null, conjurationTime?: string | null, range: number, verbal: boolean, somatic: boolean, material: boolean, obligatoryMaterial?: boolean | null, duration: string, focus?: boolean | null, school: SchoolOfMagic, targets: string, effectArea: string, description: string, higherLevel?: string | null, name: string }> };
+
+export type SpellFragment = { __typename?: 'Spell', id: number, circle: number, ritual?: boolean | null, conjurationTime?: string | null, range: number, verbal: boolean, somatic: boolean, material: boolean, obligatoryMaterial?: boolean | null, duration: string, focus?: boolean | null, school: SchoolOfMagic, targets: string, effectArea: string, description: string, higherLevel?: string | null, name: string };
 
 export type GetAllWeaponsQueryVariables = Exact<{ [key: string]: never; }>;
 
