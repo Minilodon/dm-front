@@ -1,6 +1,9 @@
 import React, { useState, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
-import { useUpdatePlayerMutation } from "../../generated/graphql";
+import {
+  PlayerFragment,
+  useUpdatePlayerMutation,
+} from "../../generated/graphql";
 import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { getCurrentHpPayload } from "./get-current-hp-payload";
 import { useModalContext } from "../../contexts/ModalContext";
@@ -9,16 +12,16 @@ import { handleChangeHpInput } from "./handle-change-hp-input";
 
 interface HpChangeInputProps {
   label: string;
+  player: PlayerFragment;
 }
 
 const HpChangeInput = (props: HpChangeInputProps) => {
-  const { label } = props;
+  const { label, player } = props;
   const [currentHP, setCurrentHP] = useState<string>("");
-  const { player } = usePlayerContext();
   const { closeModal } = useModalContext();
 
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
-    refetchQueries: ["getPlayerById"],
+    refetchQueries: "all",
   });
 
   const currentHpPayload = getCurrentHpPayload(

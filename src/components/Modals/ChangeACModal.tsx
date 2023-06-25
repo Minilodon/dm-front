@@ -11,7 +11,7 @@ function ChangeACModal() {
   );
   const { closeModal } = useModalContext();
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
-    refetchQueries: ["getPlayerById"],
+    refetchQueries: "all",
   });
 
   const handleTotalTempHpChange = (

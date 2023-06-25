@@ -44,15 +44,12 @@ function PlayerCard(props: PlayerCardProps) {
         </div>
       </Link>
       <span className="self-start text-lg font-semibold">{player.name}</span>
-      <div className="flex w-full flex-col justify-between">
-        <span>{getNameFromRace(player.race) ?? ""}</span>
-        <span>{getNameFromClass(player.class) ?? ""}</span>
-      </div>
       <div className="w-[350px]">
         <HitPointsDisplay
           label="HP:"
           current={player?.currentHitPoints}
           total={player?.hitPoints}
+          player={player}
           type="normal"
         />
         <HitPointsDisplay
@@ -60,6 +57,7 @@ function PlayerCard(props: PlayerCardProps) {
           current={player?.currentTemporaryHitPoints}
           total={player?.temporaryHitPoints}
           type="current"
+          player={player}
         />
       </div>
     </Paper>

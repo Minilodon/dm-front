@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { useModalContext } from "../../contexts/ModalContext";
-import { useUpdatePlayerMutation } from "../../generated/graphql";
+import {
+  PlayerFragment,
+  useUpdatePlayerMutation,
+} from "../../generated/graphql";
 import { getCurrentHpPayload } from "./get-current-hp-payload";
 import Skeleton from "react-loading-skeleton";
 import { TextField } from "@mui/material";
 import { handleChangeHpInput } from "./handle-change-hp-input";
 import Button from "../Button/Button";
 
-function TempHpChangeInput() {
+interface TempHpChangeInputProps {
+  player: PlayerFragment;
+}
+
+function TempHpChangeInput(props: TempHpChangeInputProps) {
+  const { player } = props;
   const [currentTemporaryHP, setCurrentTemporaryHP] = useState<string>("");
   const [totalTemporaryHP, setTotalTemporaryHP] = useState<number | "">("");
-  const { player } = usePlayerContext();
   const { closeModal } = useModalContext();
 
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
-    refetchQueries: ["getPlayerById"],
+    refetchQueries: "all",
   });
 
   const currentTemporaryHpPayload = getCurrentHpPayload(

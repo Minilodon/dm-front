@@ -23,7 +23,7 @@ function EditPlayerModal(props: EditPlayerModalProps) {
   const { closeModal } = useModalContext();
 
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
-    refetchQueries: ["getPlayerById"],
+    refetchQueries: "all",
   });
 
   const handleChangeString = (event: React.ChangeEvent<HTMLInputElement>) => {

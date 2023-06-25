@@ -8,7 +8,7 @@ import Skeleton from "react-loading-skeleton";
 function InspirationDisplay() {
   const { player } = usePlayerContext();
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
-    refetchQueries: ["getPlayerById"],
+    refetchQueries: "all",
   });
   const { closeModal } = useModalContext();
   const handleSubmit = async () => {

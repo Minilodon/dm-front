@@ -22,6 +22,10 @@ interface PlayerContextValues {
   player: PlayerFragment | undefined;
   fetchingPlayer: boolean;
   playerFeats: PlayerFeats[] | undefined;
+  selectedPlayer: PlayerFragment | undefined;
+  setSelectedPlayer: React.Dispatch<
+    React.SetStateAction<PlayerFragment | undefined>
+  >;
 }
 
 interface PlayerContextProviderProps {
@@ -33,6 +37,9 @@ const PlayerContext = createContext({} as PlayerContextValues);
 function PlayerContextProvider(props: PlayerContextProviderProps) {
   const { children } = props;
   const location = useLocation();
+  const [selectedPlayer, setSelectedPlayer] = useState<
+    PlayerFragment | undefined
+  >();
   const { data, loading: loadingPlayers } = useGetAllPlayersQuery();
 
   const currentPlayerId = useMemo(() => {
@@ -98,6 +105,8 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       player,
       fetchingPlayer,
       playerFeats,
+      selectedPlayer,
+      setSelectedPlayer,
     }),
     [loadingPlayers, players, player, fetchingPlayer, playerFeats]
   );
