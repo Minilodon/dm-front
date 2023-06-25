@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 
 function CarryingCapacity() {
   const { player } = usePlayerContext();

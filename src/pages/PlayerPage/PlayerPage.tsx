@@ -1,17 +1,17 @@
 import React from "react";
 import Page from "../../components/Page/Page";
 import Header from "../../components/Header/Header";
-import { usePlayerContext } from "../../contexts/PlayerContext";
+import { usePlayerContext } from "../Players/contexts/PlayerContext";
 import PlayerInformation from "./components/PlayerInformation/PlayerInformation";
 
 function PlayerPage() {
-  const { player, fetchingPlayer } = usePlayerContext();
+  const { player } = usePlayerContext();
   return (
     <Page>
       <Header
-        title={fetchingPlayer ? "Carregando..." : player!.name}
-        buttonLabel="Editar"
+        title={player?.name || "ola"}
         goBackAlternative="/players"
+        buttonLabel="Editar"
       />
       <PlayerInformation />
     </Page>

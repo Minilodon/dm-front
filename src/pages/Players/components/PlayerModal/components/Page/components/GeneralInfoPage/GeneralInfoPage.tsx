@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { usePlayerContext } from "../../../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
 import AttributesDisplay from "./components/AttributesDisplay";
 import SkillDisplay from "./components/SkillDisplay";
 import SavesDisplay from "./components/SavesDisplay";

@@ -5,7 +5,7 @@ import {
   useDeleteFeatMutation,
 } from "../../../generated/graphql";
 import { useModalContext } from "../../../contexts/ModalContext";
-import { useFeatsContext } from "../../../contexts/FeatsContext";
+import { useFeatsContext } from "../contexts/FeatsContext";
 
 interface DeleteFeatModalProps {
   feat: FeatFragment;

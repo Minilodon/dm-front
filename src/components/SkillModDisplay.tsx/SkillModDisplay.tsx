@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../contexts/PlayerContext";
+import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { getProfBonus } from "../../helpers/get-prof-bonus";
 import { getModFromAttributes } from "../../helpers/get-mod-from-attributes";
 

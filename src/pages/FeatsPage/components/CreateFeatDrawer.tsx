@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDrawerContext } from "../../../contexts/DrawerContext";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useFeatsContext } from "../../../contexts/FeatsContext";
+import { useFeatsContext } from "../contexts/FeatsContext";
 
 const schema = object({
   name: string().required("Campo obrigatório").min(1, "Digite um nome válido"),

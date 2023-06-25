@@ -1,6 +1,6 @@
 import React from "react";
-import { useWeaponsContext } from "../../../../contexts/WeaponsContext";
 import { useModalContext } from "../../../../contexts/ModalContext";
+import { useWeaponsContext } from "../../contexts/WeaponsContext";
 
 function WeaponsList() {
   const { weapons, loading } = useWeaponsContext();

@@ -1,7 +1,6 @@
 import React from "react";
 import Overlay from "../Overlay/Overlay";
 import clsx from "clsx";
-import { usePlayerContext } from "../../contexts/PlayerContext";
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,14 +10,12 @@ interface ModalProps {
 
 function Modal(props: ModalProps) {
   const { isOpen, setIsOpen, modalContent } = props;
-  const { setSelectedPlayer } = usePlayerContext();
   return (
     <>
       {isOpen ? (
         <Overlay
           modal
           handleClickOverlay={() => {
-            setSelectedPlayer(undefined);
             setIsOpen(false);
           }}
         >

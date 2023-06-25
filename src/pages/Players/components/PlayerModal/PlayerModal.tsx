@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { usePlayerContext } from "../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../contexts/PlayerContext";
 import { getNameFromClass } from "../../../../helpers/get-name-from-class";
 import Header from "./components/Header";
 import Page from "./components/Page/Page";

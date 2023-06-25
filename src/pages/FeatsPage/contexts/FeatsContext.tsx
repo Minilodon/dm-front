@@ -13,7 +13,7 @@ import {
   useCreateFeatMutation,
   useDeleteFeatMutation,
   useGetAllFeatsQuery,
-} from "../generated/graphql";
+} from "../../../generated/graphql";
 
 interface FeatsContextValues {
   loading: boolean;

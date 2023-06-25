@@ -9,8 +9,7 @@ import { useLocation } from "react-router-dom";
 import {
   EquipmentFragment,
   useGetAllEquipmentsQuery,
-  WeaponFragment,
-} from "../generated/graphql";
+} from "../../../generated/graphql";
 
 interface EquipmentsContextValues {
   loading: boolean;

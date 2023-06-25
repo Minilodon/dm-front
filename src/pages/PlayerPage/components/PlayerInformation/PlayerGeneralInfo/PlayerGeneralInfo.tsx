@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../Players/contexts/PlayerContext";
 import HitPointsDisplay from "./components/HitPointsDisplay";
 import PlayerImage from "./components/PlayerImage";
 import { Checkbox } from "@mui/material";

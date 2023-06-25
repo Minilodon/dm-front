@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { usePlayerContext } from "../../contexts/PlayerContext";
+import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { useUpdatePlayerMutation } from "../../generated/graphql";
 import { useModalContext } from "../../contexts/ModalContext";
 

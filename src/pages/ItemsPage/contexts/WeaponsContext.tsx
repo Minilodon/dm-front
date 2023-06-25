@@ -6,7 +6,10 @@ import {
   useMemo,
 } from "react";
 import { useLocation } from "react-router-dom";
-import { useGetAllWeaponsQuery, WeaponFragment } from "../generated/graphql";
+import {
+  useGetAllWeaponsQuery,
+  WeaponFragment,
+} from "../../../generated/graphql";
 
 interface WeaponsContextValues {
   loading: boolean;

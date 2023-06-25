@@ -1,6 +1,6 @@
 import React from "react";
-import { useEquipmentsContext } from "../../../../contexts/EquipmentContext";
 import { useModalContext } from "../../../../contexts/ModalContext";
+import { useEquipmentsContext } from "../../contexts/EquipmentContext";
 
 function EquipmentList() {
   const { equipments, loading } = useEquipmentsContext();

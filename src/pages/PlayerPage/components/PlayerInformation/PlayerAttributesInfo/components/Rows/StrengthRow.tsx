@@ -1,7 +1,7 @@
 import React from "react";
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
-import { usePlayerContext } from "../../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../../Players/contexts/PlayerContext";
 import SkillDisplay from "../SkillDisplay";
 
 function StrengthRow() {

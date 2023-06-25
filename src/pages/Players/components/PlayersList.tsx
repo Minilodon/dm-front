@@ -1,6 +1,6 @@
 import React from "react";
 import PlayerCard from "./PlayerCard/PlayerCard";
-import { usePlayerContext } from "../../../contexts/PlayerContext";
+import { usePlayerContext } from "../contexts/PlayerContext";
 
 const PlayersList = () => {
   const { loading, players } = usePlayerContext();

@@ -3,7 +3,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import { useDrawerContext } from "../../../contexts/DrawerContext";
-import { usePlayerContext } from "../../../contexts/PlayerContext";
+import { usePlayerContext } from "../contexts/PlayerContext";
 
 type Inputs = {
   name: string;

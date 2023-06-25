@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../Players/contexts/PlayerContext";
 import PlayerCurrencies from "./components/PlayerCurrencies";
 import CarryingCapacity from "./components/CarryingCapacity";
 import EquipmentAndProficiencies from "./components/EquipmentAndProficiencies";

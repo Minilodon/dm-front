@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../../../../components/Button/Button";
 import { useModalContext } from "../../../../../contexts/ModalContext";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../contexts/PlayerContext";
 
 interface DeleteModalContentProps {
   playerName: string;

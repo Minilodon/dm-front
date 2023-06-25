@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
 import EditPlayerModal from "../../../../../../components/Modals/EditPlayerModal";
 import { playerProperties } from "../../../../../../components/Modals/playerProperties";

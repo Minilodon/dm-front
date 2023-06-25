@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { usePlayerContext } from "../../contexts/PlayerContext";
+import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { useModalContext } from "../../contexts/ModalContext";
 import Button from "../Button/Button";
 import {

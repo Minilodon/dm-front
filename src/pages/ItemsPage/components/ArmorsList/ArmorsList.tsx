@@ -1,5 +1,5 @@
 import React from "react";
-import { useArmorContext } from "../../../../contexts/ArmorContext";
+import { useArmorContext } from "../../contexts/ArmorContext";
 import { useModalContext } from "../../../../contexts/ModalContext";
 
 function ArmorsList() {

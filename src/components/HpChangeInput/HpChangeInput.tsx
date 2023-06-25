@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
 import { useUpdatePlayerMutation } from "../../generated/graphql";
-import { usePlayerContext } from "../../contexts/PlayerContext";
+import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { getCurrentHpPayload } from "./get-current-hp-payload";
 import { useModalContext } from "../../contexts/ModalContext";
 import Skeleton from "react-loading-skeleton";

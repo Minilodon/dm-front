@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../../Players/contexts/PlayerContext";
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";

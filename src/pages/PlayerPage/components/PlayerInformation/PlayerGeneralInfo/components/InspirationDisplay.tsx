@@ -1,6 +1,6 @@
 import { Checkbox } from "@mui/material";
 import React from "react";
-import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { useUpdatePlayerMutation } from "../../../../../../generated/graphql";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
 import Skeleton from "react-loading-skeleton";

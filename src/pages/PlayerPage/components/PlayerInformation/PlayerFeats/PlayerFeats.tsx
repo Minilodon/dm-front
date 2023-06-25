@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../Players/contexts/PlayerContext";
 import { Checkbox } from "@mui/material";
 import Button from "../../../../../components/Button/Button";
 import { useModalContext } from "../../../../../contexts/ModalContext";
-import { useFeatsContext } from "../../../../../contexts/FeatsContext";
+import { useFeatsContext } from "../../../../FeatsPage/contexts/FeatsContext";
 import { useConnectFeatToPlayerMutation } from "../../../../../generated/graphql";
 import DOMPurify from "dompurify";
 

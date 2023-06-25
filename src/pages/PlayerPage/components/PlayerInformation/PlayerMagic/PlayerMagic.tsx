@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../Players/contexts/PlayerContext";
 
 interface PlayerMagicProps {
   currentPage: number;

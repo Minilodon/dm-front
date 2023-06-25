@@ -1,7 +1,7 @@
 import React from "react";
 import { getModFromAttributes } from "../../../../../../helpers/get-mod-from-attributes";
 import { Tooltip } from "@mui/material";
-import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { getProfBonus } from "../../../../../../helpers/get-prof-bonus";
 import { splitArray } from "../../../../../../helpers/split-array";
 import DoubleCheckbox from "../../../../../../components/DoubleCheckbox/DoubleCheckbox";

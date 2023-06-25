@@ -1,6 +1,6 @@
 import React from "react";
 import Shield from "../../../../../../components/Icons/Shield.svg";
-import { usePlayerContext } from "../../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
 import ChangeACModal from "../../../../../../components/Modals/ChangeACModal";
 

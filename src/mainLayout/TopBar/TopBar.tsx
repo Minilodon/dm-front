@@ -1,12 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { splitArrayInTwo } from "../../helpers/split-array-in-two";
-import { availableRoutes } from "../AppRoutes/Routes";
+import { availableRoutes } from "../App/Routes";
 import clsx from "clsx";
 
 function TopBar() {
   const location = useLocation();
   return (
-    <div className="bg-red-600 shadow w-full flex justify-center py-2 px-44 gap-x-8 items-center">
+    <div className="bg-red-600 shadow w-full flex justify-center py-2 px-44 gap-x-8 items-center absolute top-0 left-0">
       {availableRoutes.map((route) => {
         const isActive = location.pathname === route.path;
         const isMain = route.path === "/";

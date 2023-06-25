@@ -1,5 +1,3 @@
-import { FaHome, FaUser } from "react-icons/fa";
-
 export const availableRoutes = [
   {
     path: "/players",
@@ -18,7 +16,7 @@ export const availableRoutes = [
     name: "Itens",
   },
   {
-    path: "/magic",
+    path: "/spells",
     name: "Magias",
   },
   {

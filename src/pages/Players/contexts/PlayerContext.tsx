@@ -12,18 +12,13 @@ import {
   useGetAllPlayersQuery,
   useGetPlayerByIdQuery,
   useGetPlayerFeatsQuery,
-} from "../generated/graphql";
+} from "../../../generated/graphql";
 import { useLocation } from "react-router-dom";
-import { getPlayerIdInPathname } from "../helpers/get-player-id-in-pathname";
-import { useApolloClient } from "@apollo/client";
+import { getPlayerIdInPathname } from "../../../helpers/get-player-id-in-pathname";
 
 interface PlayerContextValues {
   loading: boolean;
   players: PlayerFragment[] | null;
-  selectedPlayer: PlayerFragment | undefined;
-  setSelectedPlayer: React.Dispatch<
-    React.SetStateAction<PlayerFragment | undefined>
-  >;
   player: PlayerFragment | undefined;
   fetchingPlayer: boolean;
   playerFeats: PlayerFeats[] | undefined;
@@ -39,10 +34,6 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
   const { children } = props;
   const location = useLocation();
   const { data, loading: loadingPlayers } = useGetAllPlayersQuery();
-
-  const [selectedPlayer, setSelectedPlayer] = useState<
-    PlayerFragment | undefined
-  >();
 
   const currentPlayerId = useMemo(() => {
     return getPlayerIdInPathname(location.pathname);
@@ -72,7 +63,6 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
 
   const player: PlayerFragment | undefined = useMemo(() => {
     if (!playerQueryResponse?.getPlayerById) return;
-    setSelectedPlayer(playerQueryResponse?.getPlayerById);
     return playerQueryResponse?.getPlayerById;
   }, [playerQueryResponse?.getPlayerById]);
 
@@ -105,21 +95,11 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     () => ({
       players,
       loading,
-      selectedPlayer,
       player,
-      setSelectedPlayer,
       fetchingPlayer,
       playerFeats,
     }),
-    [
-      loadingPlayers,
-      players,
-      selectedPlayer,
-      setSelectedPlayer,
-      player,
-      fetchingPlayer,
-      playerFeats,
-    ]
+    [loadingPlayers, players, player, fetchingPlayer, playerFeats]
   );
 
   return (

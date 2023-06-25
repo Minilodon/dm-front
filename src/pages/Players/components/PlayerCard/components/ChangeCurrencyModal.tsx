@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useModalContext } from "../../../../../contexts/ModalContext";
-import {
-  Currencies,
-  usePlayerContext,
-} from "../../../../../contexts/PlayerContext";
+import { Currencies, usePlayerContext } from "../../../contexts/PlayerContext";
 import Button from "../../../../../components/Button/Button";
 import ActionsContainer from "./ActionsContainer";
 

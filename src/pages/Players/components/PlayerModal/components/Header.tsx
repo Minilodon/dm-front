@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../contexts/PlayerContext";
 import HeaderContent from "./HeaderContent";
 
 interface HeaderProps {

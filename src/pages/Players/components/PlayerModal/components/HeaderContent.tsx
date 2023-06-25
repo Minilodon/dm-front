@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../contexts/PlayerContext";
 import { getNameFromClass } from "../../../../../helpers/get-name-from-class";
 import { getNameFromRace } from "../../../../../helpers/get-name-from-race";
 import { getPtSize } from "../../../../../helpers/get-pt-size";

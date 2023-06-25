@@ -6,7 +6,10 @@ import {
   useMemo,
 } from "react";
 import { useLocation } from "react-router-dom";
-import { ArmorFragment, useGetAllArmorsQuery } from "../generated/graphql";
+import {
+  ArmorFragment,
+  useGetAllArmorsQuery,
+} from "../../../generated/graphql";
 
 interface ArmorContextValues {
   loading: boolean;
