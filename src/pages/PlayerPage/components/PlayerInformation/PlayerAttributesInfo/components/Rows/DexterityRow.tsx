@@ -3,6 +3,7 @@ import { usePlayerContext } from "../../../../../../Players/contexts/PlayerConte
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
+import { AttributesEnum } from "../../../../../../../generated/graphql";
 
 function DexterityRow() {
   const { player } = usePlayerContext();
@@ -10,12 +11,14 @@ function DexterityRow() {
     <div className="flex-1 flex items-center w-full">
       <div className="w-fit flex">
         <AttrAndModDisplay
-          attributeName="Destreza"
+          attributeName={AttributesEnum.Dexterity}
           attributeValue={player?.attributes?.dex}
+          player={player}
         />
         <SaveDisplay
           attrValue={player?.attributes?.dex}
           hasProficiency={player?.attributes?.dexSave || false}
+          attr={AttributesEnum.Dexterity}
         />
       </div>
       <SkillDisplay

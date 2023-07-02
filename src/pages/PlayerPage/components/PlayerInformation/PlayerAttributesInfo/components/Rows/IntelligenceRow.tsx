@@ -3,6 +3,7 @@ import { usePlayerContext } from "../../../../../../Players/contexts/PlayerConte
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
+import { AttributesEnum } from "../../../../../../../generated/graphql";
 
 function IntelligenceRow() {
   const { player } = usePlayerContext();
@@ -10,12 +11,14 @@ function IntelligenceRow() {
     <div className="flex-1 flex items-center w-full">
       <div className="w-fit flex">
         <AttrAndModDisplay
-          attributeName="Inteligência"
+          attributeName={AttributesEnum.Intelligence}
           attributeValue={player?.attributes?.int}
+          player={player}
         />
         <SaveDisplay
           attrValue={player?.attributes?.int}
           hasProficiency={player?.attributes?.intSave || false}
+          attr={AttributesEnum.Intelligence}
         />
       </div>
       <SkillDisplay

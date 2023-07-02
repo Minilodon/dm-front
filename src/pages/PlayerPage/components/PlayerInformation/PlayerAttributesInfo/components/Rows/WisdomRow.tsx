@@ -3,6 +3,7 @@ import { usePlayerContext } from "../../../../../../Players/contexts/PlayerConte
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
+import { AttributesEnum } from "../../../../../../../generated/graphql";
 
 function WisdomRow() {
   const { player } = usePlayerContext();
@@ -10,12 +11,14 @@ function WisdomRow() {
     <div className="flex-1 flex items-center w-full">
       <div className="w-fit flex">
         <AttrAndModDisplay
-          attributeName="Sabedoria"
+          attributeName={AttributesEnum.Wisdom}
           attributeValue={player?.attributes?.wis}
+          player={player}
         />
         <SaveDisplay
           attrValue={player?.attributes?.wis}
           hasProficiency={player?.attributes?.wisSave || false}
+          attr={AttributesEnum.Wisdom}
         />
       </div>
       <SkillDisplay

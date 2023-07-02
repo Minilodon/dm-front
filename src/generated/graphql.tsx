@@ -1281,6 +1281,7 @@ export type Mutation = {
   createSpell: Spell;
   createWeapon: Weapon;
   deleteFeat: Feat;
+  updateFeat: Feat;
   updatePlayer: Player;
   updatePlayerAttributes: Attributes;
   updatePlayerCurrency: Currency;
@@ -1338,6 +1339,12 @@ export type MutationCreateWeaponArgs = {
 
 export type MutationDeleteFeatArgs = {
   featId: Scalars['Float'];
+};
+
+
+export type MutationUpdateFeatArgs = {
+  featId: Scalars['Float'];
+  payload: UpdateFeatInput;
 };
 
 
@@ -1655,18 +1662,18 @@ export type Spell = {
 };
 
 export type UpdateAttributesInput = {
-  cha?: Scalars['Int'];
-  chaSave?: Scalars['Boolean'];
-  con?: Scalars['Int'];
-  conSave?: Scalars['Boolean'];
-  dex?: Scalars['Int'];
-  dexSave?: Scalars['Boolean'];
-  int?: Scalars['Int'];
-  intSave?: Scalars['Boolean'];
-  str?: Scalars['Int'];
-  strSave?: Scalars['Boolean'];
-  wis?: Scalars['Int'];
-  wisSave?: Scalars['Boolean'];
+  cha?: InputMaybe<Scalars['Int']>;
+  chaSave?: InputMaybe<Scalars['Boolean']>;
+  con?: InputMaybe<Scalars['Int']>;
+  conSave?: InputMaybe<Scalars['Boolean']>;
+  dex?: InputMaybe<Scalars['Int']>;
+  dexSave?: InputMaybe<Scalars['Boolean']>;
+  int?: InputMaybe<Scalars['Int']>;
+  intSave?: InputMaybe<Scalars['Boolean']>;
+  str?: InputMaybe<Scalars['Int']>;
+  strSave?: InputMaybe<Scalars['Boolean']>;
+  wis?: InputMaybe<Scalars['Int']>;
+  wisSave?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type UpdateCurrencyInput = {
@@ -1675,6 +1682,12 @@ export type UpdateCurrencyInput = {
   gold?: InputMaybe<Scalars['Int']>;
   platinum?: InputMaybe<Scalars['Int']>;
   silver?: InputMaybe<Scalars['Int']>;
+};
+
+export type UpdateFeatInput = {
+  description?: InputMaybe<Scalars['String']>;
+  iconUrl?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateLanguagesInput = {

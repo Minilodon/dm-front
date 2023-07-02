@@ -3,6 +3,7 @@ import { usePlayerContext } from "../../../../../../Players/contexts/PlayerConte
 import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay/AttrAndModDisplay";
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
+import { AttributesEnum } from "../../../../../../../generated/graphql";
 
 function CharismaRow() {
   const { player } = usePlayerContext();
@@ -10,12 +11,14 @@ function CharismaRow() {
     <div className="flex-1 flex items-center w-full">
       <div className="w-fit flex">
         <AttrAndModDisplay
-          attributeName="Carisma"
+          attributeName={AttributesEnum.Charisma}
           attributeValue={player?.attributes?.cha}
+          player={player}
         />
         <SaveDisplay
           attrValue={player?.attributes?.cha}
           hasProficiency={player?.attributes?.chaSave || false}
+          attr={AttributesEnum.Charisma}
         />
       </div>
       <SkillDisplay

@@ -547,6 +547,7 @@ type Mutation {
   createSpell(payload: CreateSpellInput!): Spell!
   createWeapon(payload: CreateWeaponInput!): Weapon!
   deleteFeat(featId: Float!): Feat!
+  updateFeat(featId: Float!, payload: UpdateFeatInput!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
   updatePlayerCurrency(payload: UpdateCurrencyInput!, playerId: Float!): Currency!
@@ -876,18 +877,18 @@ type Spell {
 }
 
 input UpdateAttributesInput {
-  cha: Int! = 10
-  chaSave: Boolean! = false
-  con: Int! = 10
-  conSave: Boolean! = false
-  dex: Int! = 10
-  dexSave: Boolean! = false
-  int: Int! = 10
-  intSave: Boolean! = false
-  str: Int! = 10
-  strSave: Boolean! = false
-  wis: Int! = 10
-  wisSave: Boolean! = false
+  cha: Int
+  chaSave: Boolean
+  con: Int
+  conSave: Boolean
+  dex: Int
+  dexSave: Boolean
+  int: Int
+  intSave: Boolean
+  str: Int
+  strSave: Boolean
+  wis: Int
+  wisSave: Boolean
 }
 
 input UpdateCurrencyInput {
@@ -896,6 +897,12 @@ input UpdateCurrencyInput {
   gold: Int
   platinum: Int
   silver: Int
+}
+
+input UpdateFeatInput {
+  description: String
+  iconUrl: String
+  name: String
 }
 
 input UpdateLanguagesInput {

@@ -3,6 +3,7 @@ import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay
 import SaveDisplay from "../SaveDisplay";
 import { usePlayerContext } from "../../../../../../Players/contexts/PlayerContext";
 import SkillDisplay from "../SkillDisplay";
+import { AttributesEnum } from "../../../../../../../generated/graphql";
 
 function StrengthRow() {
   const { player } = usePlayerContext();
@@ -10,12 +11,14 @@ function StrengthRow() {
     <div className="flex-1 flex items-center w-full">
       <div className="w-fit flex">
         <AttrAndModDisplay
-          attributeName="Força"
+          attributeName={AttributesEnum.Strength}
           attributeValue={player?.attributes?.str}
+          player={player}
         />
         <SaveDisplay
           attrValue={player?.attributes?.str}
           hasProficiency={player?.attributes?.strSave || false}
+          attr={AttributesEnum.Strength}
         />
       </div>
       <SkillDisplay

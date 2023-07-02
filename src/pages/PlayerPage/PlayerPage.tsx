@@ -12,6 +12,7 @@ function PlayerPage() {
         title={player?.name || "ola"}
         goBackAlternative="/players"
         buttonLabel="Editar"
+        buttonAction={() => console.log()}
       />
       <PlayerInformation />
     </Page>
