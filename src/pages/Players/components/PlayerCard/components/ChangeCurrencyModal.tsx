@@ -1,47 +1,58 @@
 import React, { useState } from "react";
 import { useModalContext } from "../../../../../contexts/ModalContext";
-import { Currencies, usePlayerContext } from "../../../contexts/PlayerContext";
+import { usePlayerContext } from "../../../contexts/PlayerContext";
 import Button from "../../../../../components/Button/Button";
 import ActionsContainer from "./ActionsContainer";
+import { CurrenciesEnum } from "../../../../../constants/currencies";
+import {
+  PlayerFragment,
+  UpdateCurrencyInput,
+  useUpdatePlayerCurrencyMutation,
+} from "../../../../../generated/graphql";
 
 interface ChangeCurrencyModalProps {
   modalTitle: string;
   currencyValue: number;
   imageSource: string;
   alt: string;
-  currencyType: Currencies;
+  currencyType: CurrenciesEnum;
+  player: PlayerFragment | undefined;
 }
 
 function ChangeCurrencyModal(props: ChangeCurrencyModalProps) {
-  const { currencyValue, modalTitle, imageSource, alt, currencyType } = props;
-  const { setSelectedPlayer, changeCurrency, selectedPlayer, loading } =
-    usePlayerContext();
+  const { currencyValue, modalTitle, imageSource, alt, currencyType, player } =
+    props;
   const { closeModal } = useModalContext();
   const handleCancel = () => {
     closeModal();
-    setSelectedPlayer(undefined);
   };
   const [inputValue, setInputValue] = useState<string>("0");
   const [selectedChoice, setSelectedChoice] = useState<
     "change" | "add" | "subtract" | undefined
   >();
 
+  const [updateCurrency, { loading }] = useUpdatePlayerCurrencyMutation({
+    refetchQueries: "all",
+  });
+
   const handleSubmit = async () => {
-    if (!selectedPlayer || !inputValue) return;
+    if (!player || !inputValue) return;
     const newCurrency =
       selectedChoice === "add"
         ? parseInt(inputValue) + currencyValue
         : selectedChoice === "change"
         ? parseInt(inputValue)
         : currencyValue - parseInt(inputValue);
-    await changeCurrency(currencyType, newCurrency);
+    const payload: UpdateCurrencyInput = {};
+    payload[currencyType] = newCurrency;
+    await updateCurrency({ variables: { playerId: player.id, payload } });
     closeModal();
   };
 
   return (
     <div className="flex flex-col">
       <h1 className="text-lg mb-2 self-center">
-        Jogador: <b className="font-semibold">{selectedPlayer?.name}</b>
+        Jogador: <b className="font-semibold">{player?.name}</b>
       </h1>
       <div className="flex gap-3 items-center justify-around">
         <div className="flex flex-col items-center">

@@ -32,6 +32,7 @@ function PlayerInventory(props: PlayerInventoryProps) {
             platinum={player?.currency?.platinum || 0}
             gold={player?.currency?.gold || 0}
             silver={player?.currency?.silver || 0}
+            player={player}
           />
         </div>
         <CarryingCapacity />
