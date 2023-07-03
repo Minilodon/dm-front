@@ -8,7 +8,10 @@ import {
 } from "../../generated/graphql";
 import { TextField } from "@mui/material";
 import Button from "../Button/Button";
-import { getAttributeMutation } from "../../constants/attributes";
+import {
+  getAttributeMutation,
+  getAttributeName,
+} from "../../constants/attributes";
 import { useModalContext } from "../../contexts/ModalContext";
 
 interface EditAttrModalProps {
@@ -39,15 +42,16 @@ function EditAttrModal(props: EditAttrModalProps) {
       closeModal();
     }
   };
+  const attrName = getAttributeName(attr);
   return (
-    <div className="p-4 flex flex-col">
-      <span>{attr}</span>
+    <div className="p-4 flex flex-col items-center">
+      <span>{attrName}</span>
       <TextField
         value={value}
         onChange={(e) => setValue(e.target.value)}
         type="number"
       />
-      <Button onClick={handleSave} label="salvar" />
+      <Button onClick={handleSave} label="Salvar" className="mt-2" />
     </div>
   );
 }
