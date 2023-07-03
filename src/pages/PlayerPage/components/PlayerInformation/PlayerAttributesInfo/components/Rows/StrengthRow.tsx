@@ -4,6 +4,7 @@ import SaveDisplay from "../SaveDisplay";
 import { usePlayerContext } from "../../../../../../Players/contexts/PlayerContext";
 import SkillDisplay from "../SkillDisplay";
 import { AttributesEnum } from "../../../../../../../generated/graphql";
+import { SkillsEnum } from "../../../../../../../constants/skills";
 
 function StrengthRow() {
   const { player } = usePlayerContext();
@@ -27,7 +28,8 @@ function StrengthRow() {
             attributeValue: 10,
             hasExpertise: player?.skills?.athleticsExp,
             hasProficiency: player?.skills?.athleticsProf,
-            name: "Atletismo",
+            type: SkillsEnum.athletics,
+            player,
           },
         ]}
       />

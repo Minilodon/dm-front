@@ -4,6 +4,7 @@ import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
 import { AttributesEnum } from "../../../../../../../generated/graphql";
+import { SkillsEnum } from "../../../../../../../constants/skills";
 
 function IntelligenceRow() {
   const { player } = usePlayerContext();
@@ -27,31 +28,36 @@ function IntelligenceRow() {
             attributeValue: player?.attributes?.int,
             hasProficiency: player?.skills?.arcanaProf,
             hasExpertise: player?.skills?.arcanaExp,
-            name: "Arcanismo",
+            type: SkillsEnum.arcana,
+            player,
           },
           {
             attributeValue: player?.attributes?.int,
             hasProficiency: player?.skills?.historyProf,
             hasExpertise: player?.skills?.historyExp,
-            name: "História",
+            type: SkillsEnum.history,
+            player,
           },
           {
             attributeValue: player?.attributes?.int,
             hasProficiency: player?.skills?.investigationProf,
             hasExpertise: player?.skills?.investigationExp,
-            name: "Investigação",
+            type: SkillsEnum.investigation,
+            player,
           },
           {
             attributeValue: player?.attributes?.int,
             hasProficiency: player?.skills?.natureProf,
             hasExpertise: player?.skills?.natureExp,
-            name: "Natureza",
+            type: SkillsEnum.nature,
+            player,
           },
           {
             attributeValue: player?.attributes?.int,
             hasProficiency: player?.skills?.religionProf,
             hasExpertise: player?.skills?.religionExp,
-            name: "Religião",
+            type: SkillsEnum.religion,
+            player,
           },
         ]}
       />

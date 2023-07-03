@@ -4,6 +4,7 @@ import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
 import { AttributesEnum } from "../../../../../../../generated/graphql";
+import { SkillsEnum } from "../../../../../../../constants/skills";
 
 function DexterityRow() {
   const { player } = usePlayerContext();
@@ -27,19 +28,22 @@ function DexterityRow() {
             attributeValue: player?.attributes?.dex,
             hasExpertise: player?.skills?.acrobaticsExp,
             hasProficiency: player?.skills?.acrobaticsProf,
-            name: "Acrobacia",
+            type: SkillsEnum.acrobatics,
+            player,
           },
           {
             attributeValue: player?.attributes?.dex,
             hasExpertise: player?.skills?.stealthExp,
             hasProficiency: player?.skills?.stealthProf,
-            name: "Furtividade",
+            type: SkillsEnum.stealth,
+            player,
           },
           {
             attributeValue: player?.attributes?.dex,
             hasExpertise: player?.skills?.sleightOfHandExp,
             hasProficiency: player?.skills?.sleightOfHandProf,
-            name: "Prestidigitação",
+            type: SkillsEnum.sleightOfHand,
+            player,
           },
         ]}
       />

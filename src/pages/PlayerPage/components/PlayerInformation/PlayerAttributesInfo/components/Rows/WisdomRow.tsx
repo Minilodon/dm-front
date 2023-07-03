@@ -4,6 +4,7 @@ import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
 import { AttributesEnum } from "../../../../../../../generated/graphql";
+import { SkillsEnum } from "../../../../../../../constants/skills";
 
 function WisdomRow() {
   const { player } = usePlayerContext();
@@ -27,31 +28,36 @@ function WisdomRow() {
             attributeValue: player?.attributes?.wis,
             hasProficiency: player?.skills?.insightProf,
             hasExpertise: player?.skills?.insightExp,
-            name: "Intuição",
+            type: SkillsEnum.insight,
+            player,
           },
           {
             attributeValue: player?.attributes?.wis,
             hasProficiency: player?.skills?.animalHandlingProf,
             hasExpertise: player?.skills?.animalHandlingExp,
-            name: "Lidar com Animais",
+            type: SkillsEnum.animalHandling,
+            player,
           },
           {
             attributeValue: player?.attributes?.wis,
             hasProficiency: player?.skills?.medicineProf,
             hasExpertise: player?.skills?.medicineExp,
-            name: "Medicina",
+            type: SkillsEnum.medicine,
+            player,
           },
           {
             attributeValue: player?.attributes?.wis,
             hasProficiency: player?.skills?.perceptionProf,
             hasExpertise: player?.skills?.perceptionExp,
-            name: "Percepção",
+            type: SkillsEnum.perception,
+            player,
           },
           {
             attributeValue: player?.attributes?.wis,
             hasProficiency: player?.skills?.survivalProf,
             hasExpertise: player?.skills?.survivalExp,
-            name: "Sobrevivência",
+            type: SkillsEnum.survival,
+            player,
           },
         ]}
       />

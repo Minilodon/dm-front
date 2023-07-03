@@ -4,6 +4,7 @@ import AttrAndModDisplay from "../../../../../../../components/AttrAndModDisplay
 import SaveDisplay from "../SaveDisplay";
 import SkillDisplay from "../SkillDisplay";
 import { AttributesEnum } from "../../../../../../../generated/graphql";
+import { SkillsEnum } from "../../../../../../../constants/skills";
 
 function CharismaRow() {
   const { player } = usePlayerContext();
@@ -27,25 +28,29 @@ function CharismaRow() {
             attributeValue: player?.attributes?.cha,
             hasProficiency: player?.skills?.performanceProf,
             hasExpertise: player?.skills?.performanceExp,
-            name: "Atuação",
+            type: SkillsEnum.performance,
+            player,
           },
           {
             attributeValue: player?.attributes?.cha,
             hasProficiency: player?.skills?.deceptionProf,
             hasExpertise: player?.skills?.deceptionExp,
-            name: "Enganação",
+            type: SkillsEnum.deception,
+            player,
           },
           {
             attributeValue: player?.attributes?.cha,
             hasProficiency: player?.skills?.intimidationProf,
             hasExpertise: player?.skills?.intimidationExp,
-            name: "Intimidação",
+            type: SkillsEnum.intimidation,
+            player,
           },
           {
             attributeValue: player?.attributes?.cha,
             hasProficiency: player?.skills?.persuasionProf,
             hasExpertise: player?.skills?.persuasionExp,
-            name: "Persuasão",
+            type: SkillsEnum.persuasion,
+            player,
           },
         ]}
       />

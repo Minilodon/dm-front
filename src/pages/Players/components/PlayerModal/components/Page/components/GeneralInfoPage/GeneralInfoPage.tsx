@@ -11,7 +11,6 @@ interface GeneralInfoPageProps {
 
 function GeneralInfoPage(props: GeneralInfoPageProps) {
   const { currentPage } = props;
-  const { selectedPlayer } = usePlayerContext();
   return (
     <div
       className={clsx(

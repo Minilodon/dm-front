@@ -1,16 +1,15 @@
 import React from "react";
-import { getModFromAttributes } from "../../../../../../helpers/get-mod-from-attributes";
-import { Tooltip } from "@mui/material";
-import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
-import { getProfBonus } from "../../../../../../helpers/get-prof-bonus";
 import { splitArray } from "../../../../../../helpers/split-array";
 import DoubleCheckbox from "../../../../../../components/DoubleCheckbox/DoubleCheckbox";
 import SkillModDisplay from "../../../../../../components/SkillModDisplay.tsx/SkillModDisplay";
+import { SkillsEnum, getSkillName } from "../../../../../../constants/skills";
+import { PlayerFragment } from "../../../../../../generated/graphql";
 export interface Skill {
-  name: string | undefined;
+  type: SkillsEnum;
   attributeValue: number | undefined;
   hasProficiency: boolean | undefined;
   hasExpertise: boolean | undefined;
+  player: PlayerFragment | undefined;
 }
 
 interface SkillDisplayProps {
@@ -31,13 +30,15 @@ function SkillDisplay(props: SkillDisplayProps) {
               <DoubleCheckbox
                 biggerBoolean={skill.hasProficiency || false}
                 smallerBoolean={skill.hasExpertise || false}
+                skill={skill.type}
+                player={skill.player!}
               />
               <SkillModDisplay
                 attributeValue={skill.attributeValue || 10}
                 hasExpertise={skill.hasExpertise || false}
                 hasProficiency={skill.hasProficiency || false}
               />
-              <span>{skill.name}</span>
+              <span>{getSkillName(skill.type)}</span>
             </div>
           ))}
       </div>
@@ -49,13 +50,15 @@ function SkillDisplay(props: SkillDisplayProps) {
               <DoubleCheckbox
                 biggerBoolean={skill.hasProficiency || false}
                 smallerBoolean={skill.hasExpertise || false}
+                skill={skill.type}
+                player={skill.player!}
               />
               <SkillModDisplay
                 attributeValue={skill.attributeValue || 10}
                 hasExpertise={skill.hasExpertise || false}
                 hasProficiency={skill.hasProficiency || false}
               />
-              <span>{skill.name}</span>
+              <span>{getSkillName(skill.type)}</span>
             </div>
           ))}
       </div>
