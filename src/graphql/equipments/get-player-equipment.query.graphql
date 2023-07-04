@@ -1,0 +1,12 @@
+query getPlayerEquipment($playerId: Float!) {
+  getPlayerEquipment(playerId: $playerId) {
+    equipmentId
+    equipped
+    playerId
+    proficient
+    quantity
+    equipmentDescription
+    equipmentName
+    weight
+  }
+}

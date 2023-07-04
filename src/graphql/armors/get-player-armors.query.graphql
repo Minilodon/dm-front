@@ -1,0 +1,15 @@
+query getPlayerArmors($playerId: Float!) {
+  getPlayerArmor(playerId: $playerId) {
+    armorAC
+    armorId
+    armorMinStr
+    armorName
+    armorType
+    equipped
+    playerId
+    proficient
+    quantity
+    stealthDis
+    weight
+  }
+}

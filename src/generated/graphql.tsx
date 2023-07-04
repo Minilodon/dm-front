@@ -191,6 +191,43 @@ export const WeaponFragmentDoc = gql`
   weaponImage
 }
     `;
+export const ConnectArmorToPlayerDocument = gql`
+    mutation connectArmorToPlayer($payload: ConnectArmorToPlayerInput!) {
+  connectArmorToPlayer(payload: $payload) {
+    equipped
+    playerId
+    proficient
+    quantity
+    armorId
+  }
+}
+    `;
+export type ConnectArmorToPlayerMutationFn = Apollo.MutationFunction<ConnectArmorToPlayerMutation, ConnectArmorToPlayerMutationVariables>;
+
+/**
+ * __useConnectArmorToPlayerMutation__
+ *
+ * To run a mutation, you first call `useConnectArmorToPlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConnectArmorToPlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [connectArmorToPlayerMutation, { data, loading, error }] = useConnectArmorToPlayerMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useConnectArmorToPlayerMutation(baseOptions?: Apollo.MutationHookOptions<ConnectArmorToPlayerMutation, ConnectArmorToPlayerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ConnectArmorToPlayerMutation, ConnectArmorToPlayerMutationVariables>(ConnectArmorToPlayerDocument, options);
+      }
+export type ConnectArmorToPlayerMutationHookResult = ReturnType<typeof useConnectArmorToPlayerMutation>;
+export type ConnectArmorToPlayerMutationResult = Apollo.MutationResult<ConnectArmorToPlayerMutation>;
+export type ConnectArmorToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectArmorToPlayerMutation, ConnectArmorToPlayerMutationVariables>;
 export const GetAllArmorsDocument = gql`
     query getAllArmors {
   getArmors {
@@ -225,6 +262,51 @@ export function useGetAllArmorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetAllArmorsQueryHookResult = ReturnType<typeof useGetAllArmorsQuery>;
 export type GetAllArmorsLazyQueryHookResult = ReturnType<typeof useGetAllArmorsLazyQuery>;
 export type GetAllArmorsQueryResult = Apollo.QueryResult<GetAllArmorsQuery, GetAllArmorsQueryVariables>;
+export const GetPlayerArmorsDocument = gql`
+    query getPlayerArmors($playerId: Float!) {
+  getPlayerArmor(playerId: $playerId) {
+    armorAC
+    armorId
+    armorMinStr
+    armorName
+    armorType
+    equipped
+    playerId
+    proficient
+    quantity
+    stealthDis
+    weight
+  }
+}
+    `;
+
+/**
+ * __useGetPlayerArmorsQuery__
+ *
+ * To run a query within a React component, call `useGetPlayerArmorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPlayerArmorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPlayerArmorsQuery({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *   },
+ * });
+ */
+export function useGetPlayerArmorsQuery(baseOptions: Apollo.QueryHookOptions<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>(GetPlayerArmorsDocument, options);
+      }
+export function useGetPlayerArmorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>(GetPlayerArmorsDocument, options);
+        }
+export type GetPlayerArmorsQueryHookResult = ReturnType<typeof useGetPlayerArmorsQuery>;
+export type GetPlayerArmorsLazyQueryHookResult = ReturnType<typeof useGetPlayerArmorsLazyQuery>;
+export type GetPlayerArmorsQueryResult = Apollo.QueryResult<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>;
 export const UpdatePlayerAttributesDocument = gql`
     mutation updatePlayerAttributes($playerId: Float!, $payload: UpdateAttributesInput!) {
   updatePlayerAttributes(playerId: $playerId, payload: $payload) {
@@ -293,6 +375,43 @@ export function useUpdatePlayerCurrencyMutation(baseOptions?: Apollo.MutationHoo
 export type UpdatePlayerCurrencyMutationHookResult = ReturnType<typeof useUpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationResult = Apollo.MutationResult<UpdatePlayerCurrencyMutation>;
 export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerCurrencyMutation, UpdatePlayerCurrencyMutationVariables>;
+export const ConnectEquipmentToPlayerDocument = gql`
+    mutation connectEquipmentToPlayer($payload: ConnectEquipmentToPlayerInput!) {
+  connectEquipmentToPlayer(payload: $payload) {
+    equipmentId
+    playerId
+    equipped
+    proficient
+    quantity
+  }
+}
+    `;
+export type ConnectEquipmentToPlayerMutationFn = Apollo.MutationFunction<ConnectEquipmentToPlayerMutation, ConnectEquipmentToPlayerMutationVariables>;
+
+/**
+ * __useConnectEquipmentToPlayerMutation__
+ *
+ * To run a mutation, you first call `useConnectEquipmentToPlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConnectEquipmentToPlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [connectEquipmentToPlayerMutation, { data, loading, error }] = useConnectEquipmentToPlayerMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useConnectEquipmentToPlayerMutation(baseOptions?: Apollo.MutationHookOptions<ConnectEquipmentToPlayerMutation, ConnectEquipmentToPlayerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ConnectEquipmentToPlayerMutation, ConnectEquipmentToPlayerMutationVariables>(ConnectEquipmentToPlayerDocument, options);
+      }
+export type ConnectEquipmentToPlayerMutationHookResult = ReturnType<typeof useConnectEquipmentToPlayerMutation>;
+export type ConnectEquipmentToPlayerMutationResult = Apollo.MutationResult<ConnectEquipmentToPlayerMutation>;
+export type ConnectEquipmentToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectEquipmentToPlayerMutation, ConnectEquipmentToPlayerMutationVariables>;
 export const GetAllEquipmentsDocument = gql`
     query getAllEquipments {
   getEquipments {
@@ -327,6 +446,48 @@ export function useGetAllEquipmentsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetAllEquipmentsQueryHookResult = ReturnType<typeof useGetAllEquipmentsQuery>;
 export type GetAllEquipmentsLazyQueryHookResult = ReturnType<typeof useGetAllEquipmentsLazyQuery>;
 export type GetAllEquipmentsQueryResult = Apollo.QueryResult<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>;
+export const GetPlayerEquipmentDocument = gql`
+    query getPlayerEquipment($playerId: Float!) {
+  getPlayerEquipment(playerId: $playerId) {
+    equipmentId
+    equipped
+    playerId
+    proficient
+    quantity
+    equipmentDescription
+    equipmentName
+    weight
+  }
+}
+    `;
+
+/**
+ * __useGetPlayerEquipmentQuery__
+ *
+ * To run a query within a React component, call `useGetPlayerEquipmentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPlayerEquipmentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPlayerEquipmentQuery({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *   },
+ * });
+ */
+export function useGetPlayerEquipmentQuery(baseOptions: Apollo.QueryHookOptions<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>(GetPlayerEquipmentDocument, options);
+      }
+export function useGetPlayerEquipmentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>(GetPlayerEquipmentDocument, options);
+        }
+export type GetPlayerEquipmentQueryHookResult = ReturnType<typeof useGetPlayerEquipmentQuery>;
+export type GetPlayerEquipmentLazyQueryHookResult = ReturnType<typeof useGetPlayerEquipmentLazyQuery>;
+export type GetPlayerEquipmentQueryResult = Apollo.QueryResult<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>;
 export const ConnectFeatToPlayerDocument = gql`
     mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
   connectFeatToPlayer(payload: $payload) {
@@ -741,6 +902,43 @@ export function useGetAllSpellsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetAllSpellsQueryHookResult = ReturnType<typeof useGetAllSpellsQuery>;
 export type GetAllSpellsLazyQueryHookResult = ReturnType<typeof useGetAllSpellsLazyQuery>;
 export type GetAllSpellsQueryResult = Apollo.QueryResult<GetAllSpellsQuery, GetAllSpellsQueryVariables>;
+export const ConnectWeaponToPlayerDocument = gql`
+    mutation connectWeaponToPlayer($payload: ConnectWeaponToPlayerInput!) {
+  connectWeaponToPlayer(payload: $payload) {
+    equipped
+    playerId
+    proficient
+    quantity
+    weaponId
+  }
+}
+    `;
+export type ConnectWeaponToPlayerMutationFn = Apollo.MutationFunction<ConnectWeaponToPlayerMutation, ConnectWeaponToPlayerMutationVariables>;
+
+/**
+ * __useConnectWeaponToPlayerMutation__
+ *
+ * To run a mutation, you first call `useConnectWeaponToPlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConnectWeaponToPlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [connectWeaponToPlayerMutation, { data, loading, error }] = useConnectWeaponToPlayerMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useConnectWeaponToPlayerMutation(baseOptions?: Apollo.MutationHookOptions<ConnectWeaponToPlayerMutation, ConnectWeaponToPlayerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ConnectWeaponToPlayerMutation, ConnectWeaponToPlayerMutationVariables>(ConnectWeaponToPlayerDocument, options);
+      }
+export type ConnectWeaponToPlayerMutationHookResult = ReturnType<typeof useConnectWeaponToPlayerMutation>;
+export type ConnectWeaponToPlayerMutationResult = Apollo.MutationResult<ConnectWeaponToPlayerMutation>;
+export type ConnectWeaponToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectWeaponToPlayerMutation, ConnectWeaponToPlayerMutationVariables>;
 export const GetAllWeaponsDocument = gql`
     query getAllWeapons {
   getWeapons {
@@ -784,6 +982,49 @@ export function useGetAllWeaponsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllWeaponsQueryHookResult = ReturnType<typeof useGetAllWeaponsQuery>;
 export type GetAllWeaponsLazyQueryHookResult = ReturnType<typeof useGetAllWeaponsLazyQuery>;
 export type GetAllWeaponsQueryResult = Apollo.QueryResult<GetAllWeaponsQuery, GetAllWeaponsQueryVariables>;
+export const GetPlayerWeaponsDocument = gql`
+    query getPlayerWeapons($playerId: Float!) {
+  getPlayerWeapon(playerId: $playerId) {
+    equipped
+    playerId
+    proficient
+    quantity
+    weaponDescription
+    weaponId
+    weaponName
+    weaponType
+    weight
+  }
+}
+    `;
+
+/**
+ * __useGetPlayerWeaponsQuery__
+ *
+ * To run a query within a React component, call `useGetPlayerWeaponsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPlayerWeaponsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPlayerWeaponsQuery({
+ *   variables: {
+ *      playerId: // value for 'playerId'
+ *   },
+ * });
+ */
+export function useGetPlayerWeaponsQuery(baseOptions: Apollo.QueryHookOptions<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>(GetPlayerWeaponsDocument, options);
+      }
+export function useGetPlayerWeaponsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>(GetPlayerWeaponsDocument, options);
+        }
+export type GetPlayerWeaponsQueryHookResult = ReturnType<typeof useGetPlayerWeaponsQuery>;
+export type GetPlayerWeaponsLazyQueryHookResult = ReturnType<typeof useGetPlayerWeaponsLazyQuery>;
+export type GetPlayerWeaponsQueryResult = Apollo.QueryResult<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -908,6 +1149,22 @@ export enum Class {
   Warrior3 = 'Warrior3'
 }
 
+export type ConnectArmorToPlayerInput = {
+  armorId: Scalars['Int'];
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Int']>;
+};
+
+export type ConnectEquipmentToPlayerInput = {
+  equipmentId: Scalars['Int'];
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Int']>;
+};
+
 export type ConnectFeatToPlayerInput = {
   active?: InputMaybe<Scalars['Boolean']>;
   currentCharges?: InputMaybe<Scalars['Int']>;
@@ -915,6 +1172,14 @@ export type ConnectFeatToPlayerInput = {
   playerId: Scalars['Int'];
   source?: InputMaybe<Scalars['String']>;
   totalCharges?: InputMaybe<Scalars['Int']>;
+};
+
+export type ConnectWeaponToPlayerInput = {
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Int']>;
+  weaponId: Scalars['Int'];
 };
 
 export type CreateArmorInput = {
@@ -1272,7 +1537,10 @@ export type Magic = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  connectArmorToPlayer: PlayerArmor;
+  connectEquipmentToPlayer: PlayerEquipment;
   connectFeatToPlayer: PlayerOnFeat;
+  connectWeaponToPlayer: PlayerWeapon;
   createArmor: Armor;
   createEquipment: Equipment;
   createFeat: Feat;
@@ -1291,8 +1559,23 @@ export type Mutation = {
 };
 
 
+export type MutationConnectArmorToPlayerArgs = {
+  payload: ConnectArmorToPlayerInput;
+};
+
+
+export type MutationConnectEquipmentToPlayerArgs = {
+  payload: ConnectEquipmentToPlayerInput;
+};
+
+
 export type MutationConnectFeatToPlayerArgs = {
   payload: ConnectFeatToPlayerInput;
+};
+
+
+export type MutationConnectWeaponToPlayerArgs = {
+  payload: ConnectWeaponToPlayerInput;
 };
 
 
@@ -1426,6 +1709,51 @@ export type Player = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type PlayerArmor = {
+  __typename?: 'PlayerArmor';
+  armorId: Scalars['Int'];
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+};
+
+export type PlayerArmorFull = {
+  __typename?: 'PlayerArmorFull';
+  armorAC: Scalars['Int'];
+  armorId: Scalars['Int'];
+  armorMinStr?: Maybe<Scalars['Int']>;
+  armorName: Scalars['String'];
+  armorType: ArmorType;
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+  stealthDis?: Maybe<Scalars['Boolean']>;
+  weight: Scalars['Float'];
+};
+
+export type PlayerEquipment = {
+  __typename?: 'PlayerEquipment';
+  equipmentId: Scalars['Int'];
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+};
+
+export type PlayerEquipmentFull = {
+  __typename?: 'PlayerEquipmentFull';
+  equipmentDescription: Scalars['String'];
+  equipmentId: Scalars['Int'];
+  equipmentName: Scalars['String'];
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+  weight: Scalars['Float'];
+};
+
 export type PlayerFeats = {
   __typename?: 'PlayerFeats';
   active: Scalars['Boolean'];
@@ -1446,6 +1774,28 @@ export type PlayerOnFeat = {
   totalCharges?: Maybe<Scalars['Int']>;
 };
 
+export type PlayerWeapon = {
+  __typename?: 'PlayerWeapon';
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+  weaponId: Scalars['Int'];
+};
+
+export type PlayerWeaponFull = {
+  __typename?: 'PlayerWeaponFull';
+  equipped: Scalars['Boolean'];
+  playerId: Scalars['Int'];
+  proficient: Scalars['Boolean'];
+  quantity: Scalars['Int'];
+  weaponDescription: Scalars['String'];
+  weaponId: Scalars['Int'];
+  weaponName: Scalars['String'];
+  weaponType: WeaponType;
+  weight: Scalars['Float'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getAllFeats: Array<Feat>;
@@ -1453,8 +1803,11 @@ export type Query = {
   getArmors: Array<Armor>;
   getEquipments: Array<Equipment>;
   getFeatsFromPlayer: Array<Maybe<Feat>>;
+  getPlayerArmor: Array<PlayerArmorFull>;
   getPlayerById: Player;
+  getPlayerEquipment: Array<PlayerEquipmentFull>;
   getPlayerFeats: Array<PlayerFeats>;
+  getPlayerWeapon: Array<PlayerWeaponFull>;
   getPlayersFromFeat: Array<Maybe<Player>>;
   getSpells: Array<Spell>;
   getWeapons: Array<Weapon>;
@@ -1466,12 +1819,27 @@ export type QueryGetFeatsFromPlayerArgs = {
 };
 
 
+export type QueryGetPlayerArmorArgs = {
+  playerId: Scalars['Float'];
+};
+
+
 export type QueryGetPlayerByIdArgs = {
   playerId: Scalars['Float'];
 };
 
 
+export type QueryGetPlayerEquipmentArgs = {
+  playerId: Scalars['Float'];
+};
+
+
 export type QueryGetPlayerFeatsArgs = {
+  playerId: Scalars['Float'];
+};
+
+
+export type QueryGetPlayerWeaponArgs = {
   playerId: Scalars['Float'];
 };
 
@@ -1834,10 +2202,24 @@ export enum WeaponType {
 
 export type ArmorFragment = { __typename?: 'Armor', id: number, type: ArmorType, name: string, cost: number, armorImage?: string | null, AC: number, minStr?: number | null, stealthDis?: boolean | null, weight: number };
 
+export type ConnectArmorToPlayerMutationVariables = Exact<{
+  payload: ConnectArmorToPlayerInput;
+}>;
+
+
+export type ConnectArmorToPlayerMutation = { __typename?: 'Mutation', connectArmorToPlayer: { __typename?: 'PlayerArmor', equipped: boolean, playerId: number, proficient: boolean, quantity: number, armorId: number } };
+
 export type GetAllArmorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllArmorsQuery = { __typename?: 'Query', getArmors: Array<{ __typename?: 'Armor', id: number, type: ArmorType, name: string, cost: number, armorImage?: string | null, AC: number, minStr?: number | null, stealthDis?: boolean | null, weight: number }> };
+
+export type GetPlayerArmorsQueryVariables = Exact<{
+  playerId: Scalars['Float'];
+}>;
+
+
+export type GetPlayerArmorsQuery = { __typename?: 'Query', getPlayerArmor: Array<{ __typename?: 'PlayerArmorFull', armorAC: number, armorId: number, armorMinStr?: number | null, armorName: string, armorType: ArmorType, equipped: boolean, playerId: number, proficient: boolean, quantity: number, stealthDis?: boolean | null, weight: number }> };
 
 export type UpdatePlayerAttributesMutationVariables = Exact<{
   playerId: Scalars['Float'];
@@ -1855,12 +2237,26 @@ export type UpdatePlayerCurrencyMutationVariables = Exact<{
 
 export type UpdatePlayerCurrencyMutation = { __typename?: 'Mutation', updatePlayerCurrency: { __typename?: 'Currency', playerId: number } };
 
+export type ConnectEquipmentToPlayerMutationVariables = Exact<{
+  payload: ConnectEquipmentToPlayerInput;
+}>;
+
+
+export type ConnectEquipmentToPlayerMutation = { __typename?: 'Mutation', connectEquipmentToPlayer: { __typename?: 'PlayerEquipment', equipmentId: number, playerId: number, equipped: boolean, proficient: boolean, quantity: number } };
+
 export type EquipmentFragment = { __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType };
 
 export type GetAllEquipmentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllEquipmentsQuery = { __typename?: 'Query', getEquipments: Array<{ __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType }> };
+
+export type GetPlayerEquipmentQueryVariables = Exact<{
+  playerId: Scalars['Float'];
+}>;
+
+
+export type GetPlayerEquipmentQuery = { __typename?: 'Query', getPlayerEquipment: Array<{ __typename?: 'PlayerEquipmentFull', equipmentId: number, equipped: boolean, playerId: number, proficient: boolean, quantity: number, equipmentDescription: string, equipmentName: string, weight: number }> };
 
 export type ConnectFeatToPlayerMutationVariables = Exact<{
   payload: ConnectFeatToPlayerInput;
@@ -1950,9 +2346,23 @@ export type GetAllSpellsQuery = { __typename?: 'Query', getSpells: Array<{ __typ
 
 export type SpellFragment = { __typename?: 'Spell', id: number, circle: number, ritual?: boolean | null, conjurationTime?: string | null, range: number, verbal: boolean, somatic: boolean, material: boolean, obligatoryMaterial?: boolean | null, duration: string, focus?: boolean | null, school: SchoolOfMagic, targets: string, effectArea: string, description: string, higherLevel?: string | null, name: string };
 
+export type ConnectWeaponToPlayerMutationVariables = Exact<{
+  payload: ConnectWeaponToPlayerInput;
+}>;
+
+
+export type ConnectWeaponToPlayerMutation = { __typename?: 'Mutation', connectWeaponToPlayer: { __typename?: 'PlayerWeapon', equipped: boolean, playerId: number, proficient: boolean, quantity: number, weaponId: number } };
+
 export type GetAllWeaponsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllWeaponsQuery = { __typename?: 'Query', getWeapons: Array<{ __typename?: 'Weapon', id: number, name: string, description: string, type: WeaponType, cost: number, damageDice: number, dmgType: DamageType, diceQuantity: number, weight: number, weaponImage?: string | null }> };
+
+export type GetPlayerWeaponsQueryVariables = Exact<{
+  playerId: Scalars['Float'];
+}>;
+
+
+export type GetPlayerWeaponsQuery = { __typename?: 'Query', getPlayerWeapon: Array<{ __typename?: 'PlayerWeaponFull', equipped: boolean, playerId: number, proficient: boolean, quantity: number, weaponDescription: string, weaponId: number, weaponName: string, weaponType: WeaponType, weight: number }> };
 
 export type WeaponFragment = { __typename?: 'Weapon', id: number, name: string, description: string, type: WeaponType, cost: number, dmgType: DamageType, damageDice: number, diceQuantity: number, weight: number, weaponImage?: string | null };

@@ -1,0 +1,13 @@
+query getPlayerWeapons($playerId: Float!) {
+  getPlayerWeapon(playerId: $playerId) {
+    equipped
+    playerId
+    proficient
+    quantity
+    weaponDescription
+    weaponId
+    weaponName
+    weaponType
+    weight
+  }
+}

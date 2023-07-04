@@ -133,6 +133,22 @@ enum Class {
   Warrior3
 }
 
+input ConnectArmorToPlayerInput {
+  armorId: Int!
+  equipped: Boolean = false
+  playerId: Int!
+  proficient: Boolean = false
+  quantity: Int = 1
+}
+
+input ConnectEquipmentToPlayerInput {
+  equipmentId: Int!
+  equipped: Boolean = false
+  playerId: Int!
+  proficient: Boolean = false
+  quantity: Int = 1
+}
+
 input ConnectFeatToPlayerInput {
   active: Boolean = false
   currentCharges: Int
@@ -140,6 +156,14 @@ input ConnectFeatToPlayerInput {
   playerId: Int!
   source: String = "level up"
   totalCharges: Int
+}
+
+input ConnectWeaponToPlayerInput {
+  equipped: Boolean = false
+  playerId: Int!
+  proficient: Boolean = false
+  quantity: Int = 1
+  weaponId: Int!
 }
 
 input CreateArmorInput {
@@ -538,7 +562,10 @@ type Magic {
 }
 
 type Mutation {
+  connectArmorToPlayer(payload: ConnectArmorToPlayerInput!): PlayerArmor!
+  connectEquipmentToPlayer(payload: ConnectEquipmentToPlayerInput!): PlayerEquipment!
   connectFeatToPlayer(payload: ConnectFeatToPlayerInput!): PlayerOnFeat!
+  connectWeaponToPlayer(payload: ConnectWeaponToPlayerInput!): PlayerWeapon!
   createArmor(payload: CreateArmorInput!): Armor!
   createEquipment(payload: CreateEquipmentInput!): Equipment!
   createFeat(payload: CreateFeatInput!): Feat!
@@ -613,6 +640,47 @@ type Player {
   updatedAt: DateTime!
 }
 
+type PlayerArmor {
+  armorId: Int!
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+}
+
+type PlayerArmorFull {
+  armorAC: Int!
+  armorId: Int!
+  armorMinStr: Int
+  armorName: String!
+  armorType: ArmorType!
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+  stealthDis: Boolean
+  weight: Float!
+}
+
+type PlayerEquipment {
+  equipmentId: Int!
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+}
+
+type PlayerEquipmentFull {
+  equipmentDescription: String!
+  equipmentId: Int!
+  equipmentName: String!
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+  weight: Float!
+}
+
 type PlayerFeats {
   active: Boolean!
   currentCharges: Int
@@ -631,14 +699,37 @@ type PlayerOnFeat {
   totalCharges: Int
 }
 
+type PlayerWeapon {
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+  weaponId: Int!
+}
+
+type PlayerWeaponFull {
+  equipped: Boolean!
+  playerId: Int!
+  proficient: Boolean!
+  quantity: Int!
+  weaponDescription: String!
+  weaponId: Int!
+  weaponName: String!
+  weaponType: WeaponType!
+  weight: Float!
+}
+
 type Query {
   getAllFeats: [Feat!]!
   getAllPlayers: [Player!]!
   getArmors: [Armor!]!
   getEquipments: [Equipment!]!
   getFeatsFromPlayer(playerId: Float!): [Feat]!
+  getPlayerArmor(playerId: Float!): [PlayerArmorFull!]!
   getPlayerById(playerId: Float!): Player!
+  getPlayerEquipment(playerId: Float!): [PlayerEquipmentFull!]!
   getPlayerFeats(playerId: Float!): [PlayerFeats!]!
+  getPlayerWeapon(playerId: Float!): [PlayerWeaponFull!]!
   getPlayersFromFeat(featId: Float!): [Player]!
   getSpells: [Spell!]!
   getWeapons: [Weapon!]!
