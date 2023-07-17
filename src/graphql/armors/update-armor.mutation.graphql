@@ -1,0 +1,13 @@
+mutation updateArmor($payload: UpdateArmorInput!) {
+  updateArmor(payload: $payload) {
+    AC
+    armorImage
+    cost
+    id
+    minStr
+    name
+    stealthDis
+    type
+    weight
+  }
+}

@@ -574,6 +574,7 @@ type Mutation {
   createSpell(payload: CreateSpellInput!): Spell!
   createWeapon(payload: CreateWeaponInput!): Weapon!
   deleteFeat(featId: Float!): Feat!
+  updateArmor(payload: UpdateArmorInput!): Armor!
   updateFeat(featId: Float!, payload: UpdateFeatInput!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
@@ -965,6 +966,18 @@ type Spell {
   somatic: Boolean!
   targets: String!
   verbal: Boolean!
+}
+
+input UpdateArmorInput {
+  AC: Int
+  armorImage: String
+  cost: Float
+  id: Int!
+  minStr: Int
+  name: String
+  stealthDis: Boolean = false
+  type: ArmorType
+  weight: Float
 }
 
 input UpdateAttributesInput {

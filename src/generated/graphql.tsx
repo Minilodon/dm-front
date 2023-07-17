@@ -307,6 +307,47 @@ export function useGetPlayerArmorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetPlayerArmorsQueryHookResult = ReturnType<typeof useGetPlayerArmorsQuery>;
 export type GetPlayerArmorsLazyQueryHookResult = ReturnType<typeof useGetPlayerArmorsLazyQuery>;
 export type GetPlayerArmorsQueryResult = Apollo.QueryResult<GetPlayerArmorsQuery, GetPlayerArmorsQueryVariables>;
+export const UpdateArmorDocument = gql`
+    mutation updateArmor($payload: UpdateArmorInput!) {
+  updateArmor(payload: $payload) {
+    AC
+    armorImage
+    cost
+    id
+    minStr
+    name
+    stealthDis
+    type
+    weight
+  }
+}
+    `;
+export type UpdateArmorMutationFn = Apollo.MutationFunction<UpdateArmorMutation, UpdateArmorMutationVariables>;
+
+/**
+ * __useUpdateArmorMutation__
+ *
+ * To run a mutation, you first call `useUpdateArmorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateArmorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateArmorMutation, { data, loading, error }] = useUpdateArmorMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdateArmorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateArmorMutation, UpdateArmorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateArmorMutation, UpdateArmorMutationVariables>(UpdateArmorDocument, options);
+      }
+export type UpdateArmorMutationHookResult = ReturnType<typeof useUpdateArmorMutation>;
+export type UpdateArmorMutationResult = Apollo.MutationResult<UpdateArmorMutation>;
+export type UpdateArmorMutationOptions = Apollo.BaseMutationOptions<UpdateArmorMutation, UpdateArmorMutationVariables>;
 export const UpdatePlayerAttributesDocument = gql`
     mutation updatePlayerAttributes($playerId: Float!, $payload: UpdateAttributesInput!) {
   updatePlayerAttributes(playerId: $playerId, payload: $payload) {
@@ -1549,6 +1590,7 @@ export type Mutation = {
   createSpell: Spell;
   createWeapon: Weapon;
   deleteFeat: Feat;
+  updateArmor: Armor;
   updateFeat: Feat;
   updatePlayer: Player;
   updatePlayerAttributes: Attributes;
@@ -1622,6 +1664,11 @@ export type MutationCreateWeaponArgs = {
 
 export type MutationDeleteFeatArgs = {
   featId: Scalars['Float'];
+};
+
+
+export type MutationUpdateArmorArgs = {
+  payload: UpdateArmorInput;
 };
 
 
@@ -2029,6 +2076,18 @@ export type Spell = {
   verbal: Scalars['Boolean'];
 };
 
+export type UpdateArmorInput = {
+  AC?: InputMaybe<Scalars['Int']>;
+  armorImage?: InputMaybe<Scalars['String']>;
+  cost?: InputMaybe<Scalars['Float']>;
+  id: Scalars['Int'];
+  minStr?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  stealthDis?: InputMaybe<Scalars['Boolean']>;
+  type?: InputMaybe<ArmorType>;
+  weight?: InputMaybe<Scalars['Float']>;
+};
+
 export type UpdateAttributesInput = {
   cha?: InputMaybe<Scalars['Int']>;
   chaSave?: InputMaybe<Scalars['Boolean']>;
@@ -2220,6 +2279,13 @@ export type GetPlayerArmorsQueryVariables = Exact<{
 
 
 export type GetPlayerArmorsQuery = { __typename?: 'Query', getPlayerArmor: Array<{ __typename?: 'PlayerArmorFull', armorAC: number, armorId: number, armorMinStr?: number | null, armorName: string, armorType: ArmorType, equipped: boolean, playerId: number, proficient: boolean, quantity: number, stealthDis?: boolean | null, weight: number }> };
+
+export type UpdateArmorMutationVariables = Exact<{
+  payload: UpdateArmorInput;
+}>;
+
+
+export type UpdateArmorMutation = { __typename?: 'Mutation', updateArmor: { __typename?: 'Armor', AC: number, armorImage?: string | null, cost: number, id: number, minStr?: number | null, name: string, stealthDis?: boolean | null, type: ArmorType, weight: number } };
 
 export type UpdatePlayerAttributesMutationVariables = Exact<{
   playerId: Scalars['Float'];
