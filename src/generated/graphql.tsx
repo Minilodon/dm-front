@@ -529,6 +529,46 @@ export function useGetPlayerEquipmentLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetPlayerEquipmentQueryHookResult = ReturnType<typeof useGetPlayerEquipmentQuery>;
 export type GetPlayerEquipmentLazyQueryHookResult = ReturnType<typeof useGetPlayerEquipmentLazyQuery>;
 export type GetPlayerEquipmentQueryResult = Apollo.QueryResult<GetPlayerEquipmentQuery, GetPlayerEquipmentQueryVariables>;
+export const UpdateEquipmentDocument = gql`
+    mutation updateEquipment($payload: UpdateEquipmentInput!) {
+  updateEquipment(payload: $payload) {
+    capacity
+    cost
+    description
+    equipmentImage
+    id
+    name
+    type
+    weight
+  }
+}
+    `;
+export type UpdateEquipmentMutationFn = Apollo.MutationFunction<UpdateEquipmentMutation, UpdateEquipmentMutationVariables>;
+
+/**
+ * __useUpdateEquipmentMutation__
+ *
+ * To run a mutation, you first call `useUpdateEquipmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateEquipmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateEquipmentMutation, { data, loading, error }] = useUpdateEquipmentMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdateEquipmentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateEquipmentMutation, UpdateEquipmentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateEquipmentMutation, UpdateEquipmentMutationVariables>(UpdateEquipmentDocument, options);
+      }
+export type UpdateEquipmentMutationHookResult = ReturnType<typeof useUpdateEquipmentMutation>;
+export type UpdateEquipmentMutationResult = Apollo.MutationResult<UpdateEquipmentMutation>;
+export type UpdateEquipmentMutationOptions = Apollo.BaseMutationOptions<UpdateEquipmentMutation, UpdateEquipmentMutationVariables>;
 export const ConnectFeatToPlayerDocument = gql`
     mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
   connectFeatToPlayer(payload: $payload) {
@@ -1633,6 +1673,7 @@ export type Mutation = {
   createWeapon: Weapon;
   deleteFeat: Feat;
   updateArmor: Armor;
+  updateEquipment: Equipment;
   updateFeat: Feat;
   updatePlayer: Player;
   updatePlayerAttributes: Attributes;
@@ -1712,6 +1753,11 @@ export type MutationDeleteFeatArgs = {
 
 export type MutationUpdateArmorArgs = {
   payload: UpdateArmorInput;
+};
+
+
+export type MutationUpdateEquipmentArgs = {
+  payload: UpdateEquipmentInput;
 };
 
 
@@ -2159,6 +2205,17 @@ export type UpdateCurrencyInput = {
   silver?: InputMaybe<Scalars['Int']>;
 };
 
+export type UpdateEquipmentInput = {
+  capacity?: InputMaybe<Scalars['String']>;
+  cost?: InputMaybe<Scalars['Float']>;
+  description?: InputMaybe<Scalars['String']>;
+  equipmentImage?: InputMaybe<Scalars['String']>;
+  id: Scalars['Int'];
+  name?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<EquipmentType>;
+  weight?: InputMaybe<Scalars['Float']>;
+};
+
 export type UpdateFeatInput = {
   description?: InputMaybe<Scalars['String']>;
   iconUrl?: InputMaybe<Scalars['String']>;
@@ -2384,6 +2441,13 @@ export type GetPlayerEquipmentQueryVariables = Exact<{
 
 
 export type GetPlayerEquipmentQuery = { __typename?: 'Query', getPlayerEquipment: Array<{ __typename?: 'PlayerEquipmentFull', equipmentId: number, equipped: boolean, playerId: number, proficient: boolean, quantity: number, equipmentDescription: string, equipmentName: string, weight: number }> };
+
+export type UpdateEquipmentMutationVariables = Exact<{
+  payload: UpdateEquipmentInput;
+}>;
+
+
+export type UpdateEquipmentMutation = { __typename?: 'Mutation', updateEquipment: { __typename?: 'Equipment', capacity?: string | null, cost: number, description: string, equipmentImage?: string | null, id: number, name: string, type: EquipmentType, weight: number } };
 
 export type ConnectFeatToPlayerMutationVariables = Exact<{
   payload: ConnectFeatToPlayerInput;

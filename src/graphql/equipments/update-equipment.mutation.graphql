@@ -1,0 +1,12 @@
+mutation updateEquipment($payload: UpdateEquipmentInput!) {
+  updateEquipment(payload: $payload) {
+    capacity
+    cost
+    description
+    equipmentImage
+    id
+    name
+    type
+    weight
+  }
+}

@@ -575,6 +575,7 @@ type Mutation {
   createWeapon(payload: CreateWeaponInput!): Weapon!
   deleteFeat(featId: Float!): Feat!
   updateArmor(payload: UpdateArmorInput!): Armor!
+  updateEquipment(payload: UpdateEquipmentInput!): Equipment!
   updateFeat(featId: Float!, payload: UpdateFeatInput!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
@@ -1002,6 +1003,17 @@ input UpdateCurrencyInput {
   gold: Int
   platinum: Int
   silver: Int
+}
+
+input UpdateEquipmentInput {
+  capacity: String
+  cost: Float
+  description: String
+  equipmentImage: String
+  id: Int!
+  name: String
+  type: EquipmentType
+  weight: Float
 }
 
 input UpdateFeatInput {
