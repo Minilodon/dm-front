@@ -107,109 +107,117 @@ function EditWeaponDrawer(props: EditWeaponDrawerProps) {
             />
           )}
         />
-        <Controller
-          control={control}
-          name="type"
-          render={({ field }) => (
-            <FormControl fullWidth>
-              <InputLabel>Tipo</InputLabel>
-              <Select
+        <div className="flex items-center gap-x-2">
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <InputLabel>Tipo</InputLabel>
+                <Select
+                  value={field.value}
+                  label="Tipo"
+                  onChange={field.onChange}
+                >
+                  <MenuItem value={WeaponType.MartialMelee}>
+                    Marcial - Corpo a corpo
+                  </MenuItem>
+                  <MenuItem value={WeaponType.MartialRanged}>
+                    Marcial - À distância
+                  </MenuItem>
+                  <MenuItem value={WeaponType.SimpleMelee}>
+                    Simples - Corpo a corpo
+                  </MenuItem>
+                  <MenuItem value={WeaponType.SimpleRanged}>
+                    Simples - À distância
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          />
+          <Controller
+            control={control}
+            name="cost"
+            render={({ field }) => (
+              <TextField
                 value={field.value}
-                label="Tipo"
                 onChange={field.onChange}
-              >
-                <MenuItem value={WeaponType.MartialMelee}>
-                  Marcial - Corpo a corpo
-                </MenuItem>
-                <MenuItem value={WeaponType.MartialRanged}>
-                  Marcial - À distância
-                </MenuItem>
-                <MenuItem value={WeaponType.SimpleMelee}>
-                  Simples - Corpo a corpo
-                </MenuItem>
-                <MenuItem value={WeaponType.SimpleRanged}>
-                  Simples - À distância
-                </MenuItem>
-              </Select>
-            </FormControl>
-          )}
-        />
-        <Controller
-          control={control}
-          name="cost"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Custo (PC)"
-              type="number"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="dmgType"
-          render={({ field }) => (
-            <FormControl fullWidth>
-              <InputLabel>Dano</InputLabel>
-              <Select
+                label="Custo (PC)"
+                type="number"
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Controller
+            control={control}
+            name="dmgType"
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <InputLabel>Dano</InputLabel>
+                <Select
+                  value={field.value}
+                  label="Tipo do Dano"
+                  onChange={field.onChange}
+                >
+                  <MenuItem value={DamageType.Acid}>Ácido</MenuItem>
+                  <MenuItem value={DamageType.Bludgeoning}>
+                    Contundente
+                  </MenuItem>
+                  <MenuItem value={DamageType.Cold}>Gélido</MenuItem>
+                  <MenuItem value={DamageType.Fire}>Ígneo</MenuItem>
+                  <MenuItem value={DamageType.Force}>Força</MenuItem>
+                  <MenuItem value={DamageType.Lightning}>Elétrico</MenuItem>
+                  <MenuItem value={DamageType.Necrotic}>Necrótico</MenuItem>
+                  <MenuItem value={DamageType.Piercing}>Perfurante</MenuItem>
+                  <MenuItem value={DamageType.Poison}>Venenoso</MenuItem>
+                  <MenuItem value={DamageType.Psychic}>Psíquico</MenuItem>
+                  <MenuItem value={DamageType.Radiant}>Radiante</MenuItem>
+                  <MenuItem value={DamageType.Slashing}>Cortante</MenuItem>
+                  <MenuItem value={DamageType.Thunder}>Trovejante</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          />
+          <Controller
+            control={control}
+            name="diceQuantity"
+            render={({ field }) => (
+              <TextField
                 value={field.value}
-                label="Tipo do Dano"
                 onChange={field.onChange}
-              >
-                <MenuItem value={DamageType.Acid}>Ácido</MenuItem>
-                <MenuItem value={DamageType.Bludgeoning}>Contundente</MenuItem>
-                <MenuItem value={DamageType.Cold}>Gélido</MenuItem>
-                <MenuItem value={DamageType.Fire}>Ígneo</MenuItem>
-                <MenuItem value={DamageType.Force}>Força</MenuItem>
-                <MenuItem value={DamageType.Lightning}>Elétrico</MenuItem>
-                <MenuItem value={DamageType.Necrotic}>Necrótico</MenuItem>
-                <MenuItem value={DamageType.Piercing}>Perfurante</MenuItem>
-                <MenuItem value={DamageType.Poison}>Venenoso</MenuItem>
-                <MenuItem value={DamageType.Psychic}>Psíquico</MenuItem>
-                <MenuItem value={DamageType.Radiant}>Radiante</MenuItem>
-                <MenuItem value={DamageType.Slashing}>Cortante</MenuItem>
-                <MenuItem value={DamageType.Thunder}>Trovejante</MenuItem>
-              </Select>
-            </FormControl>
-          )}
-        />
-        <Controller
-          control={control}
-          name="diceQuantity"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Quantidade de dados"
-              type="number"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="damageDice"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Dano do(s) dados"
-              type="number"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="weight"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Peso"
-              type="number"
-            />
-          )}
-        />
+                label="Quantidade de dados"
+                type="number"
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Controller
+            control={control}
+            name="damageDice"
+            render={({ field }) => (
+              <TextField
+                value={field.value}
+                onChange={field.onChange}
+                label="Dano do(s) dados"
+                type="number"
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="weight"
+            render={({ field }) => (
+              <TextField
+                value={field.value}
+                onChange={field.onChange}
+                label="Peso (Kg)"
+                type="number"
+              />
+            )}
+          />
+        </div>
         <Controller
           control={control}
           name="weaponImage"

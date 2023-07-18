@@ -20,7 +20,7 @@ const schema = object({
 interface FormValues {
   name: string;
   description: string;
-  iconUrl: string | null;
+  iconUrl: string | null | undefined;
 }
 
 function CreateFeatDrawer() {

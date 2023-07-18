@@ -1,12 +1,8 @@
 import React from "react";
 import {
-  DamageType,
   EquipmentFragment,
   EquipmentType,
-  WeaponFragment,
-  WeaponType,
   useUpdateEquipmentMutation,
-  useUpdateWeaponMutation,
 } from "../../../../../generated/graphql";
 import {
   FormControl,
@@ -20,6 +16,8 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../../../../../components/Button/Button";
 import { useDrawerContext } from "../../../../../contexts/DrawerContext";
+import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 
 interface EditEquipmentDrawerProps {
   equipment: EquipmentFragment;
@@ -96,68 +94,80 @@ function EditEquipmentDrawer(props: EditEquipmentDrawerProps) {
         <Controller
           control={control}
           name="description"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Descrição"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="type"
-          render={({ field }) => (
-            <FormControl fullWidth>
-              <InputLabel>Tipo</InputLabel>
-              <Select
+          render={({ field, formState }) => (
+            <div className="flex flex-col">
+              <span className="text-sm">Descrição</span>
+              <ReactQuill
                 value={field.value}
-                label="Tipo"
                 onChange={field.onChange}
-              >
-                <MenuItem value={EquipmentType.Artisan}>Artesão</MenuItem>
-                <MenuItem value={EquipmentType.Gaming}>Tabuleiro</MenuItem>
-                <MenuItem value={EquipmentType.Musical}>Musical</MenuItem>
-                <MenuItem value={EquipmentType.Other}>Outro</MenuItem>
-              </Select>
-            </FormControl>
+                theme="snow"
+                className="h-52 mb-14"
+                placeholder="Descrição"
+              />
+              <span className="text-red-500">
+                {formState.errors.description?.message ?? null}
+              </span>
+            </div>
           )}
         />
-        <Controller
-          control={control}
-          name="cost"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Custo (PC)"
-              type="number"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="capacity"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Capacidade"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="weight"
-          render={({ field }) => (
-            <TextField
-              value={field.value}
-              onChange={field.onChange}
-              label="Peso"
-              type="number"
-            />
-          )}
-        />
+        <div className="flex items-center gap-x-2">
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <InputLabel>Tipo</InputLabel>
+                <Select
+                  value={field.value}
+                  label="Tipo"
+                  onChange={field.onChange}
+                >
+                  <MenuItem value={EquipmentType.Artisan}>Artesão</MenuItem>
+                  <MenuItem value={EquipmentType.Gaming}>Tabuleiro</MenuItem>
+                  <MenuItem value={EquipmentType.Musical}>Musical</MenuItem>
+                  <MenuItem value={EquipmentType.Other}>Outro</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          />
+          <Controller
+            control={control}
+            name="cost"
+            render={({ field }) => (
+              <TextField
+                value={field.value}
+                onChange={field.onChange}
+                label="Custo (PC)"
+                type="number"
+              />
+            )}
+          />
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Controller
+            control={control}
+            name="capacity"
+            render={({ field }) => (
+              <TextField
+                value={field.value}
+                onChange={field.onChange}
+                label="Capacidade"
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="weight"
+            render={({ field }) => (
+              <TextField
+                value={field.value}
+                onChange={field.onChange}
+                label="Peso"
+                type="number"
+              />
+            )}
+          />
+        </div>
         <Controller
           control={control}
           name="equipmentImage"

@@ -8,6 +8,7 @@ import { useModalContext } from "../../../../../contexts/ModalContext";
 import EditEquipmentDrawer from "./EditEquipmentDrawer";
 import { getFormattedCost } from "../../../helpers/get-formatted-cost";
 import { getEquipmentType } from "../helpers/get-equipment-type";
+import DOMPurify from "dompurify";
 
 interface EquipmentModalProps {
   equipment: EquipmentFragment;
@@ -51,7 +52,15 @@ function EquipmentModal(props: EquipmentModalProps) {
           <span className="flex-1">
             Custo (PO): {getFormattedCost(equipment.cost)}
           </span>
-          <span className="flex-1">Descrição: {equipment.description}</span>
+          <span className="flex-1 flex flex-col">
+            Descrição:{" "}
+            <p
+              className="text-sm"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(equipment.description),
+              }}
+            ></p>
+          </span>
           {equipment.type === EquipmentType.Other ? null : (
             <span className="flex-1">{getEquipmentType(equipment.type)}</span>
           )}
