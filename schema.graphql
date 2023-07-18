@@ -582,6 +582,7 @@ type Mutation {
   updatePlayerLanguage(payload: UpdateLanguagesInput!, playerId: Float!): Language!
   updatePlayerMagic(payload: UpdateMagicInput!, playerId: Float!): Magic!
   updatePlayerSkills(payload: UpdateSkillsInput!, playerId: Float!): Skills!
+  updateWeapon(payload: UpdateWeaponInput!): Weapon!
 }
 
 type Player {
@@ -1128,6 +1129,19 @@ input UpdateSkillsInput {
   survival: Int
   survivalExp: Boolean
   survivalProf: Boolean
+}
+
+input UpdateWeaponInput {
+  cost: Float
+  damageDice: Int
+  description: String
+  diceQuantity: Int
+  dmgType: DamageType
+  id: Int!
+  name: String
+  type: WeaponType
+  weaponImage: String
+  weight: Float
 }
 
 type Weapon {

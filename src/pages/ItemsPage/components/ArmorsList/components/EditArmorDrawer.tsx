@@ -180,7 +180,7 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
                 value={value}
                 name={name}
                 onChange={onChange}
-                label={"Imagem"}
+                label={"Endereço da imagem"}
                 type="text"
               />
             );

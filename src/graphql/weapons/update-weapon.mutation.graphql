@@ -1,0 +1,14 @@
+mutation updateWeapon($payload: UpdateWeaponInput!) {
+  updateWeapon(payload: $payload) {
+    cost
+    damageDice
+    description
+    diceQuantity
+    dmgType
+    id
+    name
+    type
+    weaponImage
+    weight
+  }
+}

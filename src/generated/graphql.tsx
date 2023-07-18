@@ -1066,6 +1066,48 @@ export function useGetPlayerWeaponsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetPlayerWeaponsQueryHookResult = ReturnType<typeof useGetPlayerWeaponsQuery>;
 export type GetPlayerWeaponsLazyQueryHookResult = ReturnType<typeof useGetPlayerWeaponsLazyQuery>;
 export type GetPlayerWeaponsQueryResult = Apollo.QueryResult<GetPlayerWeaponsQuery, GetPlayerWeaponsQueryVariables>;
+export const UpdateWeaponDocument = gql`
+    mutation updateWeapon($payload: UpdateWeaponInput!) {
+  updateWeapon(payload: $payload) {
+    cost
+    damageDice
+    description
+    diceQuantity
+    dmgType
+    id
+    name
+    type
+    weaponImage
+    weight
+  }
+}
+    `;
+export type UpdateWeaponMutationFn = Apollo.MutationFunction<UpdateWeaponMutation, UpdateWeaponMutationVariables>;
+
+/**
+ * __useUpdateWeaponMutation__
+ *
+ * To run a mutation, you first call `useUpdateWeaponMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWeaponMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateWeaponMutation, { data, loading, error }] = useUpdateWeaponMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdateWeaponMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWeaponMutation, UpdateWeaponMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateWeaponMutation, UpdateWeaponMutationVariables>(UpdateWeaponDocument, options);
+      }
+export type UpdateWeaponMutationHookResult = ReturnType<typeof useUpdateWeaponMutation>;
+export type UpdateWeaponMutationResult = Apollo.MutationResult<UpdateWeaponMutation>;
+export type UpdateWeaponMutationOptions = Apollo.BaseMutationOptions<UpdateWeaponMutation, UpdateWeaponMutationVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1598,6 +1640,7 @@ export type Mutation = {
   updatePlayerLanguage: Language;
   updatePlayerMagic: Magic;
   updatePlayerSkills: Skills;
+  updateWeapon: Weapon;
 };
 
 
@@ -1711,6 +1754,11 @@ export type MutationUpdatePlayerMagicArgs = {
 export type MutationUpdatePlayerSkillsArgs = {
   payload: UpdateSkillsInput;
   playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdateWeaponArgs = {
+  payload: UpdateWeaponInput;
 };
 
 export type Player = {
@@ -2238,6 +2286,19 @@ export type UpdateSkillsInput = {
   survivalProf?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type UpdateWeaponInput = {
+  cost?: InputMaybe<Scalars['Float']>;
+  damageDice?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  diceQuantity?: InputMaybe<Scalars['Int']>;
+  dmgType?: InputMaybe<DamageType>;
+  id: Scalars['Int'];
+  name?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<WeaponType>;
+  weaponImage?: InputMaybe<Scalars['String']>;
+  weight?: InputMaybe<Scalars['Float']>;
+};
+
 export type Weapon = {
   __typename?: 'Weapon';
   cost: Scalars['Float'];
@@ -2430,5 +2491,12 @@ export type GetPlayerWeaponsQueryVariables = Exact<{
 
 
 export type GetPlayerWeaponsQuery = { __typename?: 'Query', getPlayerWeapon: Array<{ __typename?: 'PlayerWeaponFull', equipped: boolean, playerId: number, proficient: boolean, quantity: number, weaponDescription: string, weaponId: number, weaponName: string, weaponType: WeaponType, weight: number }> };
+
+export type UpdateWeaponMutationVariables = Exact<{
+  payload: UpdateWeaponInput;
+}>;
+
+
+export type UpdateWeaponMutation = { __typename?: 'Mutation', updateWeapon: { __typename?: 'Weapon', cost: number, damageDice: number, description: string, diceQuantity: number, dmgType: DamageType, id: number, name: string, type: WeaponType, weaponImage?: string | null, weight: number } };
 
 export type WeaponFragment = { __typename?: 'Weapon', id: number, name: string, description: string, type: WeaponType, cost: number, dmgType: DamageType, damageDice: number, diceQuantity: number, weight: number, weaponImage?: string | null };
