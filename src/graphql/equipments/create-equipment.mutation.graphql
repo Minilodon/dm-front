@@ -1,0 +1,6 @@
+mutation createEquipment($payload: CreateEquipmentInput!) {
+  createEquipment(payload: $payload) {
+    id
+    name
+  }
+}

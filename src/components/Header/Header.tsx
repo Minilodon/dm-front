@@ -8,6 +8,7 @@ interface HeaderProps {
   buttonLabel?: string;
   buttonAction?: React.MouseEventHandler<HTMLButtonElement>;
   goBackAlternative?: string;
+  buttons?: React.ReactNode;
 }
 
 const Header = (props: HeaderProps) => {
@@ -16,6 +17,7 @@ const Header = (props: HeaderProps) => {
     buttonLabel = "Clique aqui",
     buttonAction,
     goBackAlternative,
+    buttons,
   } = props;
   const navigate = useNavigate();
   const handleGoBack = () => {
@@ -31,7 +33,11 @@ const Header = (props: HeaderProps) => {
         <FaArrowLeft className="cursor-pointer" onClick={handleGoBack} />
         <h1 className="text-xl">{title}</h1>
       </div>
-      <Button onClick={buttonAction} label={buttonLabel} />
+      {buttons ? (
+        buttons
+      ) : (
+        <Button onClick={buttonAction} label={buttonLabel} />
+      )}
     </div>
   );
 };

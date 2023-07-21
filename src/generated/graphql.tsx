@@ -228,6 +228,40 @@ export function useConnectArmorToPlayerMutation(baseOptions?: Apollo.MutationHoo
 export type ConnectArmorToPlayerMutationHookResult = ReturnType<typeof useConnectArmorToPlayerMutation>;
 export type ConnectArmorToPlayerMutationResult = Apollo.MutationResult<ConnectArmorToPlayerMutation>;
 export type ConnectArmorToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectArmorToPlayerMutation, ConnectArmorToPlayerMutationVariables>;
+export const CreateArmorDocument = gql`
+    mutation createArmor($payload: CreateArmorInput!) {
+  createArmor(payload: $payload) {
+    id
+    name
+  }
+}
+    `;
+export type CreateArmorMutationFn = Apollo.MutationFunction<CreateArmorMutation, CreateArmorMutationVariables>;
+
+/**
+ * __useCreateArmorMutation__
+ *
+ * To run a mutation, you first call `useCreateArmorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateArmorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createArmorMutation, { data, loading, error }] = useCreateArmorMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useCreateArmorMutation(baseOptions?: Apollo.MutationHookOptions<CreateArmorMutation, CreateArmorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateArmorMutation, CreateArmorMutationVariables>(CreateArmorDocument, options);
+      }
+export type CreateArmorMutationHookResult = ReturnType<typeof useCreateArmorMutation>;
+export type CreateArmorMutationResult = Apollo.MutationResult<CreateArmorMutation>;
+export type CreateArmorMutationOptions = Apollo.BaseMutationOptions<CreateArmorMutation, CreateArmorMutationVariables>;
 export const GetAllArmorsDocument = gql`
     query getAllArmors {
   getArmors {
@@ -453,6 +487,40 @@ export function useConnectEquipmentToPlayerMutation(baseOptions?: Apollo.Mutatio
 export type ConnectEquipmentToPlayerMutationHookResult = ReturnType<typeof useConnectEquipmentToPlayerMutation>;
 export type ConnectEquipmentToPlayerMutationResult = Apollo.MutationResult<ConnectEquipmentToPlayerMutation>;
 export type ConnectEquipmentToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectEquipmentToPlayerMutation, ConnectEquipmentToPlayerMutationVariables>;
+export const CreateEquipmentDocument = gql`
+    mutation createEquipment($payload: CreateEquipmentInput!) {
+  createEquipment(payload: $payload) {
+    id
+    name
+  }
+}
+    `;
+export type CreateEquipmentMutationFn = Apollo.MutationFunction<CreateEquipmentMutation, CreateEquipmentMutationVariables>;
+
+/**
+ * __useCreateEquipmentMutation__
+ *
+ * To run a mutation, you first call `useCreateEquipmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateEquipmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createEquipmentMutation, { data, loading, error }] = useCreateEquipmentMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useCreateEquipmentMutation(baseOptions?: Apollo.MutationHookOptions<CreateEquipmentMutation, CreateEquipmentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateEquipmentMutation, CreateEquipmentMutationVariables>(CreateEquipmentDocument, options);
+      }
+export type CreateEquipmentMutationHookResult = ReturnType<typeof useCreateEquipmentMutation>;
+export type CreateEquipmentMutationResult = Apollo.MutationResult<CreateEquipmentMutation>;
+export type CreateEquipmentMutationOptions = Apollo.BaseMutationOptions<CreateEquipmentMutation, CreateEquipmentMutationVariables>;
 export const GetAllEquipmentsDocument = gql`
     query getAllEquipments {
   getEquipments {
@@ -1020,6 +1088,40 @@ export function useConnectWeaponToPlayerMutation(baseOptions?: Apollo.MutationHo
 export type ConnectWeaponToPlayerMutationHookResult = ReturnType<typeof useConnectWeaponToPlayerMutation>;
 export type ConnectWeaponToPlayerMutationResult = Apollo.MutationResult<ConnectWeaponToPlayerMutation>;
 export type ConnectWeaponToPlayerMutationOptions = Apollo.BaseMutationOptions<ConnectWeaponToPlayerMutation, ConnectWeaponToPlayerMutationVariables>;
+export const CreateWeaponDocument = gql`
+    mutation createWeapon($payload: CreateWeaponInput!) {
+  createWeapon(payload: $payload) {
+    id
+    name
+  }
+}
+    `;
+export type CreateWeaponMutationFn = Apollo.MutationFunction<CreateWeaponMutation, CreateWeaponMutationVariables>;
+
+/**
+ * __useCreateWeaponMutation__
+ *
+ * To run a mutation, you first call `useCreateWeaponMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateWeaponMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createWeaponMutation, { data, loading, error }] = useCreateWeaponMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useCreateWeaponMutation(baseOptions?: Apollo.MutationHookOptions<CreateWeaponMutation, CreateWeaponMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateWeaponMutation, CreateWeaponMutationVariables>(CreateWeaponDocument, options);
+      }
+export type CreateWeaponMutationHookResult = ReturnType<typeof useCreateWeaponMutation>;
+export type CreateWeaponMutationResult = Apollo.MutationResult<CreateWeaponMutation>;
+export type CreateWeaponMutationOptions = Apollo.BaseMutationOptions<CreateWeaponMutation, CreateWeaponMutationVariables>;
 export const GetAllWeaponsDocument = gql`
     query getAllWeapons {
   getWeapons {
@@ -2386,6 +2488,13 @@ export type ConnectArmorToPlayerMutationVariables = Exact<{
 
 export type ConnectArmorToPlayerMutation = { __typename?: 'Mutation', connectArmorToPlayer: { __typename?: 'PlayerArmor', equipped: boolean, playerId: number, proficient: boolean, quantity: number, armorId: number } };
 
+export type CreateArmorMutationVariables = Exact<{
+  payload: CreateArmorInput;
+}>;
+
+
+export type CreateArmorMutation = { __typename?: 'Mutation', createArmor: { __typename?: 'Armor', id: number, name: string } };
+
 export type GetAllArmorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2427,6 +2536,13 @@ export type ConnectEquipmentToPlayerMutationVariables = Exact<{
 
 
 export type ConnectEquipmentToPlayerMutation = { __typename?: 'Mutation', connectEquipmentToPlayer: { __typename?: 'PlayerEquipment', equipmentId: number, playerId: number, equipped: boolean, proficient: boolean, quantity: number } };
+
+export type CreateEquipmentMutationVariables = Exact<{
+  payload: CreateEquipmentInput;
+}>;
+
+
+export type CreateEquipmentMutation = { __typename?: 'Mutation', createEquipment: { __typename?: 'Equipment', id: number, name: string } };
 
 export type EquipmentFragment = { __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType };
 
@@ -2543,6 +2659,13 @@ export type ConnectWeaponToPlayerMutationVariables = Exact<{
 
 
 export type ConnectWeaponToPlayerMutation = { __typename?: 'Mutation', connectWeaponToPlayer: { __typename?: 'PlayerWeapon', equipped: boolean, playerId: number, proficient: boolean, quantity: number, weaponId: number } };
+
+export type CreateWeaponMutationVariables = Exact<{
+  payload: CreateWeaponInput;
+}>;
+
+
+export type CreateWeaponMutation = { __typename?: 'Mutation', createWeapon: { __typename?: 'Weapon', id: number, name: string } };
 
 export type GetAllWeaponsQueryVariables = Exact<{ [key: string]: never; }>;
 

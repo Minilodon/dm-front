@@ -2,7 +2,7 @@ import React from "react";
 import {
   ArmorFragment,
   ArmorType,
-  useUpdateArmorMutation,
+  useCreateArmorMutation,
 } from "../../../../../generated/graphql";
 import {
   Checkbox,
@@ -19,56 +19,39 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../../../../../components/Button/Button";
 import { useDrawerContext } from "../../../../../contexts/DrawerContext";
 
-interface EditArmorDrawerProps {
-  armor: ArmorFragment;
-}
-
-type UpdateArmorFormValues = {
+type CreateArmorFormValues = {
   name: string;
-  type: ArmorType | undefined;
-  cost: number | undefined;
-  AC: number | undefined;
-  minStr: number | undefined | null;
-  stealthDis: boolean | undefined | null;
-  weight: number | undefined;
-  armorImage: string | undefined | null;
+  type: ArmorType;
+  cost: number;
+  AC: number;
+  minStr: number | null | undefined;
+  stealthDis: boolean | null | undefined;
+  weight: number;
+  armorImage: string | null | undefined;
 };
 
 const armorSchema = yup.object({
   name: yup.string().required(),
-  type: yup.string<ArmorType>(),
-  cost: yup.number().integer(),
-  AC: yup.number(),
+  type: yup.string<ArmorType>().required(),
+  cost: yup.number().integer().required(),
+  AC: yup.number().required(),
   minStr: yup.number().nullable(),
   stealthDis: yup.boolean().nullable(),
-  weight: yup.number(),
+  weight: yup.number().required(),
   armorImage: yup.string().url().nullable(),
 });
 
-function EditArmorDrawer(props: EditArmorDrawerProps) {
-  const { armor } = props;
+function AddArmorDrawer() {
   const { closeDrawer } = useDrawerContext();
-  const [updateArmorMutation, { loading }] = useUpdateArmorMutation({
-    refetchQueries: "all",
-  });
-  const { control, handleSubmit, watch } = useForm<UpdateArmorFormValues>({
-    defaultValues: {
-      AC: armor.AC,
-      armorImage: armor.armorImage,
-      cost: armor.cost,
-      name: armor.name,
-      type: armor.type,
-      minStr: armor.minStr,
-      stealthDis: armor.stealthDis,
-      weight: armor.weight,
-    },
+  const [updateArmorMutation, { loading }] = useCreateArmorMutation();
+  const { control, handleSubmit, watch } = useForm<CreateArmorFormValues>({
     resolver: yupResolver(armorSchema),
   });
-  const updateArmor = async (data: UpdateArmorFormValues) => {
+  const updateArmor = async (data: CreateArmorFormValues) => {
     if (!data) return;
     try {
       await updateArmorMutation({
-        variables: { payload: { id: armor.id, ...data } },
+        variables: { payload: data },
       });
     } catch (error) {
       console.log(error);
@@ -86,11 +69,12 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
         <Controller
           control={control}
           name="name"
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <TextField
               value={field.value}
               onChange={field.onChange}
               label="Nome"
+              error={!!fieldState.error?.message}
             />
           )}
         />
@@ -98,24 +82,26 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
           <Controller
             control={control}
             name="cost"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <TextField
                 value={field.value}
                 onChange={field.onChange}
                 type="number"
                 label="Custo (PC)"
+                error={!!fieldState.error?.message}
               />
             )}
           />
           <Controller
             control={control}
             name="weight"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <TextField
                 value={field.value}
                 onChange={field.onChange}
                 type="number"
                 label="Peso (Kg)"
+                error={!!fieldState.error?.message}
               />
             )}
           />
@@ -144,6 +130,7 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
                   value={field.value}
                   label="Tipo"
                   onChange={field.onChange}
+                  defaultValue={ArmorType.Light}
                 >
                   <MenuItem value={ArmorType.Light}>Leve</MenuItem>
                   <MenuItem value={ArmorType.Medium}>Média</MenuItem>
@@ -156,7 +143,7 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
           <Controller
             control={control}
             name="AC"
-            render={({ field: { name, onChange, value } }) => {
+            render={({ field: { name, onChange, value }, fieldState }) => {
               const armorType = watch("type");
               return (
                 <TextField
@@ -164,6 +151,7 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
                   name={name}
                   onChange={onChange}
                   label={"AC"}
+                  error={!!fieldState.error?.message}
                 />
               );
             }}
@@ -184,23 +172,9 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
             );
           }}
         />
-        <div className="flex gap-x-8">
+        <div className="flex gap-x-8 items-center w-full">
           <div className="flex flex-col items-center">
-            <span>Imagem atual</span>
-            <div className="w-[200px] h-[283px] border-black border flex">
-              {armor.armorImage ? (
-                <img
-                  className="object-cover"
-                  alt={"Imagem atual da armadura"}
-                  src={armor.armorImage}
-                />
-              ) : (
-                <span>Sem imagem</span>
-              )}
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <span>Nova imagem</span>
+            <span>Imagem</span>
             <div className="w-[200px] h-[283px] border-black border flex">
               {currentImage ? (
                 <img
@@ -225,4 +199,4 @@ function EditArmorDrawer(props: EditArmorDrawerProps) {
   );
 }
 
-export default EditArmorDrawer;
+export default AddArmorDrawer;

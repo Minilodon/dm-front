@@ -1,0 +1,6 @@
+mutation createArmor($payload: CreateArmorInput!) {
+  createArmor(payload: $payload) {
+    id
+    name
+  }
+}
