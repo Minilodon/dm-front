@@ -1,0 +1,6 @@
+query getPlayersFromWeapon($weaponId: Float!) {
+  getPlayersFromWeapon(weaponId: $weaponId) {
+    id
+    name
+  }
+}

@@ -733,7 +733,10 @@ type Query {
   getPlayerEquipment(playerId: Float!): [PlayerEquipmentFull!]!
   getPlayerFeats(playerId: Float!): [PlayerFeats!]!
   getPlayerWeapon(playerId: Float!): [PlayerWeaponFull!]!
+  getPlayersFromArmor(armorId: Float!): [Player]!
+  getPlayersFromEquipment(equipmentId: Float!): [Player]!
   getPlayersFromFeat(featId: Float!): [Player]!
+  getPlayersFromWeapon(weaponId: Float!): [Player]!
   getSpells: [Spell!]!
   getWeapons: [Weapon!]!
 }
