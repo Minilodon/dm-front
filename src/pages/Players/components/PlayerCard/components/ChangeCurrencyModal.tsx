@@ -51,9 +51,6 @@ function ChangeCurrencyModal(props: ChangeCurrencyModalProps) {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-lg mb-2 self-center">
-        Jogador: <b className="font-semibold">{player?.name}</b>
-      </h1>
       <div className="flex gap-3 items-center justify-around">
         <div className="flex flex-col items-center">
           <span className="text-lg font-semibold">{modalTitle}</span>

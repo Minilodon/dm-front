@@ -32,7 +32,10 @@ function CurrencyDisplay(props: CurrencyDisplayProps) {
     openModal();
   };
   return (
-    <div className="flex gap-x-1 items-center" onClick={handleOpenModal}>
+    <div
+      className="flex gap-x-1 items-center cursor-pointer"
+      onClick={handleOpenModal}
+    >
       <Tooltip title={alt} arrow>
         <img
           src={getCurrencyImage(currencyType)}
