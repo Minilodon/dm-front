@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
 import { useModalContext } from "../../contexts/ModalContext";
 import Button from "../Button/Button";
 import {
+  PlayerFragment,
   UpdatePlayerInput,
   useUpdatePlayerMutation,
 } from "../../generated/graphql";
@@ -14,12 +14,12 @@ interface EditPlayerModalProps {
   inputLabel: string;
   playerField: playerProperties;
   fieldType: "number" | "string";
+  player: PlayerFragment;
 }
 
 function EditPlayerModal(props: EditPlayerModalProps) {
-  const { title, inputLabel, playerField, fieldType } = props;
+  const { title, inputLabel, playerField, fieldType, player } = props;
   const [state, setState] = useState("");
-  const { player } = usePlayerContext();
   const { closeModal } = useModalContext();
 
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({

@@ -16,9 +16,7 @@ interface HitPointsDisplayProps {
 function HitPointsDisplay(props: HitPointsDisplayProps) {
   const { current, label, total, type, player } = props;
   const { setModalContent, openModal } = useModalContext();
-  const { setSelectedPlayer } = usePlayerContext();
   const handleClick = () => {
-    setSelectedPlayer(player);
     setModalContent(<ChangeHpModal type={type} player={player} />);
     openModal();
   };

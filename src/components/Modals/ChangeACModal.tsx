@@ -1,13 +1,19 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { usePlayerContext } from "../../pages/Players/contexts/PlayerContext";
-import { useUpdatePlayerMutation } from "../../generated/graphql";
+import {
+  PlayerFragment,
+  useUpdatePlayerMutation,
+} from "../../generated/graphql";
 import { useModalContext } from "../../contexts/ModalContext";
 
-function ChangeACModal() {
-  const { player } = usePlayerContext();
+interface Props {
+  player: PlayerFragment;
+}
+
+function ChangeACModal(props: Props) {
+  const { player } = props;
   const [armorClass, setArmorClass] = useState<number | "">(
-    player?.armorClass || ""
+    player.armorClass || ""
   );
   const { closeModal } = useModalContext();
   const [updatePlayer, { loading }] = useUpdatePlayerMutation({
@@ -22,12 +28,15 @@ function ChangeACModal() {
   };
 
   const handleSubmit = async (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!player) return;
+    if (!player) {
+      console.log("jogador não selecionado");
+      return;
+    }
     if (e.key === "Enter") {
       try {
         await updatePlayer({
           variables: {
-            playerId: player?.id,
+            playerId: player.id,
             payload: {
               armorClass: armorClass === "" ? player.armorClass : armorClass,
             },

@@ -1,11 +1,15 @@
 import React from "react";
-import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
 import EditPlayerModal from "../../../../../../components/Modals/EditPlayerModal";
 import { playerProperties } from "../../../../../../components/Modals/playerProperties";
+import { PlayerFragment } from "../../../../../../generated/graphql";
 
-function MovementDisplay() {
-  const { player } = usePlayerContext();
+interface Props {
+  player: PlayerFragment;
+}
+
+function MovementDisplay(props: Props) {
+  const { player } = props;
   const { openModal, setModalContent } = useModalContext();
   const handleOpenModal = () => {
     setModalContent(
@@ -14,6 +18,7 @@ function MovementDisplay() {
         inputLabel="Insira o novo deslocamento"
         playerField={playerProperties.movement}
         title="Deslocamento"
+        player={player}
       />
     );
     openModal();
@@ -24,7 +29,7 @@ function MovementDisplay() {
       onClick={handleOpenModal}
     >
       <span>Deslocamento</span>
-      <span>{player?.movement} m</span>
+      <span>{player.movement} m</span>
     </div>
   );
 }

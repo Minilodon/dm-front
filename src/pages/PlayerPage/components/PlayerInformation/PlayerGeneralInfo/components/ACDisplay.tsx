@@ -1,14 +1,18 @@
 import React from "react";
 import Shield from "../../../../../../components/Icons/Shield.svg";
-import { usePlayerContext } from "../../../../../Players/contexts/PlayerContext";
 import { useModalContext } from "../../../../../../contexts/ModalContext";
 import ChangeACModal from "../../../../../../components/Modals/ChangeACModal";
+import { PlayerFragment } from "../../../../../../generated/graphql";
 
-function ACDisplay() {
-  const { player } = usePlayerContext();
+interface Props {
+  player: PlayerFragment;
+}
+
+function ACDisplay(props: Props) {
+  const { player } = props;
   const { openModal, setModalContent } = useModalContext();
   const handleOpenModal = () => {
-    setModalContent(<ChangeACModal />);
+    setModalContent(<ChangeACModal player={player} />);
     openModal();
   };
   return (
@@ -23,7 +27,7 @@ function ACDisplay() {
           alt="Ícone de escudo"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <span>{player?.armorClass}</span>
+        <span>{player.armorClass}</span>
       </div>
     </div>
   );

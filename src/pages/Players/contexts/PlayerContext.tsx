@@ -163,7 +163,12 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return data.getAllPlayers;
   }, [data?.getAllPlayers]);
 
-  const loading = loadingPlayers || fetchingFeats || fetchingEquipments;
+  const loading =
+    loadingPlayers ||
+    fetchingFeats ||
+    fetchingEquipments ||
+    fetchingArmors ||
+    fetchingWeapons;
 
   useEffect(() => {
     const refetchQuery = async () => {
