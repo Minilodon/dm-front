@@ -34,6 +34,7 @@ interface PlayerContextValues {
   playerUnequippedArmors: PlayerArmorFull[] | undefined;
   playerEquippedWeapons: PlayerWeaponFull[] | undefined;
   playerUnequippedWeapons: PlayerWeaponFull[] | undefined;
+  totalWeight: number;
 }
 
 interface PlayerContextProviderProps {
@@ -163,6 +164,18 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
     return data.getAllPlayers;
   }, [data?.getAllPlayers]);
 
+  const armorsWeight = playerArmors
+    ?.map((armor) => armor.weight)
+    .reduce((acc, currentValue) => acc + currentValue, 0);
+  const weaponsWeight = playerWeapons
+    ?.map((weapon) => weapon.weight)
+    .reduce((acc, currentValue) => acc + currentValue, 0);
+  const equipmentWeight = playerEquipments
+    ?.map((equipment) => equipment.weight)
+    .reduce((acc, currentValue) => acc + currentValue, 0);
+  const totalWeight =
+    (equipmentWeight || 0) + (armorsWeight || 0) + (weaponsWeight || 0);
+
   const loading =
     loadingPlayers ||
     fetchingFeats ||
@@ -205,6 +218,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       playerUnequippedArmors,
       playerEquippedWeapons,
       playerUnequippedWeapons,
+      totalWeight,
     }),
     [
       loadingPlayers,
@@ -218,6 +232,7 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
       playerUnequippedArmors,
       playerEquippedWeapons,
       playerUnequippedWeapons,
+      totalWeight,
     ]
   );
 

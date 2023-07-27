@@ -24,7 +24,7 @@ function Button(props: ButtonProps) {
       <button
         onClick={onClick}
         className={clsx(
-          "py-3 text-md w-40 border border-black transition",
+          "py-3 text-md min-w-40 border border-black transition px-4",
           outlined
             ? "text-red-600 font-semibold hover:text-white hover:bg-red-800"
             : "bg-red-600 text-white hover:bg-red-800",

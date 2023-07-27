@@ -1,9 +1,9 @@
 mutation connectArmorToPlayer($payload: ConnectArmorToPlayerInput!) {
   connectArmorToPlayer(payload: $payload) {
-    equipped
     playerId
+    armorId
+    equipped
     proficient
     quantity
-    armorId
   }
 }

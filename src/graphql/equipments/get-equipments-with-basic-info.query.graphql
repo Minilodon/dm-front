@@ -1,0 +1,6 @@
+query getEquipmentsWithBasicInfo {
+  getEquipments {
+    id
+    name
+  }
+}

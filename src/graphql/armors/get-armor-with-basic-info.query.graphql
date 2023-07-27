@@ -1,0 +1,6 @@
+query getArmorsWithBasicInfo {
+  getArmors {
+    id
+    name
+  }
+}

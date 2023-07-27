@@ -14,7 +14,11 @@ function EquippedItems() {
         {playerEquippedEquipments ? (
           playerEquippedEquipments.length ? (
             playerEquippedEquipments.map((equipment, index) => {
-              return <li key={index}>{equipment.equipmentName}</li>;
+              return (
+                <li key={index} className="border-b border-b-black px-2 py-1">
+                  {equipment.equipmentName}
+                </li>
+              );
             })
           ) : (
             <span>Sem itens equipados</span>
@@ -25,7 +29,11 @@ function EquippedItems() {
         {playerEquippedArmors ? (
           playerEquippedArmors.length ? (
             playerEquippedArmors.map((armor, index) => {
-              return <li key={index}>{armor.armorName}</li>;
+              return (
+                <li key={index} className="border-b border-b-black px-2 py-1">
+                  {armor.armorName}
+                </li>
+              );
             })
           ) : (
             <span>Sem armadura equipada</span>
@@ -36,7 +44,11 @@ function EquippedItems() {
         {playerEquippedWeapons ? (
           playerEquippedWeapons.length ? (
             playerEquippedWeapons.map((weapon, index) => {
-              return <li key={index}>{weapon.weaponName}</li>;
+              return (
+                <li key={index} className="border-b border-b-black px-2 py-1">
+                  {weapon.weaponName}
+                </li>
+              );
             })
           ) : (
             <span>Sem armas equipadas</span>

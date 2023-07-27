@@ -194,11 +194,11 @@ export const WeaponFragmentDoc = gql`
 export const ConnectArmorToPlayerDocument = gql`
     mutation connectArmorToPlayer($payload: ConnectArmorToPlayerInput!) {
   connectArmorToPlayer(payload: $payload) {
-    equipped
     playerId
+    armorId
+    equipped
     proficient
     quantity
-    armorId
   }
 }
     `;
@@ -296,6 +296,41 @@ export function useGetAllArmorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetAllArmorsQueryHookResult = ReturnType<typeof useGetAllArmorsQuery>;
 export type GetAllArmorsLazyQueryHookResult = ReturnType<typeof useGetAllArmorsLazyQuery>;
 export type GetAllArmorsQueryResult = Apollo.QueryResult<GetAllArmorsQuery, GetAllArmorsQueryVariables>;
+export const GetArmorsWithBasicInfoDocument = gql`
+    query getArmorsWithBasicInfo {
+  getArmors {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetArmorsWithBasicInfoQuery__
+ *
+ * To run a query within a React component, call `useGetArmorsWithBasicInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArmorsWithBasicInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetArmorsWithBasicInfoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetArmorsWithBasicInfoQuery(baseOptions?: Apollo.QueryHookOptions<GetArmorsWithBasicInfoQuery, GetArmorsWithBasicInfoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArmorsWithBasicInfoQuery, GetArmorsWithBasicInfoQueryVariables>(GetArmorsWithBasicInfoDocument, options);
+      }
+export function useGetArmorsWithBasicInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArmorsWithBasicInfoQuery, GetArmorsWithBasicInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArmorsWithBasicInfoQuery, GetArmorsWithBasicInfoQueryVariables>(GetArmorsWithBasicInfoDocument, options);
+        }
+export type GetArmorsWithBasicInfoQueryHookResult = ReturnType<typeof useGetArmorsWithBasicInfoQuery>;
+export type GetArmorsWithBasicInfoLazyQueryHookResult = ReturnType<typeof useGetArmorsWithBasicInfoLazyQuery>;
+export type GetArmorsWithBasicInfoQueryResult = Apollo.QueryResult<GetArmorsWithBasicInfoQuery, GetArmorsWithBasicInfoQueryVariables>;
 export const GetPlayerArmorsDocument = gql`
     query getPlayerArmors($playerId: Float!) {
   getPlayerArmor(playerId: $playerId) {
@@ -489,8 +524,8 @@ export type UpdatePlayerCurrencyMutationOptions = Apollo.BaseMutationOptions<Upd
 export const ConnectEquipmentToPlayerDocument = gql`
     mutation connectEquipmentToPlayer($payload: ConnectEquipmentToPlayerInput!) {
   connectEquipmentToPlayer(payload: $payload) {
-    equipmentId
     playerId
+    equipmentId
     equipped
     proficient
     quantity
@@ -591,6 +626,41 @@ export function useGetAllEquipmentsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetAllEquipmentsQueryHookResult = ReturnType<typeof useGetAllEquipmentsQuery>;
 export type GetAllEquipmentsLazyQueryHookResult = ReturnType<typeof useGetAllEquipmentsLazyQuery>;
 export type GetAllEquipmentsQueryResult = Apollo.QueryResult<GetAllEquipmentsQuery, GetAllEquipmentsQueryVariables>;
+export const GetEquipmentsWithBasicInfoDocument = gql`
+    query getEquipmentsWithBasicInfo {
+  getEquipments {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetEquipmentsWithBasicInfoQuery__
+ *
+ * To run a query within a React component, call `useGetEquipmentsWithBasicInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEquipmentsWithBasicInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEquipmentsWithBasicInfoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetEquipmentsWithBasicInfoQuery(baseOptions?: Apollo.QueryHookOptions<GetEquipmentsWithBasicInfoQuery, GetEquipmentsWithBasicInfoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetEquipmentsWithBasicInfoQuery, GetEquipmentsWithBasicInfoQueryVariables>(GetEquipmentsWithBasicInfoDocument, options);
+      }
+export function useGetEquipmentsWithBasicInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEquipmentsWithBasicInfoQuery, GetEquipmentsWithBasicInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetEquipmentsWithBasicInfoQuery, GetEquipmentsWithBasicInfoQueryVariables>(GetEquipmentsWithBasicInfoDocument, options);
+        }
+export type GetEquipmentsWithBasicInfoQueryHookResult = ReturnType<typeof useGetEquipmentsWithBasicInfoQuery>;
+export type GetEquipmentsWithBasicInfoLazyQueryHookResult = ReturnType<typeof useGetEquipmentsWithBasicInfoLazyQuery>;
+export type GetEquipmentsWithBasicInfoQueryResult = Apollo.QueryResult<GetEquipmentsWithBasicInfoQuery, GetEquipmentsWithBasicInfoQueryVariables>;
 export const GetPlayerEquipmentDocument = gql`
     query getPlayerEquipment($playerId: Float!) {
   getPlayerEquipment(playerId: $playerId) {
@@ -1126,11 +1196,11 @@ export type GetAllSpellsQueryResult = Apollo.QueryResult<GetAllSpellsQuery, GetA
 export const ConnectWeaponToPlayerDocument = gql`
     mutation connectWeaponToPlayer($payload: ConnectWeaponToPlayerInput!) {
   connectWeaponToPlayer(payload: $payload) {
-    equipped
     playerId
+    weaponId
+    equipped
     proficient
     quantity
-    weaponId
   }
 }
     `;
@@ -1316,6 +1386,41 @@ export function useGetPlayersFromWeaponLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type GetPlayersFromWeaponQueryHookResult = ReturnType<typeof useGetPlayersFromWeaponQuery>;
 export type GetPlayersFromWeaponLazyQueryHookResult = ReturnType<typeof useGetPlayersFromWeaponLazyQuery>;
 export type GetPlayersFromWeaponQueryResult = Apollo.QueryResult<GetPlayersFromWeaponQuery, GetPlayersFromWeaponQueryVariables>;
+export const GetWeaponsWithBasicInfoDocument = gql`
+    query getWeaponsWithBasicInfo {
+  getWeapons {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetWeaponsWithBasicInfoQuery__
+ *
+ * To run a query within a React component, call `useGetWeaponsWithBasicInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetWeaponsWithBasicInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetWeaponsWithBasicInfoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetWeaponsWithBasicInfoQuery(baseOptions?: Apollo.QueryHookOptions<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>(GetWeaponsWithBasicInfoDocument, options);
+      }
+export function useGetWeaponsWithBasicInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>(GetWeaponsWithBasicInfoDocument, options);
+        }
+export type GetWeaponsWithBasicInfoQueryHookResult = ReturnType<typeof useGetWeaponsWithBasicInfoQuery>;
+export type GetWeaponsWithBasicInfoLazyQueryHookResult = ReturnType<typeof useGetWeaponsWithBasicInfoLazyQuery>;
+export type GetWeaponsWithBasicInfoQueryResult = Apollo.QueryResult<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>;
 export const UpdateWeaponDocument = gql`
     mutation updateWeapon($payload: UpdateWeaponInput!) {
   updateWeapon(payload: $payload) {
@@ -2612,7 +2717,7 @@ export type ConnectArmorToPlayerMutationVariables = Exact<{
 }>;
 
 
-export type ConnectArmorToPlayerMutation = { __typename?: 'Mutation', connectArmorToPlayer: { __typename?: 'PlayerArmor', equipped: boolean, playerId: number, proficient: boolean, quantity: number, armorId: number } };
+export type ConnectArmorToPlayerMutation = { __typename?: 'Mutation', connectArmorToPlayer: { __typename?: 'PlayerArmor', playerId: number, armorId: number, equipped: boolean, proficient: boolean, quantity: number } };
 
 export type CreateArmorMutationVariables = Exact<{
   payload: CreateArmorInput;
@@ -2625,6 +2730,11 @@ export type GetAllArmorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllArmorsQuery = { __typename?: 'Query', getArmors: Array<{ __typename?: 'Armor', id: number, type: ArmorType, name: string, cost: number, armorImage?: string | null, AC: number, minStr?: number | null, stealthDis?: boolean | null, weight: number }> };
+
+export type GetArmorsWithBasicInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetArmorsWithBasicInfoQuery = { __typename?: 'Query', getArmors: Array<{ __typename?: 'Armor', id: number, name: string }> };
 
 export type GetPlayerArmorsQueryVariables = Exact<{
   playerId: Scalars['Float'];
@@ -2668,7 +2778,7 @@ export type ConnectEquipmentToPlayerMutationVariables = Exact<{
 }>;
 
 
-export type ConnectEquipmentToPlayerMutation = { __typename?: 'Mutation', connectEquipmentToPlayer: { __typename?: 'PlayerEquipment', equipmentId: number, playerId: number, equipped: boolean, proficient: boolean, quantity: number } };
+export type ConnectEquipmentToPlayerMutation = { __typename?: 'Mutation', connectEquipmentToPlayer: { __typename?: 'PlayerEquipment', playerId: number, equipmentId: number, equipped: boolean, proficient: boolean, quantity: number } };
 
 export type CreateEquipmentMutationVariables = Exact<{
   payload: CreateEquipmentInput;
@@ -2683,6 +2793,11 @@ export type GetAllEquipmentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllEquipmentsQuery = { __typename?: 'Query', getEquipments: Array<{ __typename?: 'Equipment', id: number, name: string, description: string, cost: number, weight: number, capacity?: string | null, equipmentImage?: string | null, type: EquipmentType }> };
+
+export type GetEquipmentsWithBasicInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetEquipmentsWithBasicInfoQuery = { __typename?: 'Query', getEquipments: Array<{ __typename?: 'Equipment', id: number, name: string }> };
 
 export type GetPlayerEquipmentQueryVariables = Exact<{
   playerId: Scalars['Float'];
@@ -2798,7 +2913,7 @@ export type ConnectWeaponToPlayerMutationVariables = Exact<{
 }>;
 
 
-export type ConnectWeaponToPlayerMutation = { __typename?: 'Mutation', connectWeaponToPlayer: { __typename?: 'PlayerWeapon', equipped: boolean, playerId: number, proficient: boolean, quantity: number, weaponId: number } };
+export type ConnectWeaponToPlayerMutation = { __typename?: 'Mutation', connectWeaponToPlayer: { __typename?: 'PlayerWeapon', playerId: number, weaponId: number, equipped: boolean, proficient: boolean, quantity: number } };
 
 export type CreateWeaponMutationVariables = Exact<{
   payload: CreateWeaponInput;
@@ -2825,6 +2940,11 @@ export type GetPlayersFromWeaponQueryVariables = Exact<{
 
 
 export type GetPlayersFromWeaponQuery = { __typename?: 'Query', getPlayersFromWeapon: Array<{ __typename?: 'Player', id: number, name: string } | null> };
+
+export type GetWeaponsWithBasicInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetWeaponsWithBasicInfoQuery = { __typename?: 'Query', getWeapons: Array<{ __typename?: 'Weapon', id: number, name: string }> };
 
 export type UpdateWeaponMutationVariables = Exact<{
   payload: UpdateWeaponInput;

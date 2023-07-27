@@ -1,7 +1,7 @@
 mutation connectEquipmentToPlayer($payload: ConnectEquipmentToPlayerInput!) {
   connectEquipmentToPlayer(payload: $payload) {
-    equipmentId
     playerId
+    equipmentId
     equipped
     proficient
     quantity
