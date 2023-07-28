@@ -578,11 +578,14 @@ type Mutation {
   updateEquipment(payload: UpdateEquipmentInput!): Equipment!
   updateFeat(featId: Float!, payload: UpdateFeatInput!): Feat!
   updatePlayer(payload: UpdatePlayerInput!, playerId: Float!): Player!
+  updatePlayerArmor(payload: UpdatePlayerArmorInput!): PlayerArmor!
   updatePlayerAttributes(payload: UpdateAttributesInput!, playerId: Float!): Attributes!
   updatePlayerCurrency(payload: UpdateCurrencyInput!, playerId: Float!): Currency!
+  updatePlayerEquipment(payload: UpdatePlayerEquipmentInput!): PlayerEquipment!
   updatePlayerLanguage(payload: UpdateLanguagesInput!, playerId: Float!): Language!
   updatePlayerMagic(payload: UpdateMagicInput!, playerId: Float!): Magic!
   updatePlayerSkills(payload: UpdateSkillsInput!, playerId: Float!): Skills!
+  updatePlayerWeapon(payload: UpdatePlayerWeaponInput!): PlayerWeapon!
   updateWeapon(payload: UpdateWeaponInput!): Weapon!
 }
 
@@ -1071,6 +1074,22 @@ input UpdateMagicInput {
   ritualCaster: Boolean
 }
 
+input UpdatePlayerArmorInput {
+  armorId: Int!
+  equipped: Boolean
+  playerId: Int!
+  proficient: Boolean
+  quantity: Float
+}
+
+input UpdatePlayerEquipmentInput {
+  equipmentId: Int!
+  equipped: Boolean
+  playerId: Int!
+  proficient: Boolean
+  quantity: Float
+}
+
 input UpdatePlayerInput {
   age: Int
   alignment: Alignment
@@ -1087,6 +1106,14 @@ input UpdatePlayerInput {
   race: Race
   size: Size
   temporaryHitPoints: Int
+}
+
+input UpdatePlayerWeaponInput {
+  equipped: Boolean
+  playerId: Int!
+  proficient: Boolean
+  quantity: Float
+  weaponId: Int!
 }
 
 input UpdateSkillsInput {

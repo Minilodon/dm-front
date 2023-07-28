@@ -37,7 +37,7 @@ function PlayerInventory(props: PlayerInventoryProps) {
         </div>
         <CarryingCapacity />
       </div>
-      <EquipmentAndProficiencies />
+      <EquipmentAndProficiencies player={player} />
     </div>
   );
 }

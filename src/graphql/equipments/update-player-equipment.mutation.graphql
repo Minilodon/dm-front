@@ -1,0 +1,6 @@
+mutation updatePlayerEquipment($payload: UpdatePlayerEquipmentInput!) {
+  updatePlayerEquipment(payload: $payload) {
+    playerId
+    equipmentId
+  }
+}

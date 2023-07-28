@@ -453,6 +453,40 @@ export function useUpdateArmorMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateArmorMutationHookResult = ReturnType<typeof useUpdateArmorMutation>;
 export type UpdateArmorMutationResult = Apollo.MutationResult<UpdateArmorMutation>;
 export type UpdateArmorMutationOptions = Apollo.BaseMutationOptions<UpdateArmorMutation, UpdateArmorMutationVariables>;
+export const UpdatePlayerArmorDocument = gql`
+    mutation updatePlayerArmor($payload: UpdatePlayerArmorInput!) {
+  updatePlayerArmor(payload: $payload) {
+    playerId
+    armorId
+  }
+}
+    `;
+export type UpdatePlayerArmorMutationFn = Apollo.MutationFunction<UpdatePlayerArmorMutation, UpdatePlayerArmorMutationVariables>;
+
+/**
+ * __useUpdatePlayerArmorMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerArmorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerArmorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerArmorMutation, { data, loading, error }] = useUpdatePlayerArmorMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerArmorMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerArmorMutation, UpdatePlayerArmorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerArmorMutation, UpdatePlayerArmorMutationVariables>(UpdatePlayerArmorDocument, options);
+      }
+export type UpdatePlayerArmorMutationHookResult = ReturnType<typeof useUpdatePlayerArmorMutation>;
+export type UpdatePlayerArmorMutationResult = Apollo.MutationResult<UpdatePlayerArmorMutation>;
+export type UpdatePlayerArmorMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerArmorMutation, UpdatePlayerArmorMutationVariables>;
 export const UpdatePlayerAttributesDocument = gql`
     mutation updatePlayerAttributes($playerId: Float!, $payload: UpdateAttributesInput!) {
   updatePlayerAttributes(playerId: $playerId, payload: $payload) {
@@ -779,6 +813,40 @@ export function useUpdateEquipmentMutation(baseOptions?: Apollo.MutationHookOpti
 export type UpdateEquipmentMutationHookResult = ReturnType<typeof useUpdateEquipmentMutation>;
 export type UpdateEquipmentMutationResult = Apollo.MutationResult<UpdateEquipmentMutation>;
 export type UpdateEquipmentMutationOptions = Apollo.BaseMutationOptions<UpdateEquipmentMutation, UpdateEquipmentMutationVariables>;
+export const UpdatePlayerEquipmentDocument = gql`
+    mutation updatePlayerEquipment($payload: UpdatePlayerEquipmentInput!) {
+  updatePlayerEquipment(payload: $payload) {
+    playerId
+    equipmentId
+  }
+}
+    `;
+export type UpdatePlayerEquipmentMutationFn = Apollo.MutationFunction<UpdatePlayerEquipmentMutation, UpdatePlayerEquipmentMutationVariables>;
+
+/**
+ * __useUpdatePlayerEquipmentMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerEquipmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerEquipmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerEquipmentMutation, { data, loading, error }] = useUpdatePlayerEquipmentMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerEquipmentMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerEquipmentMutation, UpdatePlayerEquipmentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerEquipmentMutation, UpdatePlayerEquipmentMutationVariables>(UpdatePlayerEquipmentDocument, options);
+      }
+export type UpdatePlayerEquipmentMutationHookResult = ReturnType<typeof useUpdatePlayerEquipmentMutation>;
+export type UpdatePlayerEquipmentMutationResult = Apollo.MutationResult<UpdatePlayerEquipmentMutation>;
+export type UpdatePlayerEquipmentMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerEquipmentMutation, UpdatePlayerEquipmentMutationVariables>;
 export const ConnectFeatToPlayerDocument = gql`
     mutation connectFeatToPlayer($payload: ConnectFeatToPlayerInput!) {
   connectFeatToPlayer(payload: $payload) {
@@ -1421,6 +1489,40 @@ export function useGetWeaponsWithBasicInfoLazyQuery(baseOptions?: Apollo.LazyQue
 export type GetWeaponsWithBasicInfoQueryHookResult = ReturnType<typeof useGetWeaponsWithBasicInfoQuery>;
 export type GetWeaponsWithBasicInfoLazyQueryHookResult = ReturnType<typeof useGetWeaponsWithBasicInfoLazyQuery>;
 export type GetWeaponsWithBasicInfoQueryResult = Apollo.QueryResult<GetWeaponsWithBasicInfoQuery, GetWeaponsWithBasicInfoQueryVariables>;
+export const UpdatePlayerWeaponDocument = gql`
+    mutation updatePlayerWeapon($payload: UpdatePlayerWeaponInput!) {
+  updatePlayerWeapon(payload: $payload) {
+    playerId
+    weaponId
+  }
+}
+    `;
+export type UpdatePlayerWeaponMutationFn = Apollo.MutationFunction<UpdatePlayerWeaponMutation, UpdatePlayerWeaponMutationVariables>;
+
+/**
+ * __useUpdatePlayerWeaponMutation__
+ *
+ * To run a mutation, you first call `useUpdatePlayerWeaponMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePlayerWeaponMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePlayerWeaponMutation, { data, loading, error }] = useUpdatePlayerWeaponMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdatePlayerWeaponMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePlayerWeaponMutation, UpdatePlayerWeaponMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePlayerWeaponMutation, UpdatePlayerWeaponMutationVariables>(UpdatePlayerWeaponDocument, options);
+      }
+export type UpdatePlayerWeaponMutationHookResult = ReturnType<typeof useUpdatePlayerWeaponMutation>;
+export type UpdatePlayerWeaponMutationResult = Apollo.MutationResult<UpdatePlayerWeaponMutation>;
+export type UpdatePlayerWeaponMutationOptions = Apollo.BaseMutationOptions<UpdatePlayerWeaponMutation, UpdatePlayerWeaponMutationVariables>;
 export const UpdateWeaponDocument = gql`
     mutation updateWeapon($payload: UpdateWeaponInput!) {
   updateWeapon(payload: $payload) {
@@ -1991,11 +2093,14 @@ export type Mutation = {
   updateEquipment: Equipment;
   updateFeat: Feat;
   updatePlayer: Player;
+  updatePlayerArmor: PlayerArmor;
   updatePlayerAttributes: Attributes;
   updatePlayerCurrency: Currency;
+  updatePlayerEquipment: PlayerEquipment;
   updatePlayerLanguage: Language;
   updatePlayerMagic: Magic;
   updatePlayerSkills: Skills;
+  updatePlayerWeapon: PlayerWeapon;
   updateWeapon: Weapon;
 };
 
@@ -2088,6 +2193,11 @@ export type MutationUpdatePlayerArgs = {
 };
 
 
+export type MutationUpdatePlayerArmorArgs = {
+  payload: UpdatePlayerArmorInput;
+};
+
+
 export type MutationUpdatePlayerAttributesArgs = {
   payload: UpdateAttributesInput;
   playerId: Scalars['Float'];
@@ -2097,6 +2207,11 @@ export type MutationUpdatePlayerAttributesArgs = {
 export type MutationUpdatePlayerCurrencyArgs = {
   payload: UpdateCurrencyInput;
   playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerEquipmentArgs = {
+  payload: UpdatePlayerEquipmentInput;
 };
 
 
@@ -2115,6 +2230,11 @@ export type MutationUpdatePlayerMagicArgs = {
 export type MutationUpdatePlayerSkillsArgs = {
   payload: UpdateSkillsInput;
   playerId: Scalars['Float'];
+};
+
+
+export type MutationUpdatePlayerWeaponArgs = {
+  payload: UpdatePlayerWeaponInput;
 };
 
 
@@ -2601,6 +2721,22 @@ export type UpdateMagicInput = {
   ritualCaster?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type UpdatePlayerArmorInput = {
+  armorId: Scalars['Int'];
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Float']>;
+};
+
+export type UpdatePlayerEquipmentInput = {
+  equipmentId: Scalars['Int'];
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Float']>;
+};
+
 export type UpdatePlayerInput = {
   age?: InputMaybe<Scalars['Int']>;
   alignment?: InputMaybe<Alignment>;
@@ -2617,6 +2753,14 @@ export type UpdatePlayerInput = {
   race?: InputMaybe<Race>;
   size?: InputMaybe<Size>;
   temporaryHitPoints?: InputMaybe<Scalars['Int']>;
+};
+
+export type UpdatePlayerWeaponInput = {
+  equipped?: InputMaybe<Scalars['Boolean']>;
+  playerId: Scalars['Int'];
+  proficient?: InputMaybe<Scalars['Boolean']>;
+  quantity?: InputMaybe<Scalars['Float']>;
+  weaponId: Scalars['Int'];
 };
 
 export type UpdateSkillsInput = {
@@ -2757,6 +2901,13 @@ export type UpdateArmorMutationVariables = Exact<{
 
 export type UpdateArmorMutation = { __typename?: 'Mutation', updateArmor: { __typename?: 'Armor', AC: number, armorImage?: string | null, cost: number, id: number, minStr?: number | null, name: string, stealthDis?: boolean | null, type: ArmorType, weight: number } };
 
+export type UpdatePlayerArmorMutationVariables = Exact<{
+  payload: UpdatePlayerArmorInput;
+}>;
+
+
+export type UpdatePlayerArmorMutation = { __typename?: 'Mutation', updatePlayerArmor: { __typename?: 'PlayerArmor', playerId: number, armorId: number } };
+
 export type UpdatePlayerAttributesMutationVariables = Exact<{
   playerId: Scalars['Float'];
   payload: UpdateAttributesInput;
@@ -2819,6 +2970,13 @@ export type UpdateEquipmentMutationVariables = Exact<{
 
 
 export type UpdateEquipmentMutation = { __typename?: 'Mutation', updateEquipment: { __typename?: 'Equipment', capacity?: string | null, cost: number, description: string, equipmentImage?: string | null, id: number, name: string, type: EquipmentType, weight: number } };
+
+export type UpdatePlayerEquipmentMutationVariables = Exact<{
+  payload: UpdatePlayerEquipmentInput;
+}>;
+
+
+export type UpdatePlayerEquipmentMutation = { __typename?: 'Mutation', updatePlayerEquipment: { __typename?: 'PlayerEquipment', playerId: number, equipmentId: number } };
 
 export type ConnectFeatToPlayerMutationVariables = Exact<{
   payload: ConnectFeatToPlayerInput;
@@ -2945,6 +3103,13 @@ export type GetWeaponsWithBasicInfoQueryVariables = Exact<{ [key: string]: never
 
 
 export type GetWeaponsWithBasicInfoQuery = { __typename?: 'Query', getWeapons: Array<{ __typename?: 'Weapon', id: number, name: string }> };
+
+export type UpdatePlayerWeaponMutationVariables = Exact<{
+  payload: UpdatePlayerWeaponInput;
+}>;
+
+
+export type UpdatePlayerWeaponMutation = { __typename?: 'Mutation', updatePlayerWeapon: { __typename?: 'PlayerWeapon', playerId: number, weaponId: number } };
 
 export type UpdateWeaponMutationVariables = Exact<{
   payload: UpdateWeaponInput;
