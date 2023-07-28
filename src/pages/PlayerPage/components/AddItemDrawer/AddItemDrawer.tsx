@@ -6,24 +6,34 @@ import { useDrawerContext } from "../../../../contexts/DrawerContext";
 import Button from "../../../../components/Button/Button";
 import TypeSelector from "./components/TypeSelector";
 import ItemsAutocompletes from "./components/ItemsAutocompletes";
+import { TextField } from "@mui/material";
+import {
+  PlayerFragment,
+  useConnectArmorToPlayerMutation,
+  useConnectEquipmentToPlayerMutation,
+  useConnectWeaponToPlayerMutation,
+} from "../../../../generated/graphql";
+import { usePlayerContext } from "../../../Players/contexts/PlayerContext";
+import Checkbox from "../../../../components/Checkbox/Checkbox";
 
-type CreateArmorFormValues = {
-  playerId: number;
-  itemId: number;
+type CreateItemFormValues = {
   equipped: boolean;
   proficient: boolean;
   quantity: number;
 };
 
 const itemSchema = yup.object({
-  playerId: yup.number().required(),
-  itemId: yup.number().required(),
   equipped: yup.boolean().required(),
   proficient: yup.boolean().required(),
   quantity: yup.number().required(),
 });
 
-function AddItemDrawer() {
+interface Props {
+  player: PlayerFragment | undefined;
+}
+
+function AddItemDrawer(props: Props) {
+  const { player } = props;
   const { closeDrawer } = useDrawerContext();
   const [itemType, setItemType] = useState<"weapon" | "armor" | "equipment">(
     "armor"
@@ -34,19 +44,91 @@ function AddItemDrawer() {
   } | null>(null);
   const [inputValue, setInputValue] = useState("");
 
-  const { control, handleSubmit } = useForm<CreateArmorFormValues>({
+  const { control, handleSubmit, setValue } = useForm<CreateItemFormValues>({
     resolver: yupResolver(itemSchema),
+    defaultValues: {
+      equipped: false,
+      proficient: false,
+      quantity: 1,
+    },
   });
 
-  const updateArmor = (data: CreateArmorFormValues) => {
-    console.log(selectedItem);
-  };
+  const [addArmor] = useConnectArmorToPlayerMutation({ refetchQueries: "all" });
+  const [addWeapon] = useConnectWeaponToPlayerMutation({
+    refetchQueries: "all",
+  });
+  const [addEquipment] = useConnectEquipmentToPlayerMutation({
+    refetchQueries: "all",
+  });
 
+  const addItem = async (data: CreateItemFormValues) => {
+    if (!selectedItem) return;
+    if (!player) return;
+    switch (itemType) {
+      case "armor":
+        try {
+          await addArmor({
+            variables: {
+              payload: {
+                armorId: selectedItem.id,
+                playerId: player.id,
+                equipped: data.equipped,
+                proficient: data.proficient,
+                quantity: data.quantity,
+              },
+            },
+          });
+        } catch (error) {
+          console.log("algo deu errado");
+        } finally {
+          closeDrawer();
+          return;
+        }
+      case "equipment":
+        try {
+          await addEquipment({
+            variables: {
+              payload: {
+                equipmentId: selectedItem.id,
+                playerId: player.id,
+                equipped: data.equipped,
+                proficient: data.proficient,
+                quantity: data.quantity,
+              },
+            },
+          });
+        } catch (error) {
+          console.log("algo deu errado");
+        } finally {
+          closeDrawer();
+          return;
+        }
+      case "weapon":
+        try {
+          await addWeapon({
+            variables: {
+              payload: {
+                weaponId: selectedItem.id,
+                playerId: player.id,
+                equipped: data.equipped,
+                proficient: data.proficient,
+                quantity: data.quantity,
+              },
+            },
+          });
+        } catch (error) {
+          console.log("algo deu errado");
+        } finally {
+          closeDrawer();
+          return;
+        }
+    }
+  };
   return (
     <div className="w-full h-full flex flex-col">
       <form
         className="flex flex-col py-4 gap-y-2 w-full h-full"
-        onSubmit={handleSubmit(updateArmor)}
+        onSubmit={handleSubmit(addItem)}
       >
         <TypeSelector
           itemType={itemType}
@@ -61,13 +143,45 @@ function AddItemDrawer() {
           inputValue={inputValue}
           setInputValue={setInputValue}
         />
-
-        <Button
-          label="Salvar"
-          type="submit"
-          className="mt-auto self-center"
-          onClick={() => console.log(selectedItem)}
+        <Controller
+          control={control}
+          name={"equipped"}
+          render={({ field }) => (
+            <div className="flex items-center gap-x-2">
+              <span>Equipado:</span>
+              <Checkbox
+                onChange={() => setValue("equipped", !field.value)}
+                value={field.value}
+              />
+            </div>
+          )}
         />
+        <Controller
+          control={control}
+          name={"proficient"}
+          render={({ field }) => (
+            <div className="flex items-center gap-x-2">
+              <span>Tem proficiência:</span>
+              <Checkbox
+                onChange={() => setValue("proficient", !field.value)}
+                value={field.value}
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name={"quantity"}
+          render={({ field }) => (
+            <TextField
+              className="w-1/2"
+              {...field}
+              type="number"
+              label={"Quantidade"}
+            />
+          )}
+        />
+        <Button label="Salvar" type="submit" className="mt-auto self-center" />
       </form>
     </div>
   );

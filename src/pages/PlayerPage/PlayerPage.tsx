@@ -12,7 +12,7 @@ function PlayerPage() {
   const { openDrawer, setDrawerContent, setDrawerTitle } = useDrawerContext();
   const addItemToPlayer = () => {
     setDrawerTitle("Adicionar item");
-    setDrawerContent(<AddItemDrawer />);
+    setDrawerContent(<AddItemDrawer player={player} />);
     openDrawer();
   };
 

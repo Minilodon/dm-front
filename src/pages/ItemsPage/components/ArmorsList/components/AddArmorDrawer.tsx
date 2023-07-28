@@ -12,7 +12,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import clsx from "clsx";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,6 +45,16 @@ function AddArmorDrawer() {
   const [updateArmorMutation, { loading }] = useCreateArmorMutation();
   const { control, handleSubmit, watch } = useForm<CreateArmorFormValues>({
     resolver: yupResolver(armorSchema),
+    defaultValues: {
+      AC: 10,
+      armorImage: "",
+      cost: 0,
+      minStr: 0,
+      name: "",
+      stealthDis: false,
+      type: ArmorType.Light,
+      weight: 0,
+    },
   });
   const updateArmor = async (data: CreateArmorFormValues) => {
     if (!data) return;

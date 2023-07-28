@@ -45,6 +45,15 @@ function AddEquipmentDrawer() {
   });
   const { control, handleSubmit, watch } = useForm<CreateEquipmentFormValues>({
     resolver: yupResolver(equipmentSchema),
+    defaultValues: {
+      capacity: null,
+      cost: 0,
+      description: "",
+      equipmentImage: "",
+      name: "",
+      type: EquipmentType.Other,
+      weight: 0,
+    },
   });
   const createEquipment = async (data: CreateEquipmentFormValues) => {
     if (!data) return;
