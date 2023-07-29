@@ -178,6 +178,7 @@ function AddItemDrawer(props: Props) {
               {...field}
               type="number"
               label={"Quantidade"}
+              inputProps={{ min: 1 }}
             />
           )}
         />

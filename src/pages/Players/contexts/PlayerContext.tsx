@@ -165,13 +165,13 @@ function PlayerContextProvider(props: PlayerContextProviderProps) {
   }, [data?.getAllPlayers]);
 
   const armorsWeight = playerArmors
-    ?.map((armor) => armor.weight)
+    ?.map((armor) => armor.weight * armor.quantity)
     .reduce((acc, currentValue) => acc + currentValue, 0);
   const weaponsWeight = playerWeapons
-    ?.map((weapon) => weapon.weight)
+    ?.map((weapon) => weapon.weight * weapon.quantity)
     .reduce((acc, currentValue) => acc + currentValue, 0);
   const equipmentWeight = playerEquipments
-    ?.map((equipment) => equipment.weight)
+    ?.map((equipment) => equipment.weight * equipment.quantity)
     .reduce((acc, currentValue) => acc + currentValue, 0);
   const totalWeight =
     (equipmentWeight || 0) + (armorsWeight || 0) + (weaponsWeight || 0);

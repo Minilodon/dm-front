@@ -73,6 +73,7 @@ function EquippedItems(props: { player: PlayerFragment | undefined }) {
                   className="border-b border-b-black px-2 py-1 flex items-center justify-between"
                 >
                   <span>{equipment.equipmentName}</span>
+                  <span>{equipment.quantity}</span>
                   <span
                     className={clsx(
                       "cursor-pointer hover:text-red-600 transition"
@@ -103,6 +104,7 @@ function EquippedItems(props: { player: PlayerFragment | undefined }) {
                   className="border-b border-b-black px-2 py-1 flex items-center justify-between"
                 >
                   <span>{armor.armorName}</span>
+                  <span>{armor.quantity}</span>
                   <span
                     className={clsx(
                       "cursor-pointer hover:text-red-600 transition"
@@ -133,6 +135,7 @@ function EquippedItems(props: { player: PlayerFragment | undefined }) {
                   className="border-b border-b-black px-2 py-1 flex items-center justify-between"
                 >
                   <span>{weapon.weaponName}</span>
+                  <span>{weapon.quantity}</span>
                   <span
                     className={clsx(
                       "cursor-pointer hover:text-red-600 transition"
